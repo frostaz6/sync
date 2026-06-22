@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 Nothing yet.
 
+## [1.0.2] - 2026-06-22
+
+### Fixed
+
+- **Reordering favorite subreddits.** You can again long-press a favorite in the drawer and drag it
+  into the order you want. ([#2](https://github.com/X-15/ReSync/issues/2))
+- **Crash when opening a subreddit's "About"** from the subreddit options menu.
+
 ## [1.0.1] - 2026-06-22
 
 ### Fixed
@@ -143,6 +151,7 @@ buildable, modern project exist at all — not end-user-facing, but they are the
   stale resource-ID literals, characterized the resource-shrinker drawable "tombstones" as harmless,
   and produce a non-debuggable build with a clean strict-dex merge.
 
-[Unreleased]: https://github.com/X-15/ReSync/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/X-15/ReSync/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/X-15/ReSync/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/X-15/ReSync/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/X-15/ReSync/releases/tag/v1.0.0

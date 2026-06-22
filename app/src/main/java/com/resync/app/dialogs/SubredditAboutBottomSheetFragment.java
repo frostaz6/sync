@@ -31,6 +31,9 @@ public class SubredditAboutBottomSheetFragment extends CustomBottomSheetDialogFr
     @Override // com.resync.app.dialogs.CustomBottomSheetDialogFragment, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
-        getFragmentManager().beginTransaction().replace(R.id.fragment_bottomsheet_empty_container, AboutFragment.newInstance(getSubreddit(), false)).commit();
+        // Must use the CHILD fragment manager: fragment_bottomsheet_empty_container lives inside this
+        // bottom-sheet's own layout, not the activity. Using the activity FragmentManager throws
+        // "No view found for id ..." and crashes the app (subreddit 3-dot -> About). See issue #2.
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_bottomsheet_empty_container, AboutFragment.newInstance(getSubreddit(), false)).commit();
     }
 }

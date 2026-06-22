@@ -27,14 +27,15 @@ public class ActionItemMoveCallback extends ItemTouchHelper.Callback {
         return ItemTouchHelper.Callback.makeMovementFlags(15, 0);
     }
 
+    // The action grid is reordered by long-press drag (not swipe).
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
     public boolean isLongPressDragEnabled() {
-        return false;
+        return true;
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
     public boolean isItemViewSwipeEnabled() {
-        return true;
+        return false;
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback

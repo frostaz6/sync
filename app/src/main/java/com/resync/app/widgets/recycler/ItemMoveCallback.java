@@ -48,14 +48,15 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
         return 0;
     }
 
+    // Favorites are reordered by long-press drag (not swipe). See issue #2.
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
     public boolean isLongPressDragEnabled() {
-        return false;
+        return true;
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
     public boolean isItemViewSwipeEnabled() {
-        return true;
+        return false;
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
