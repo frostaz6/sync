@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <HorizontalScrollView android:scrollbarSize="0.0dp" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:paddingBottom="8.0dp" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <androidx.appcompat.widget.LinearLayoutCompat android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" app:divider="@drawable/simple_divider_horizontal" app:showDividers="middle">
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_subreddit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Subreddit" app:content_highlight_color="true" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_multi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Custom feed" app:content_highlight_color="true" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_search" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Search" app:content_highlight_color="true" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_full_sub_search" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Search subs" app:content_highlight_color="true" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_profile" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Profile" app:content_highlight_color="true" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_domain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Domain" app:content_highlight_color="true" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/input_seen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Other discussions" app:content_highlight_color="true" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </HorizontalScrollView>
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="32.0dp" android:paddingRight="32.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.onboarding.OnboardingFrameLayout android:id="@id/preview_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_width="match_parent" android:layout_height="160.0dp" android:layout_margin="32.0dp" android:src="@drawable/navigation_bottom" android:scaleType="fitCenter" />
+        <ImageView android:layout_gravity="center" android:id="@id/mail_icon" android:layout_width="match_parent" android:layout_height="36.0dp" android:layout_margin="32.0dp" android:src="@drawable/outline_mail_24" android:scaleType="fitCenter" />
+    </com.resync.app.ui.views.onboarding.OnboardingFrameLayout>
+    <com.resync.app.ui.views.onboarding.OnboardingSetupNotificationsButton android:textSize="16.0dp" android:gravity="center" android:layout_gravity="center" android:id="@id/setup" android:paddingLeft="32.0dp" android:paddingTop="16.0dp" android:paddingRight="32.0dp" android:paddingBottom="16.0dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" android:layout_marginBottom="32.0dp" android:text="Setup" />
+</LinearLayout>

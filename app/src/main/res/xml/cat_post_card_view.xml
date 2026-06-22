@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <com.resync.app.ui.preferences.custom.ViewChipGroundPreference />
+    <com.resync.app.ui.preferences.custom.ViewTypePreviewPreference app:ui_mode="4" />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Image options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Image above title" android:key="card_image_above" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Full height" android:key="card_image_full_height" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Text preview labels" android:key="card_text_labels" android:defaultValue="false" app:isPreferenceVisible="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Selftext options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show selftext previews" android:key="card_selftext_previews" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show selftext expand icon" android:key="card_selftext_expand" android:defaultValue="true" app:isPreferenceVisible="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Card options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Full width cards" android:key="card_full_width" android:summary="Single column only" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/columns" android:title="Columns (portrait)" android:key="post_columns_portrait" android:defaultValue="@string/post_columns_portrait" android:entryValues="@array/columns" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/columns" android:title="Columns (landscape)" android:key="post_columns_landscape" android:defaultValue="@string/post_columns_landscape" android:entryValues="@array/columns" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Fonts and sizing" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Title font" android:key="card_title" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Description font" android:key="card_description" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Selftext font" android:key="card_selftext" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Buttons" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Save" android:key="card_buttons_save" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Hide" android:key="card_buttons_hide" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Share" android:key="card_buttons_share" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mod tools" android:key="card_buttons_mod" android:summary="This is only shown for subs you moderate" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

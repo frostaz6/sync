@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout android:id="@id/coordinator" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/ad_wrapper">
+        <FrameLayout android:id="@id/content_wrapper" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <include layout="@layout/toolbar" />
+        <com.resync.app.ui.views.posts.PostsFab android:layout_gravity="right|bottom" android:id="@id/fab" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:translationX="-24.0dp" android:translationY="-24.0dp" android:translationZ="1.0dp" />
+        <com.resync.app.ui.views.monet.MonetLinearProgressIndicator android:layout_gravity="bottom" android:id="@id/progress" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:translationZ="2.0dp" />
+    </com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout>
+    <com.resync.app.ui.views.AdWrapper android:id="@id/ad_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:transitionName="ad_wrapper" />
+</RelativeLayout>

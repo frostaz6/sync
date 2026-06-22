@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet android:interpolator="@android:interpolator/fast_out_slow_in" android:duration="240"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in" />
+    <changeTransform android:interpolator="@android:interpolator/fast_out_slow_in" />
+    <changeClipBounds android:interpolator="@android:interpolator/fast_out_slow_in" />
+    <changeImageTransform android:interpolator="@android:interpolator/fast_out_slow_in" />
+    <transition android:interpolator="@android:interpolator/fast_out_slow_in" sync:iv_alphaMode="mode_in" class="com.resync.app.ui.transitions.CustomImageViewTransition">
+        <targets>
+            <target android:targetName="card_preview" />
+        </targets>
+    </transition>
+    <transition android:interpolator="@android:interpolator/fast_out_slow_in" sync:nt_transitionMode="mode_in" class="com.resync.app.ui.transitions.NavigationTransition">
+        <targets>
+            <target android:targetName="android:navigation:background" />
+        </targets>
+    </transition>
+    <transition android:interpolator="@android:interpolator/fast_out_slow_in" sync:transitionDirection="mode_in" class="com.resync.app.ui.transitions.WindowTransition">
+        <targets>
+            <target android:targetName="background" />
+        </targets>
+    </transition>
+</transitionSet>

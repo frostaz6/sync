@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="12.0dp" android:gravity="bottom" android:id="@id/view_toolbar" android:paddingLeft="8.0dp" android:paddingBottom="12.0dp" android:layout_width="match_parent" android:layout_height="70.0dp" android:text="Frontpage" />
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/view_toolbar">
+        <LinearLayout android:orientation="vertical" android:id="@id/content_one" android:padding="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dp" android:layout_marginRight="8.0dp">
+            <TextView android:textSize="8.0dp" android:id="@id/content_one_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Primary text color" />
+            <TextView android:textSize="6.0dp" android:id="@id/content_one_link" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Link text color example" />
+            <TextView android:textSize="5.0dp" android:id="@id/content_one_selftext" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Secondary text color lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget dolor posuere, blandit felis et, elementum ligula. Fusce varius justo quis blandit ultrices. Donec quis malesuada magna, a finibus ligula. Proin a vestibulum quam. Ut et porttitor nisi. Nullam vel mollis enim, et euismod magna." />
+        </LinearLayout>
+        <View android:layout_width="match_parent" android:layout_height="8.0dp" />
+        <LinearLayout android:orientation="vertical" android:id="@id/content_two" android:padding="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dp" android:layout_marginRight="8.0dp">
+            <TextView android:textSize="8.0dp" android:id="@id/content_two_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Primary text color" />
+            <TextView android:textSize="6.0dp" android:id="@id/content_two_link" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Link text color example" />
+            <TextView android:textSize="5.0dp" android:id="@id/content_two_selftext" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Secondary text color lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget dolor posuere, blandit felis et, elementum ligula. Fusce varius justo quis blandit ultrices. Donec quis malesuada magna, a finibus ligula. Proin a vestibulum quam. Ut et porttitor nisi. Nullam vel mollis enim, et euismod magna." />
+        </LinearLayout>
+        <View android:layout_width="match_parent" android:layout_height="8.0dp" />
+        <LinearLayout android:orientation="vertical" android:id="@id/content_three" android:padding="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dp" android:layout_marginRight="8.0dp">
+            <TextView android:textSize="8.0dp" android:id="@id/content_three_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Primary text color" />
+            <TextView android:textSize="6.0dp" android:id="@id/content_three_link" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Link text color example" />
+            <TextView android:textSize="5.0dp" android:id="@id/content_three_selftext" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Secondary text color lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget dolor posuere, blandit felis et, elementum ligula. Fusce varius justo quis blandit ultrices. Donec quis malesuada magna, a finibus ligula. Proin a vestibulum quam. Ut et porttitor nisi. Nullam vel mollis enim, et euismod magna." />
+        </LinearLayout>
+    </LinearLayout>
+    <View android:id="@id/fab" android:layout_width="25.0dp" android:layout_height="25.0dp" android:layout_marginRight="8.0dp" android:layout_marginBottom="8.0dp" android:layout_above="@id/view_bottom_nav" android:layout_alignParentRight="true" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/view_bottom_nav" android:layout_width="match_parent" android:layout_height="35.0dp" android:layout_alignParentBottom="true" android:translationZ="1.0dp">
+        <ImageView android:id="@id/view_bottom_nav_item_one" android:layout_width="15.0dp" android:layout_height="15.0dp" android:src="@drawable/home_icon" android:layout_weight="1.0" />
+        <ImageView android:id="@id/view_bottom_nav_item_two" android:layout_width="15.0dp" android:layout_height="15.0dp" android:src="@drawable/outline_explore_24" android:layout_weight="1.0" />
+        <ImageView android:id="@id/view_bottom_nav_item_three" android:layout_width="15.0dp" android:layout_height="15.0dp" android:src="@drawable/messaging_icon" android:layout_weight="1.0" />
+    </LinearLayout>
+</merge>

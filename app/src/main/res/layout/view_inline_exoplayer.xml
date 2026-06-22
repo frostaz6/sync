@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.CustomSurfaceView android:layout_gravity="center" android:id="@id/surface_view" android:layout_width="wrap_content" android:layout_height="match_parent" />
+    <FrameLayout android:layout_gravity="bottom" android:id="@id/control_wrapper" android:layout_width="match_parent" android:layout_height="32.0dp">
+        <androidx.appcompat.widget.AppCompatImageView android:id="@id/back" android:padding="8.0dp" android:layout_width="36.0dp" android:layout_height="32.0dp" android:scaleType="centerInside" app:srcCompat="@drawable/ic_skip_previous_white_24dp" />
+        <androidx.appcompat.widget.AppCompatImageView android:id="@id/controls" android:padding="8.0dp" android:layout_width="36.0dp" android:layout_height="32.0dp" android:layout_marginLeft="36.0dp" android:scaleType="centerInside" app:srcCompat="@drawable/ic_pause_white_24dp" />
+        <androidx.appcompat.widget.AppCompatImageView android:id="@id/volume" android:padding="8.0dp" android:visibility="gone" android:layout_width="36.0dp" android:layout_height="32.0dp" android:layout_marginLeft="72.0dp" android:scaleType="centerInside" app:srcCompat="@drawable/ic_volume_mute_white_24dp" />
+        <TextView android:textSize="10.0dp" android:textStyle="bold" android:textColor="@android:color/white" android:gravity="center_vertical" android:layout_gravity="bottom" android:id="@id/time" android:paddingBottom="8.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="82.0dp" android:text="Testing" />
+    </FrameLayout>
+</merge>

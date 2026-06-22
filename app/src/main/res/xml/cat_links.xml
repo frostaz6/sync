@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Links opened in app" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Images" android:key="appimages_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="v.redd.it videos" android:key="reddit_video_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="YouTube videos" android:key="youtubeembed_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Gfycat videos" android:key="gfycat_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="RedGifs videos" android:key="redgifs_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Streamable videos" android:key="streamable_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mixtape.moe videos" android:key="mixtape_preference" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Vid.me videos" android:key="vidme_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Imgur galleries" android:key="album_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Tumblr posts" android:key="tumblr_post_preference" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Browser settings" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/browser_types" android:title="Default browser" android:key="default_browser" android:entryValues="@array/browser_types_values" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Bypass external domains" android:key="bypass_browser" android:summary="Always open externally" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Enhancements" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Bypass AMP links" android:key="bypass_amp" android:summary="When clicked, AMP links will give you the option to bypass" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Inline linking" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Tap usernames to open" android:key="inline_usernames" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Tap subreddits to open" android:key="inline_subreddits" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Tap domains to open" android:key="inline_domains" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Link styles" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Inline link sources" android:key="inline_link_sources" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show larger links" android:key="large_link_sources" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Expanded comment links" android:key="comments_links_expanded" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Expanded selftext links" android:key="posts_links_expanded" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Experimental" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Incognito custom tabs" android:key="incognito_tabs" android:summary="This is an experimental feature and requires you to manually enable incognito tabs in Chrome. If you do not enable the flag manually in Chrome the links will open like normal. Be warned this is a little buggy..." />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:key="help" app:title="How do I set Chrome flags?" />
+    </PreferenceCategory>
+</PreferenceScreen>

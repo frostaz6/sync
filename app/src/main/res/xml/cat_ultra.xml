@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <com.resync.app.ui.preferences.custom.ultra.UltraManagePreference />
+    <com.resync.app.ui.preferences.custom.DividerPreference />
+    <PreferenceCategory android:key="ultra_cloud_section">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Cloud services" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/format_paint" android:title="Paint users" android:key="ultra_paint" android:summary="Highlight users with custom colors and built-in automatic cloud-sync" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/format_text_variant_outline" android:title="Tag users" android:key="ultra_tag" android:summary="Tag users with custom text and built-in automatic cloud-sync" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_cloud_24" android:title="Settings cloud backup" android:key="ultra_cloud" android:summary="Backup and restore settings per-account to the cloud" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="ultra_enhancements">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Enhancements" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_web_24" android:title="Website previews" android:key="ultra_website_previews" android:summary="Show website previews in comments (and when long pressing links)" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="ultra_perks">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference android:key="ultra_perks_title" app:categoryTitle="Perks" app:isPreferenceVisible="false" /> ]
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_cloud_24" android:title="Cloud backup" android:key="ultra_disabled_cloud" android:summary="Backup setting to the cloud and share across devices" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/format_paint" android:title="Paint users" android:key="ultra_disabled_paint" android:summary="Tag users with custom colors and automatically sync across devices" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/format_text_variant_outline" android:title="Tag users" android:key="ultra_disabled_tag" android:summary="Tag users with custom tags and automatically sync across devices" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_web_24" android:title="Website previews" android:key="ultra_disabled_website_previews" android:summary="Show rich site previews in comments and when long pressing links" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_translate_24" android:title="Translate text" android:key="ultra_translate" android:summary="Translate comments &amp; selftext (powered by Google)" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/text_recognition" android:title="Select text from images" android:key="ultra_select_text" android:summary="Quickly pull text from images using machine learning" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_restore_24" android:title="Restore removed comments" android:key="ultra_removed" android:summary="Accessible from the comment more menu" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/coffee_outline" android:title="Support development" android:key="ultra_support" android:summary="Help support ReSync" />
+    </PreferenceCategory>
+    <!-- ReSync: removed UltraRestore/UltraReset preferences + subscription terms (no purchases). -->
+    <PreferenceCategory app:isPreferenceVisible="false">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Privacy" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/ic_incognito_24dp" android:title="Incognito Mode" android:key="preview_sites" android:summary="Clear all recents, history, searches, visited subreddits and drafts on exit..." android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.core.MaterialYouToolbar android:id="@id/toolbar" android:layout_width="match_parent" android:layout_height="?actionBarSize" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@id/toolbar">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="8.0dp" android:layout_marginRight="16.0dp" android:layout_marginBottom="8.0dp" android:minHeight="48.0dp">
+                <TextView android:textSize="14.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Subreddit" android:layout_weight="2.0" />
+                <AutoCompleteTextView android:textSize="14.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/tasker_sync_subreddit" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="48.0dp" android:singleLine="true" android:shadowRadius="0.0" android:completionThreshold="1" android:layout_weight="1.0" />
+            </LinearLayout>
+            <View android:background="#8d8d8d" android:layout_width="match_parent" android:layout_height="1.0px" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="8.0dp" android:layout_marginRight="16.0dp" android:layout_marginBottom="8.0dp" android:minHeight="48.0dp">
+                <TextView android:textSize="14.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Pages" android:layout_weight="2.0" />
+                <EditText android:textSize="14.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/tasker_sync_pages" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="48.0dp" android:text="5" android:singleLine="true" android:shadowRadius="0.0" android:layout_weight="1.0" android:inputType="number" />
+            </LinearLayout>
+            <View android:background="#8d8d8d" android:layout_width="match_parent" android:layout_height="1.0px" />
+            <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="8.0dp" android:layout_marginRight="16.0dp" android:layout_marginBottom="8.0dp" android:minHeight="48.0dp">
+                <TextView android:textSize="14.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Sync comments" android:layout_centerVertical="true" />
+                <CheckBox android:id="@id/tasker_sync_comments" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="false" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="#8d8d8d" android:layout_width="match_parent" android:layout_height="1.0px" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

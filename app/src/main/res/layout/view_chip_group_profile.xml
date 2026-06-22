@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_section" android:layout_width="wrap_content" android:layout_height="wrap_content" app:closeIcon="@drawable/outline_arrow_drop_down_24" app:closeIconEnabled="true" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_sort" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hot" app:chipIcon="@drawable/ic_sort_white_24dp" app:closeIcon="@drawable/outline_arrow_drop_down_24" app:closeIconEnabled="true" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_about" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="About" app:chipIcon="@drawable/ic_info_outline_black_24dp" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_message" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Message" app:chipIcon="@drawable/outline_email_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_tophies" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trophies" app:chipIcon="@drawable/trophy_variant_outline" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" app:chipIcon="@drawable/format_text_variant_outline" app:closeIcon="@drawable/outline_close_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_paint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Paint user" app:chipIcon="@drawable/format_paint" app:closeIcon="@drawable/outline_close_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_follow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Follow" app:chipIcon="@drawable/account_eye_outline" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_friend" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Friend" app:chipIcon="@drawable/outline_person_24" app:closeIcon="@drawable/outline_close_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_block" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Block" app:chipIcon="@drawable/outline_block_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_share" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Share" app:chipIcon="@drawable/outline_share_24" />
+</merge>

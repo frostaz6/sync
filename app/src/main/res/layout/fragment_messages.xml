@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.monet.MonetSwipeRefreshLayout android:id="@id/fragment_messages_str" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.recycler.MessagingRecyclerView android:id="@id/fragment_messages_recycler" android:paddingLeft="@dimen/posts_fragment_list_half_padding" android:paddingRight="@dimen/posts_fragment_list_half_padding" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="match_parent" />
+</com.resync.app.ui.views.monet.MonetSwipeRefreshLayout>

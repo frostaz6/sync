@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout android:id="@id/coordinator" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+        <com.resync.app.ui.views.core.MaterialYouToolbar android:id="@id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:orientation="vertical" android:id="@id/content_wrapper" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_margin="32.0dp">
+                <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <com.resync.app.ui.views.text.BaseTextView android:textStyle="bold" android:gravity="center_vertical" android:id="@id/ban_duration_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="80.0dp" android:text="Duration" android:layout_alignTop="@id/ban_duration_input" android:layout_alignBottom="@id/ban_duration_input" app:textColor="primary" app:textSize="large" />
+                    <com.resync.app.ui.views.responsive.CustomEditText android:id="@id/ban_duration_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:hint="Permanent" android:layout_toRightOf="@id/ban_duration_label" android:inputType="number" />
+                </RelativeLayout>
+                <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="32.0dp">
+                    <com.resync.app.ui.views.text.BaseTextView android:textStyle="bold" android:gravity="center_vertical" android:id="@id/ban_why_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="80.0dp" android:text="Why?" android:layout_alignTop="@id/ban_why_input" android:layout_alignBottom="@id/ban_why_input" app:textColor="primary" app:textSize="large" />
+                    <com.resync.app.ui.views.responsive.CustomEditText android:id="@id/ban_why_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:hint="(will not be visible to user)" android:layout_toRightOf="@id/ban_why_label" />
+                </RelativeLayout>
+                <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="32.0dp">
+                    <com.resync.app.ui.views.text.BaseTextView android:textStyle="bold" android:gravity="center_vertical" android:id="@id/ban_note_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="80.0dp" android:text="Note" android:layout_alignTop="@id/ban_note_input" android:layout_alignBottom="@id/ban_note_input" app:textColor="primary" app:textSize="large" />
+                    <com.resync.app.ui.views.responsive.CustomEditText android:id="@id/ban_note_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:hint="note to include in ban PM" android:layout_toRightOf="@id/ban_note_label" />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout>

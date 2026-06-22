@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_section" android:layout_width="wrap_content" android:layout_height="wrap_content" app:closeIcon="@drawable/outline_arrow_drop_down_24" app:closeIconEnabled="true" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_message" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="New message" app:chipIcon="@drawable/outline_email_new" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mark all as read" app:chipIcon="@drawable/outline_done_all_24" />
+</merge>

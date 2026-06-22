@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.onboarding.OnboardingFrameLayout android:id="@id/preview_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_width="match_parent" android:layout_height="160.0dp" android:layout_margin="32.0dp" android:src="@drawable/navigation_bottom" android:scaleType="fitCenter" />
+        <ImageView android:layout_gravity="center" android:id="@id/sync_icon" android:layout_width="match_parent" android:layout_height="36.0dp" android:layout_margin="32.0dp" android:src="@drawable/ic_outline_sync_color_extra_bold_simple_gap" android:scaleType="fitCenter" />
+    </com.resync.app.ui.views.onboarding.OnboardingFrameLayout>
+    <com.resync.app.ui.views.onboarding.OnboardingRestoreLinearLayout android:id="@id/restore_linear_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:divider="@drawable/simple_divider_vertical_double" android:showDividers="middle" />
+    <com.resync.app.ui.views.onboarding.OnboardingRestoreButton android:textSize="16.0dp" android:gravity="center" android:layout_gravity="center" android:id="@id/restore" android:paddingLeft="32.0dp" android:paddingTop="16.0dp" android:paddingRight="32.0dp" android:paddingBottom="16.0dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" android:layout_marginBottom="32.0dp" android:text="Restore" />
+</LinearLayout>

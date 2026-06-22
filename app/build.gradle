@@ -1,0 +1,176 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.resync.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.resync.app"
+        minSdk 23
+        targetSdk 35
+        versionCode 24001
+        versionName "1.0.1"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            // Non-debuggable so the Android-15 "debuggable app / 16 KB" warning dialog
+            // never appears, while keeping the lenient debug dex pipeline (the release
+            // pipeline fails on a Material color-fork duplicate-class clash).
+            debuggable false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Sign the (non-debuggable) release with the debug key so it installs for testing
+            // and updates the debug build in place (same signature). Removes the Android-15
+            // "debuggable app" / 16 KB compatibility warning dialog.
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets { main { java.srcDirs = ['src/main/java'] } }
+
+    lint { abortOnError false; checkReleaseBuilds false }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs << '-Xmaxerrs' << '100000'
+    }
+
+    packagingOptions {
+        resources { excludes += ['META-INF/**'] }
+    }
+}
+
+// MAVEN-REPLACEMENT build: app's own code is the only source; every library that R8 bundled
+// is replaced by its real Maven artifact (exact original versions from resolve-deps.gradle).
+// The dex-keyed JADX mapping made the app call these by their real class+method names, so the
+// app source binds against the Maven APIs directly.
+dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // --- AndroidX ---
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.activity:activity:1.7.2'
+    implementation 'androidx.fragment:fragment:1.6.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    implementation 'androidx.slidingpanelayout:slidingpanelayout:1.2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.biometric:biometric:1.2.0-alpha05'
+    implementation 'androidx.browser:browser:1.5.0'
+    implementation 'androidx.core:core:1.10.1'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    implementation 'androidx.emoji2:emoji2:1.3.0'
+    implementation 'androidx.exifinterface:exifinterface:1.3.6'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-common:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
+    implementation 'androidx.loader:loader:1.1.0'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.room:room-runtime:2.5.2'
+    implementation 'androidx.savedstate:savedstate:1.2.1'
+    implementation 'androidx.startup:startup-runtime:1.1.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
+    implementation 'androidx.window:window:1.1.0'
+    implementation 'androidx.work:work-runtime:2.8.1'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
+    implementation 'androidx.transition:transition:1.4.1'
+    implementation 'androidx.sqlite:sqlite:2.3.1'
+    implementation 'androidx.sqlite:sqlite-framework:2.3.1'
+    implementation 'androidx.arch.core:core-runtime:2.2.0'
+    implementation 'androidx.collection:collection:1.2.0'
+    implementation 'androidx.customview:customview:1.1.0'
+    implementation 'androidx.interpolator:interpolator:1.0.0'
+    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'com.google.android.material:material:1.9.0'
+
+    // --- Networking / IO ---
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.8'
+    implementation 'com.squareup.okhttp3:okhttp-dnsoverhttps:5.0.0-alpha.8'
+    implementation 'com.squareup.okio:okio:3.3.0'
+    implementation 'com.android.volley:volley:1.2.1'
+
+    // --- Media / images ---
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-datasource:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.2'
+    implementation 'com.google.android.exoplayer:extension-okhttp:2.18.2'
+    implementation 'org.mp4parser:isoparser:1.9.41'
+    implementation 'org.mp4parser:muxer:1.9.41'
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    // image-cropper (com.theartofdev.edmodo) is not on
+    // mavenCentral/google (orig. jCenter, dead) -> keep their decompiled sources instead.
+
+    // --- Firebase (messaging/config/functions used by core; crashlytics + analytics removed in ReSync) ---
+    implementation 'com.google.firebase:firebase-messaging:23.1.2'
+    implementation 'com.google.firebase:firebase-config:21.3.0'
+    implementation 'com.google.firebase:firebase-functions:20.2.2'
+
+    // --- Ads (will be stripped from app code; kept so it compiles first) ---
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+    implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
+
+    // --- Google Play in-app updates (modern split lib, GMS Task API) ---
+    implementation 'com.google.android.play:app-update:2.1.0'
+
+    // --- ML / misc (billing removed in ReSync) ---
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+    implementation 'com.google.mlkit:translate:17.0.1'
+    implementation 'com.google.mlkit:language-id:17.0.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.auto.value:auto-value-annotations:1.10.1'
+    annotationProcessor 'com.google.auto.value:auto-value:1.10.1'
+    implementation 'com.google.flatbuffers:flatbuffers-java:23.5.26'
+    implementation 'com.google.guava:guava:31.1-android'
+
+    // --- Parsing / text ---
+    implementation 'org.jsoup:jsoup:1.16.1'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'commons-io:commons-io:2.13.0'
+    implementation 'org.ccil.cowan.tagsoup:tagsoup:1.2.1'
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+
+    // --- Kotlin ---
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+
+    // --- Event bus / view binding ---
+    // Otto is kept in-source (Sync calls its decompiled obfuscated method names e.g. Bus.i()=post);
+    // the Maven artifact's clean API (post()) doesn't match the call sites, and bundling both causes
+    // a duplicate-class clash in non-debuggable builds. Use the in-source copy only.
+    // implementation 'com.squareup:otto:1.3.8'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    // annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3' // keep 111 decompiled _ViewBinding instead
+
+    // --- Misc app deps ---
+    implementation 'com.github.javiersantos:PiracyChecker:1.2.5'
+
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly 'javax.annotation:javax.annotation-api:1.3.2'
+}

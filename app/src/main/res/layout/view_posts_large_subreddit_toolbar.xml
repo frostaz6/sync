@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/expanded_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="38.0dp" android:layout_marginRight="16.0dp">
+        <FrameLayout android:id="@id/subview_wrapper" android:layout_width="56.0dp" android:layout_height="56.0dp" android:layout_marginRight="16.0dp">
+            <com.resync.app.ui.views.core.SubView android:id="@id/subview" android:layout_width="56.0dp" android:layout_height="56.0dp" app:enable_click_preview="true" app:force_circular_outline="true" />
+        </FrameLayout>
+        <LinearLayout android:gravity="bottom" android:orientation="vertical" android:id="@id/title_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.resync.app.ui.views.text.spannable.children.other.LargeToolbarDescription android:textSize="10.0dp" android:id="@id/toolbar_title_description" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="34.0dp" android:textColor="@android:color/black" android:ellipsize="end" android:gravity="bottom" android:id="@id/toolbar_title_large" android:padding="0.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="0.0dp" android:maxLines="1" android:singleLine="true" />
+        </LinearLayout>
+    </RelativeLayout>
+    <com.resync.app.ui.views.util.ConsumingHorizontalScrollView android:id="@id/chip_scroll" android:paddingTop="14.0dp" android:paddingBottom="12.0dp" android:scrollbars="none" android:clipToPadding="false" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <com.resync.app.sections.posts.toolbar.chip_groups.ChipWrapper android:id="@id/chip_wrapper" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </com.resync.app.ui.views.util.ConsumingHorizontalScrollView>
+</merge>

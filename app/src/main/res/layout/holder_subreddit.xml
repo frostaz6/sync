@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:foreground="@drawable/button_light"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SubView android:layout_gravity="center_vertical" android:id="@id/subreddit_icon" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_marginLeft="16.0dp" app:force_circular_outline="true" />
+    <RelativeLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="64.0dp" android:paddingRight="42.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:layout_marginBottom="8.0dp">
+        <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/subreddit_textview_default">
+            <com.resync.app.ui.views.text.BaseTextView android:ellipsize="end" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/subreddit_textview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" app:textColor="primary" app:textSize="medium" />
+            <com.resync.app.ui.views.buttons.ViewModeButton android:id="@id/subreddit_view_mode" android:padding="6.0dp" android:visibility="gone" android:layout_width="26.0dp" android:layout_height="26.0dp" />
+            <com.resync.app.ui.views.buttons.SortButton android:id="@id/subreddit_sort" android:padding="6.0dp" android:visibility="gone" android:layout_width="26.0dp" android:layout_height="26.0dp" />
+        </LinearLayout>
+        <com.resync.app.ui.views.text.BaseTextView android:ellipsize="end" android:id="@id/subreddit_textview_default" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Default" android:singleLine="true" android:layout_alignParentRight="true" android:layout_centerVertical="true" app:textColor="secondary" app:textSize="medium" />
+    </RelativeLayout>
+    <LinearLayout android:layout_gravity="right|center" android:orientation="horizontal" android:id="@id/subreddit_actions_wrapper" android:layout_width="wrap_content" android:layout_height="42.0dp">
+        <com.resync.app.ui.views.buttons.SaveButton android:id="@id/subreddit_save" android:visibility="gone" android:layout_width="42.0dp" android:layout_height="42.0dp" />
+        <com.resync.app.ui.views.buttons.MoreButton android:id="@id/subreddit_more" android:layout_width="42.0dp" android:layout_height="42.0dp" />
+    </LinearLayout>
+</FrameLayout>

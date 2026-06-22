@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/dialog_fragment_image_preview_root" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.images.CustomImageView android:id="@id/dialog_fragment_image_preview_image" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <com.resync.app.ui.views.video.CustomExoPlayerView android:id="@id/dialog_fragment_image_preview_video" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_centerInParent="true" sync:zoomable="false" />
+    <com.resync.app.ui.views.text.BaseTextView android:textColor="@android:color/white" android:gravity="center" android:layout_gravity="center" android:id="@id/dialog_fragment_image_preview_error" android:visibility="gone" android:clickable="false" android:layout_width="match_parent" android:layout_height="match_parent" android:textAllCaps="true" sync:textSize="regular" sync:typeface="robotoCondensedBold" />
+    <GridView android:scrollbarStyle="outsideOverlay" android:id="@id/image_grid" android:paddingLeft="@dimen/static_padding_regular" android:paddingRight="@dimen/static_padding_regular" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="match_parent" android:listSelector="@android:color/transparent" android:horizontalSpacing="@dimen/static_padding_regular" android:verticalSpacing="@dimen/static_padding_regular" android:numColumns="@integer/grid_columns" />
+    <ProgressBar android:id="@id/dialog_fragment_image_preview_progress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:indeterminateTint="@android:color/white" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/peek_options" android:background="@drawable/shadow_bottom" android:layout_width="match_parent" android:layout_height="96.0dp" android:layout_alignParentBottom="true">
+        <com.resync.app.ui.views.buttons.CommentButton android:id="@id/peek_comments" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:filterColor="white" sync:showRipple="false" />
+        <com.resync.app.ui.views.buttons.ExternalButton android:id="@id/peek_external" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:filterColor="white" sync:showRipple="false" />
+        <com.resync.app.ui.views.buttons.ShareButton android:id="@id/peek_share" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:filterColor="white" sync:showRipple="false" />
+        <com.resync.app.ui.views.buttons.CopyButton android:id="@id/peek_copy" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:filterColor="white" sync:showRipple="false" />
+    </LinearLayout>
+</RelativeLayout>

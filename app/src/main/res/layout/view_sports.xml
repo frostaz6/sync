@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/sports_wrapper" android:background="#43a047" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="12.0dp" android:textColor="#fff" android:gravity="center_vertical" android:id="@id/sports_label" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="24.0dp" android:layout_marginRight="10.0dp" android:layout_toLeftOf="@id/sports_stop" android:layout_centerVertical="true" />
+    <TextView android:textSize="12.0dp" android:textColor="#fff" android:gravity="center_vertical" android:id="@id/sports_stop" android:background="@drawable/button_light" android:paddingLeft="24.0dp" android:paddingRight="24.0dp" android:clickable="true" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="Stop" android:layout_toLeftOf="@id/sports_refresh" android:textAllCaps="true" />
+    <TextView android:textSize="12.0dp" android:textColor="#fff" android:gravity="center_vertical" android:id="@id/sports_refresh" android:background="@drawable/button_light" android:paddingLeft="24.0dp" android:paddingRight="24.0dp" android:clickable="true" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="Refresh" android:layout_alignParentRight="true" android:textAllCaps="true" />
+</RelativeLayout>

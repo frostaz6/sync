@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Marking as read" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mark posts as read" android:key="history_mark_read" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Remember viewed across devices" android:key="history_mark_read_reddit" android:summary="This is a reddit gold feature" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mark posts as read on scroll" android:key="history_mark_read_on_scroll" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mark as read after peek" android:key="viewed_peek" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Dim images when viewed" android:key="dim_images" android:defaultValue="fa4lse" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Search" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Record recently searched and visited" android:key="record_history" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Top subreddits" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Record top visited subreddits locally" android:key="record_top_subreddits" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Clear history" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_history_24" android:title="Clear all" android:key="history_all" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Clear recents" android:key="history_recents_clear" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Clear viewed subreddits" android:key="history_subs_clear" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Clear visited subreddit counts" android:key="history_visited_clear" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Clear drafts" android:key="drafts_clear" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Clear search history" android:key="search_clear" />
+    </PreferenceCategory>
+</PreferenceScreen>

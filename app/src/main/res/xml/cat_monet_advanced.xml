@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <com.resync.app.ui.preferences.custom.tooltips.MonetIntroTooltipPreference />
+    <com.resync.app.ui.preferences.custom.ThemePreviewPreference />
+    <PreferenceCategory android:key="automatic" />
+    <PreferenceCategory android:key="manual">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Manual setup" />
+        <com.resync.app.ui.preferences.defaults.ColorPreference android:icon="@drawable/outline_color_lens_24" android:key="monet_manual_theme_color" app:title="Theme base color" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/format_color_fill" android:selectable="false" android:key="color_intensity" app:title="Color intensity" />
+        <com.resync.app.ui.preferences.custom.SliderPreference android:key="monet_color_intensity" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Dark tweaks" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Extra colorful dark mode" android:key="monet_boost_dark_color" android:summary="Add a little extra oomph to dark mode" android:defaultValue="false" app:icon="@drawable/brush_variant" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="AMOLED black" android:key="force_amoled" android:summary="Use a much darker palette in dark mode" android:defaultValue="false" app:icon="@drawable/outline_brightness_low_24" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Dark overlay" android:key="dark_overlay" android:summary="Decrease the screen brightness by 60% in dark mode" android:defaultValue="false" app:icon="@drawable/outline_lightbulb_24" />
+        <com.resync.app.ui.preferences.defaults.monet.MonetDarkColorOverridePreference android:key="monet_override_dark_link_color" app:icon="@drawable/outline_link_24" app:title="Highlight color" />
+        <com.resync.app.ui.preferences.defaults.monet.MonetDarkColorOverridePreference android:key="monet_override_dark_primary_text_color" app:icon="@drawable/outline_text_fields_24" app:title="Primary text color" />
+        <com.resync.app.ui.preferences.defaults.monet.MonetDarkColorOverridePreference android:key="monet_override_dark_secondary_text_color" app:icon="@drawable/outline_text_fields_24" app:title="Secondary text color" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Light tweaks" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Extra colorful light mode" android:key="monet_boost_light_color" android:summary="Add a little extra oomph to light mode" android:defaultValue="false" app:icon="@drawable/brush_variant" />
+        <com.resync.app.ui.preferences.defaults.monet.MonetDarkColorOverridePreference android:key="monet_override_light_link_color" app:icon="@drawable/outline_link_24" app:title="Highlight color" />
+        <com.resync.app.ui.preferences.defaults.monet.MonetDarkColorOverridePreference android:key="monet_override_light_primary_text_color" app:icon="@drawable/outline_text_fields_24" app:title="Primary text color" />
+        <com.resync.app.ui.preferences.defaults.monet.MonetDarkColorOverridePreference android:key="monet_override_light_secondary_text_color" app:icon="@drawable/outline_text_fields_24" app:title="Secondary text color" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Extra" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_color_lens_24" android:key="palette" app:title="Visualise monet palette" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_share_24" android:key="share" app:title="Share theme" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_folder_24" android:key="load" app:title="Load theme" />
+    </PreferenceCategory>
+</PreferenceScreen>

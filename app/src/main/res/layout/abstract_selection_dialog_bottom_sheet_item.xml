@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/abstract_alert_dialog_bottom_sheet_item_row" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <com.resync.app.ui.views.buttons.AbstractRedditButton android:id="@id/abstract_alert_dialog_bottom_sheet_item_indicator" android:layout_width="42.0dp" android:layout_height="42.0dp" android:scaleType="centerInside" android:layout_alignParentRight="true" />
+</RelativeLayout>

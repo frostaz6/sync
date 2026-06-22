@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16.0dp" android:divider="@drawable/simple_divider_vertical" android:showDividers="middle">
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_spoiler" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Spoiler" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_awards" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lots of awards" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_user_flair" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="User image flair" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_inline_gif_no_size" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Inline GIF previews (no size specified)" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_inline_gifs" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Inline GIF previews (with size specified)" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_selftext_gif" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selftext GIF previews" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_emote_animated" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Animated emote" />
+            <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/button_emote" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Sub-specific emote" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

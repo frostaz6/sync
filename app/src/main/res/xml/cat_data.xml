@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Data saving" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_data_usage_24" android:entries="@array/data_saving_types" android:title="Data saving mode" android:key="data_saving" android:summary="Disable loading all thumbnails, card previews and attempt to load smaller resolution videos" android:defaultValue="1" android:entryValues="@array/data_saving_types_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_chrome" android:title="Preload Chrome Custom Tabs" android:key="cct_preload_" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_cached_24" android:title="Cache comments" android:key="cached_comments" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_hd_24" android:entries="@array/images_preload_types" android:title="HD Reddit video quality" android:key="reddit_video_quality_new" android:defaultValue="2" android:entryValues="@array/images_preload_types_values" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Autoplay setup" />
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="GIFs and videos can automatically play in dynamic and full height card modes. By default autoplay is only enabled when on WiFi to save data." />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_play_arrow_24" android:entries="@array/images_preload_types" android:title="Autoplay" android:key="autoplay" android:defaultValue="1" android:entryValues="@array/images_preload_types_values" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Image preloading (advanced)" />
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="When images are preloaded, Sync attempts to grab the image before it needs to be shown on screen to save time and battery.\n\nDisabling this setting will not stop images from loading.\n\nIf you are still having issues with slow loading, try the data saving mode.\n" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_image_24" android:entries="@array/images_preload_types" android:title="Preload full images" android:key="images_preload" android:defaultValue="0" android:entryValues="@array/images_preload_types_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/images_preload_types" android:title="Preload preview images" android:key="preview_preload" android:defaultValue="0" android:entryValues="@array/images_preload_types_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/images_preload_types" android:title="Preload thumbnails" android:key="thumbs_preload" android:defaultValue="0" android:entryValues="@array/images_preload_types_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/images_preload_types" android:title="Preload GIFs" android:key="gifs_preload" android:defaultValue="1" android:entryValues="@array/images_preload_types_values" />
+    </PreferenceCategory>
+</PreferenceScreen>

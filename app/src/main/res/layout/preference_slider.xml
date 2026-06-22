@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.InterceptingFrameLayout android:paddingLeft="60.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.monet.MonetSlider android:id="@id/chroma" android:layout_width="match_parent" android:layout_height="wrap_content" android:stepSize="0.2" android:valueFrom="0.0" android:valueTo="2.0" />
+</com.resync.app.ui.views.InterceptingFrameLayout>

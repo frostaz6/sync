@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/frame" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:layout_marginBottom="16.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.images.CustomImageView android:id="@id/image" android:layout_width="match_parent" android:layout_height="wrap_content" android:adjustViewBounds="false" android:minHeight="1.0px" />
+    <com.resync.app.ui.views.responsive.CustomProgressBar android:layout_gravity="center" android:id="@id/progress" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <ImageView android:layout_gravity="center" android:id="@id/failed" android:visibility="gone" android:layout_width="38.0dp" android:layout_height="38.0dp" android:src="@drawable/file_image_remove_outline" />
+</FrameLayout>

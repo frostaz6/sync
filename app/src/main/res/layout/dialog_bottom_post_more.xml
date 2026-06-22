@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/abstract_input_dialog_bottom_sheet_header" android:layout_width="match_parent" android:layout_height="wrap_content" app:title_text="Post options" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_crosspost" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_axis_arrow" app:rowTitle="View crosspost" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_awards" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_medal" app:rowTitle="View awards" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_upvote" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_arrow_upward_white_24dp" app:rowTitle="Upvote" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_downvote" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_arrow_downward_white_24dp" app:rowTitle="Downvote" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_save" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_bookmark_border_24" app:rowTitle="Save" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_hide" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_close_white_24dp" app:rowTitle="Hide" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_edit" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_edit_24" app:rowTitle="Edit" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_delete" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_delete_24" app:rowTitle="Delete" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_replies" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/markunread_mailbox_outline" app:rowTitle="Inbox replies" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_flair" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_label_24" app:rowTitle="Flair" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_mark_as_read" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_check_24" app:rowTitle="Mark as read" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_share" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_share_24" app:rowTitle="Share" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_watch" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_access_time_24" app:rowTitle="Watch" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_report" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_report_24" app:rowTitle="Report" />
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_profile" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_account_circle_24" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_subreddit" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_subreddits_circle_outline" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_explore" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_explore_24" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_external" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_open_in_browser_24" app:rowTitle="Open in browser" />
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_copy" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_content_copy_black_24dp" app:rowTitle="Copy..." />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_translate" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_translate_24" app:rowTitle="Translate text with Google" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_filter" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_filter_list_black_24dp" app:rowTitle="Filter..." />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/more_add_multi" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_playlist_add_24" app:rowTitle="Add to multi" />
+    </LinearLayout>
+</ScrollView>

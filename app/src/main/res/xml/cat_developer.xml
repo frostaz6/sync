@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Debug" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_email_24" android:title="FCM ID" android:key="fcm" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="checks">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Checks" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_cloud_24" android:title="Ultra cache status" android:key="cache_status" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_offline_bolt_24" android:title="Ultra status" android:key="ultra_status" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/cellphone_arrow_down_variant" android:title="Installing package status" android:key="install_status" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show autoplay video region" android:key="developer_video" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Tests" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/discord_logo_new" android:title="Discord join demo" android:key="discord_demo" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_play_arrow_24" android:title="Material dialogs demo" android:key="dialogs_demo" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_text_fields_24" android:title="Markdown tests" android:key="markdown_tests" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Schedule WorkManager workers" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Messaging worker" android:key="messaging" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Mod messaging worker" android:key="mod_messaging" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Check subreddits worker" android:key="subs" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Check watched subreddits worker" android:key="watched" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Clear cache worker" android:key="cache" />
+    </PreferenceCategory>
+</PreferenceScreen>

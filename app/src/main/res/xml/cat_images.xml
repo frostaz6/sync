@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="General" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_24" android:title="Inline image previews" android:key="inline_image_previews" android:summary="Small image previews in comments and selftext" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Tap to close" android:key="quick_dismiss_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Swipe to close" android:key="swipe_dismiss_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Zoom into tall images" android:key="zoom_tall" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Use colorful backgrounds" android:key="image_colorful_background" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Always show the download button" android:key="viewer_show_save" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Force auto rotate" android:key="view_auto_rotate" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Configure downloads" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Change download directory" android:key="directory_media" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Add .nomedia files to subfolders" android:key="save_nomedia" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Download to subfolders" android:key="save_folders_" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Peeking" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Peek media" android:key="peek" android:summary="Long press to preview media" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Shown options when peeking" android:key="peek_options" android:summary="Peeking is also known as long pressing" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mute when peeking" android:key="peek_mute" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Video / GIF playback" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display seek bar" android:key="gif_seek" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display speed controls" android:key="gif_speed" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mute when opening" android:key="video_mute" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Deepzoom" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/deepzoom_dpi" android:title="Gallery DPI" android:key="deepzoom_dpi" android:summary="Adjust the initial load quality" android:defaultValue="200" android:entryValues="@array/deepzoom_dpi_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/deepzoom_max" android:title="Max zoom" android:key="deepzoom_max" android:summary="Adjust how far the deepzoom can zoom" android:defaultValue="30" android:entryValues="@array/deepzoom_max_values" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Advanced" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Zoomable video" android:key="zoom_videos" android:summary="May cause video banding / distortion" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Limit download size" android:key="limit_image_size" android:summary="Limit image loading to 50MB" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show image debug options" android:key="debug_image" android:summary="Display a detail image download debug log" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/cache" android:title="Media cache duration" android:key="cache_preference" android:summary="How frequently the media cache is emptied" android:defaultValue="1" android:entryValues="@array/cache_values" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Manually clear the media cache" android:key="cache_manual" android:summary="Remove all images irrespective of age" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Cache streaming videos" android:key="cache_streaming_videos" android:summary="Cache streaming content locally" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

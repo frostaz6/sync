@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.responsive.CustomMaterialCardView android:id="@id/holder_list_root" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:baselineAligned="false">
+        <FrameLayout android:id="@id/holder_list_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="vertical" android:id="@id/holder_list_text_wrapper" android:background="@drawable/button_light" android:padding="8.0dp" android:addStatesFromChildren="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="0.0dp" android:baselineAligned="false" android:minHeight="68.0dp">
+                <com.resync.app.ui.views.text.spannable.children.posts.PostTitleTextView android:layout_gravity="fill" android:id="@id/holder_list_title" android:padding="0.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="0.0dp" android:includeFontPadding="false" app:layoutSource="smaller_card_title" app:textColor="primary" />
+                <com.resync.app.ui.views.text.spannable.children.posts.PostDescriptionTextView android:layout_gravity="fill" android:id="@id/holder_list_description" android:padding="0.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="0.0dp" android:includeFontPadding="false" app:layoutSource="smaller_card_desc" />
+                <com.google.android.material.chip.ChipGroup android:orientation="horizontal" android:id="@id/holder_list_generic_extra_wrapper" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp">
+                    <com.resync.app.ui.views.text.spannable.children.image_components.flair.PostFlairTextView android:id="@id/holder_list_generic_flair" android:layout_width="wrap_content" android:layout_height="match_parent" app:layoutSource="slide_desc" app:show_border="false" app:textColor="secondary" />
+                    <com.resync.app.ui.views.text.spannable.children.image_components.awards.AwardsTextView android:id="@id/holder_list_generic_awards" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layoutSource="slide_desc" app:show_border="false" app:textColor="secondary" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+            <FrameLayout android:id="@id/holder_list_preview_wrapper" android:layout_width="62.0dp" android:layout_height="62.0dp" android:layout_margin="8.0dp" android:foreground="@drawable/button_light">
+                <com.resync.app.ui.views.images.CustomImageView android:id="@id/holder_list_preview" android:layout_width="62.0dp" android:layout_height="62.0dp" android:scaleType="centerCrop" app:shape_round_corners="true" />
+            </FrameLayout>
+            <LinearLayout android:layout_gravity="right" android:orientation="vertical" android:id="@id/holder_list_more_wrapper" android:layout_width="38.0dp" android:layout_height="match_parent">
+                <com.resync.app.ui.views.buttons.TypeButton android:id="@id/holder_list_type" android:paddingTop="0.0dp" android:paddingBottom="0.0dp" android:layout_width="38.0dp" android:layout_height="match_parent" android:layout_weight="1.0" app:filterColor="grey" app:showRipple="true" />
+                <com.resync.app.ui.views.buttons.ExpandButton android:id="@id/holder_list_expand" android:paddingTop="0.0dp" android:paddingBottom="0.0dp" android:layout_width="38.0dp" android:layout_height="match_parent" android:layout_weight="1.0" app:filterColor="grey" app:showRipple="true" />
+            </LinearLayout>
+        </FrameLayout>
+        <com.resync.app.ui.views.responsive.CustomButtonsWrapper android:orientation="horizontal" android:id="@id/holder_list_expanded_wrapper" android:visibility="gone" android:layout_width="match_parent" android:layout_height="48.0dp">
+            <com.resync.app.ui.views.buttons.UpvoteButton android:id="@id/holder_list_upvote" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+            <com.resync.app.ui.views.buttons.DownvoteButton android:id="@id/holder_list_downupvote" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+            <com.resync.app.ui.views.buttons.SaveButton android:id="@id/holder_list_save" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+            <com.resync.app.ui.views.buttons.ModButton android:id="@id/holder_list_mod" android:visibility="gone" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+            <com.resync.app.ui.views.buttons.HideButton android:id="@id/holder_list_hide" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+            <com.resync.app.ui.views.buttons.ProfileButton android:id="@id/holder_list_profile" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+            <com.resync.app.ui.views.buttons.MoreButton android:id="@id/holder_list_more" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        </com.resync.app.ui.views.responsive.CustomButtonsWrapper>
+    </LinearLayout>
+</com.resync.app.ui.views.responsive.CustomMaterialCardView>

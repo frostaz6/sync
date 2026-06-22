@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SubView android:id="@id/view_account_row_icon" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_alignParentLeft="true" app:force_circular_outline="true" />
+    <com.resync.app.ui.views.text.BaseTextView android:id="@id/view_account_row_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:singleLine="true" android:layout_toLeftOf="@id/view_account_row_remove" android:layout_toRightOf="@id/view_account_row_icon" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true" app:textColor="primary" app:textSize="medium" app:typeface="roboto" />
+    <com.resync.app.ui.views.buttons.CustomAppCompatButton android:id="@id/view_account_row_remove" android:padding="6.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_alignParentRight="true" app:srcCompat="@drawable/outline_remove_circle_outline_24" />
+</merge>

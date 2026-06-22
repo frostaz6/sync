@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:layout_width="16.0dp" android:layout_height="match_parent" />
+    <RelativeLayout android:id="@id/view_material_row_items_wrapper" android:layout_width="32.0dp" android:layout_height="32.0dp">
+        <com.resync.app.ui.views.core.SubView android:id="@id/view_material_row_sub_view" android:layout_width="32.0dp" android:layout_height="32.0dp" app:force_circular_outline="true" />
+        <androidx.appcompat.widget.AppCompatImageView android:id="@id/view_material_row_image" android:visibility="gone" android:layout_width="32.0dp" android:layout_height="32.0dp" />
+        <com.resync.app.ui.views.buttons.CustomAppCompatButton android:id="@id/view_material_row_icon" android:padding="6.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" />
+    </RelativeLayout>
+    <View android:layout_width="16.0dp" android:layout_height="match_parent" />
+    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginRight="16.0dp" android:minHeight="32.0dp" android:layout_weight="1.0">
+        <com.resync.app.ui.views.text.BaseTextView android:ellipsize="end" android:gravity="center_vertical" android:id="@id/view_material_row_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:lines="1" app:textColor="primary" app:textSize="medium" app:typeface="roboto" />
+        <com.resync.app.ui.views.text.BaseTextView android:ellipsize="end" android:gravity="center_vertical" android:id="@id/view_material_row_secondary" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:lines="1" app:textColor="secondary" app:textSize="medium" app:typeface="roboto" />
+    </LinearLayout>
+    <View android:layout_width="16.0dp" android:layout_height="match_parent" />
+    <com.resync.app.ui.views.buttons.MoreButton android:id="@id/more" android:visibility="gone" android:layout_width="42.0dp" android:layout_height="42.0dp" />
+</merge>

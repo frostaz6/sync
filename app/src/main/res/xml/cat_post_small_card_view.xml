@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <com.resync.app.ui.preferences.custom.ViewChipGroundPreference />
+    <com.resync.app.ui.preferences.custom.ViewTypePreviewPreference app:ui_mode="3" />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Image options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Align thumbnail left" android:key="small_cards_thumbnail_align_left" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Fonts and sizing" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Title font" android:key="small_card_title" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Description font" android:key="small_card_description" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Buttons" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Save" android:key="small_card_buttons_save" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Hide" android:key="small_card_buttons_hide" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Share" android:key="small_card_buttons_share" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mod tools" android:key="small_card_buttons_mod" android:summary="This is only shown for subs you moderate" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.responsive.CustomMaterialCardView android:id="@id/holder_card_generic_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dp">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/thumbnail">
+                <include layout="@layout/holder_card_generic_description" />
+            </LinearLayout>
+            <com.resync.app.ui.views.posts.simple.PostThumbnailView android:id="@id/thumbnail" android:visibility="gone" android:layout_width="80.0dp" android:layout_height="80.0dp" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp" android:layout_marginBottom="12.0dp" android:scaleType="centerCrop" android:layout_alignParentRight="true" app:shape_background="content" app:shape_round_corners="true" />
+        </RelativeLayout>
+        <com.resync.app.ui.views.posts.cards.CardSelftextPreviewTextView android:ellipsize="none" android:id="@id/selftext" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" app:layoutSource="card_selftext" />
+        <include layout="@layout/holder_card_generic_buttons" />
+    </LinearLayout>
+</com.resync.app.ui.views.responsive.CustomMaterialCardView>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:id="@id/legacy_drawer_header_title_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <FrameLayout android:id="@id/material_toolbar_wrapper" android:paddingLeft="16.0dp" android:layout_width="match_parent" android:layout_height="?actionBarSize">
+            <com.resync.app.ui.views.core.SubView android:layout_gravity="center_vertical" android:id="@id/material_toolbar_profile" android:layout_width="32.0dp" android:layout_height="32.0dp" app:force_circular_outline="true" />
+            <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="18.0dp" android:layout_gravity="center_vertical" android:id="@id/legacy_drawer_header_title" android:paddingRight="42.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="48.0dp" />
+            <com.resync.app.ui.views.drawer.SectionIndicator android:layout_gravity="right|center" android:id="@id/legacy_drawer_header_title_expand_icon" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="42.0dp" android:layout_height="match_parent" android:src="@drawable/outline_expand_more_24" />
+        </FrameLayout>
+    </LinearLayout>
+    <com.resync.app.ui.views.drawer.AccountSectionLinearLayout android:id="@id/legacy_drawer_header_account_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+    <FrameLayout android:orientation="horizontal" android:id="@id/legacy_drawer_header_profile_row_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_profile" android:paddingRight="42.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_person_outline_24" app:rowTitle="Profile" />
+        <com.resync.app.ui.views.drawer.SectionIndicator android:layout_gravity="right|center" android:id="@id/legacy_drawer_header_profile_expand_icon" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="42.0dp" android:layout_height="match_parent" android:src="@drawable/outline_expand_more_24" />
+    </FrameLayout>
+    <com.resync.app.ui.views.drawer.SectionLinearLayout android:id="@id/legacy_drawer_header_profile_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <FrameLayout android:orientation="horizontal" android:id="@id/legacy_drawer_header_messaging_row_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_messaging" android:paddingRight="42.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/bottom_nav_outline_mail_outline_24" app:rowTitle="Inbox" />
+        <com.resync.app.ui.views.drawer.SectionIndicator android:layout_gravity="right|center" android:id="@id/legacy_drawer_header_messaging_expand_icon" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="42.0dp" android:layout_height="match_parent" android:src="@drawable/outline_expand_more_24" />
+    </FrameLayout>
+    <com.resync.app.ui.views.drawer.SectionLinearLayout android:id="@id/legacy_drawer_header_messaging_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <FrameLayout android:orientation="horizontal" android:id="@id/legacy_drawer_header_mod_row_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_mod" android:paddingRight="42.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_shield" app:rowTitle="Moderator" />
+        <com.resync.app.ui.views.drawer.SectionIndicator android:layout_gravity="right|center" android:id="@id/legacy_drawer_header_mod_expand_icon" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="42.0dp" android:layout_height="match_parent" android:src="@drawable/outline_expand_more_24" />
+    </FrameLayout>
+    <com.resync.app.ui.views.drawer.SectionLinearLayout android:id="@id/legacy_drawer_header_mod_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_chat" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/message_processing_outline" app:rowTitle="Chat" />
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_search" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/ic_search_black_24dp" app:rowTitle="Search" />
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_submit" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_edit_24" app:rowTitle="Submit" />
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_settings" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_settings_24" app:rowTitle="Settings" />
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_remove_ads" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_thumb_up_24" app:rowTitle="Remove ads" />
+    <com.resync.app.ui.views.core.MaterialRow android:id="@id/legacy_drawer_header_ultra" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_offline_bolt_24" app:rowTitle="Get ReSync Ultra" />
+    <RelativeLayout android:orientation="vertical" android:id="@id/search_box_parent" android:layout_width="match_parent" android:layout_height="match_parent">
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+        <com.resync.app.ui.views.drawer.DrawerEditText android:id="@id/search_box" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginRight="42.0dp" android:hint="Search..." android:singleLine="true" android:inputType="textNoSuggestions" android:imeOptions="actionSearch|flagNoExtractUi" app:textColor="secondary" app:textSize="medium" app:typeface="roboto" />
+        <com.resync.app.ui.views.buttons.HideButton android:id="@id/row_delete" android:padding="0.0dp" android:visibility="invisible" android:layout_width="30.0dp" android:layout_height="match_parent" android:layout_marginRight="6.0dp" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <com.resync.app.ui.views.buttons.MoreButton android:id="@id/legacy_drawer_header_more" android:layout_width="42.0dp" android:layout_height="42.0dp" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</LinearLayout>

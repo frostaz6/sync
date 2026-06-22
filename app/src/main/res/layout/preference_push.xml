@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/transparent" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginRight="8.0dp" android:layout_toLeftOf="@id/preference_push_check">
+            <com.resync.app.ui.views.text.BaseTextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Reddit Push notifications" app:textColor="primary" app:textSize="large" />
+            <com.resync.app.ui.views.text.BaseTextView android:paddingTop="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="This requires the official Reddit app to be installed.\n\nWhen the official app receives a notification ReSync will also receive the notification." app:textColor="secondary" app:textSize="medium" />
+        </LinearLayout>
+        <com.resync.app.ui.views.monet.MonetSwitch android:id="@id/preference_push_check" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/preference_push_access_upper_wrapper" android:background="@drawable/button_light" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:id="@id/preference_push_access_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/preference_push_icon">
+            <com.resync.app.ui.views.text.BaseTextView android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Configure notification access" app:textColor="primary" app:textSize="large" />
+            <com.resync.app.ui.views.text.BaseTextView android:id="@id/preference_push_access_message" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Tap to configure notification access" app:textColor="primary" app:textSize="medium" />
+        </LinearLayout>
+        <com.resync.app.ui.views.preferences.PreferenceCheckedView android:id="@id/preference_push_icon" android:layout_width="28.0dp" android:layout_height="28.0dp" android:layout_marginRight="16.0dp" android:layout_alignTop="@id/preference_push_access_wrapper" android:layout_alignBottom="@id/preference_push_access_wrapper" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</LinearLayout>

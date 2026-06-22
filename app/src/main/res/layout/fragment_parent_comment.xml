@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:id="@id/fragment_parent_comment_bottom_sheet_header" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/header" android:layout_width="match_parent" android:layout_height="wrap_content" app:title_text="Parent comment" />
+    </LinearLayout>
+    <androidx.core.widget.NestedScrollView android:id="@id/scrollView" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16.0dp" android:layout_below="@id/fragment_parent_comment_bottom_sheet_header" android:layout_centerVertical="true">
+        <FrameLayout android:orientation="vertical" android:id="@id/linearLayout" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

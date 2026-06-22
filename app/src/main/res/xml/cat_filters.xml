@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Post filters" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_filter_list_24" android:title="Keyword filters" android:key="filters_keywords" android:summary="Hide posts by title keywords" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Domain filters" android:key="filters_domains" android:summary="Hide posts by domain" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Subreddit filters" android:key="filters_subreddits" android:summary="Hide posts by subreddit" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="User filters" android:key="filters_user" android:summary="Hide posts by users" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Flair filters" android:key="filters_flair" android:summary="Hide posts by flair (user and link)" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Advanced" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_adult" android:title="Hide NSFW posts" android:key="nsfw_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Selectively hide NSFW previews" android:key="selective_nsfw_previews_preference" android:summary="Only hide previews on frontpage and all" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Hide all NSFW previews" android:key="nsfw_previews_preference" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Hide NSFW previews from the recents app list" android:key="nsfw_recents" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Mute NSFW content" android:key="nsfw_mute" android:summary="Videos will mute when opened if the preview is hidden" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Content filters" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_link_24" android:title="Show Link posts" android:key="new_filters_content_link" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_24" android:title="Show Image posts" android:key="new_filters_content_image" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_gif_24" android:title="Show GIF posts" android:key="new_filters_content_gif" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_photo_album_24" android:title="Show Album posts" android:key="new_filters_content_album" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_videocam_24" android:title="Show Video posts" android:key="new_filters_content_video" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_text_fields_24" android:title="Show text posts" android:key="new_filters_content_text" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_adult" android:title="Show NSFW posts" android:key="new_filters_content_nsfw" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

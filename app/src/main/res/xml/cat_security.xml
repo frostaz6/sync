@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Locks" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_screen_lock_portrait_24" android:title="Biometric login lock" android:key="biometric_start" android:summary="Prompt when opening the app" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_supervisor_account_24" android:title="Biometric account lock" android:key="biometric" android:summary="Prompt when changing account" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/incognito" android:title="Hide username in account picker" android:key="hide_username" android:summary="Conceal your identity" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Other" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_dns_24" android:title="DNS over HTTPS" android:key="doh" android:summary="Use Google DNS resolution for increased data security. May also help if you're having trouble connecting to Reddit" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/incognito" android:title="Incognito keyboard" android:key="incognito_keyboard" android:summary="Use an incognito keyboard for searches" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

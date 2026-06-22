@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/outline_share_24" android:id="@id/menu_monet_share" android:visible="false" android:title="Share" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_color_lens_24" android:id="@id/menu_monet" android:visible="false" android:title="View palette" app:showAsAction="always" />
+    <item android:icon="@drawable/cog_refresh_outline" android:id="@id/menu_reset" android:title="Reset" app:showAsAction="always" />
+    <item android:icon="@drawable/hammer_wrench" android:id="@id/menu_setup" android:visible="false" android:title="Setup" app:showAsAction="always" />
+</menu>

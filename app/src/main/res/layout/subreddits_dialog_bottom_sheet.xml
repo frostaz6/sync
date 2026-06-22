@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.recycler.SubredditsRecyclerView android:scrollbarStyle="insideOverlay" android:id="@id/bottom_sheet_subreddits_recyclerview" android:scrollbars="none" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="match_parent" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    <com.reddit.indicatorfastscroll.FastScrollerView android:id="@id/bottom_sheet_subreddits_recyclerview_scroller" android:visibility="gone" android:clickable="true" android:layout_width="32.0dp" android:layout_height="match_parent" android:layout_alignParentRight="true" />
+    <com.reddit.indicatorfastscroll.FastScrollerThumbView android:id="@id/bottom_sheet_subreddits_recyclerview_scroller_thumb" android:layout_width="42.0dp" android:layout_height="match_parent" android:layout_marginRight="42.0dp" android:layout_toLeftOf="@id/bottom_sheet_subreddits_recyclerview_scroller" />
+    <com.resync.app.ui.NonBlockingFrameLayout android:id="@id/search_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.monet.MonetSearchBoxView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="24.0dp" android:layout_marginRight="16.0dp" android:layout_marginBottom="16.0dp" app:hint="Search..." />
+    </com.resync.app.ui.NonBlockingFrameLayout>
+    <com.resync.app.ui.views.buttons.DragButton android:layout_gravity="center_horizontal" android:layout_width="22.0dp" android:layout_height="22.0dp" android:layout_marginTop="12.0dp" android:layout_centerHorizontal="true" />
+    <com.resync.app.ui.views.monet.MonetFab android:id="@id/fab" android:src="@drawable/ic_keyboard_arrow_up_white_24dp" android:translationX="-24.0dp" android:translationY="-24.0dp" app:fabSize="mini" style="@style/floating_action_button" />
+</RelativeLayout>

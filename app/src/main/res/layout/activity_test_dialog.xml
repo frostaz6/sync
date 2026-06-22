@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:fitsSystemWindows="true" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="34.0dp" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="32.0dp" android:layout_marginBottom="16.0dp" android:text="Material dialogs" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:id="@id/buttons_wrapper" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16.0dp" android:divider="@drawable/simple_divider_vertical" android:showDividers="middle">
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_alert" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Alert (positive + negative)" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_alert_second" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Alert (positive, negative + neutral)" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_alert_async" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Async alert" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Input" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_selection" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selection" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_async_selection" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Async selection" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_radio_selection" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Radio selection" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_async_radio_selection" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Async radio selection" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:id="@id/button_progress" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Progress" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

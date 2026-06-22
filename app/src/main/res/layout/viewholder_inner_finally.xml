@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.tooltips.TooltipView android:id="@id/tooltip_one" android:layout_width="match_parent" android:layout_height="wrap_content" app:tooltip_icon="@drawable/outline_help_outline_24" app:tooltip_text="There are shortcuts in the settings to quickly restore the old look and feel of ReSync if you miss the old style" />
+    <com.resync.app.ui.views.tooltips.TooltipView android:id="@id/tooltip_two" android:layout_width="match_parent" android:layout_height="wrap_content" app:tooltip_icon="@drawable/ic_subreddits_circle_outline" app:tooltip_text="If you have any questions come join us at /r/redditsync" />
+</LinearLayout>

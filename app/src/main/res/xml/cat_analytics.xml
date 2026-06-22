@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Help" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_privacy_tip_24" android:title="Privacy policy &amp; terms" android:key="licenses_privacy" />
+    </PreferenceCategory>
+    <!-- ReSync: removed Crashlytics toggle, Firebase installation-ID delete, and ads GDPR revoke
+         (no analytics/crashlytics/ads/purchases in ReSync). -->
+    <PreferenceCategory app:isPreferenceVisible="false">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Extended privacy" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/ic_incognito_24dp" android:title="Log out on exit" android:key="ultra_default_to_logged_out" android:summary="Default to logged out on exit (handy if you don't want to leave your alt signed in...)" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

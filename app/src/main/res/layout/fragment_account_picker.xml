@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:orientation="vertical" android:id="@id/fragment_account_picker_card" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:elevation="0.0dp" app:cardCornerRadius="8.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <RelativeLayout android:padding="16.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="18.0dp" android:id="@id/fragment_account_picker_username" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:layout_toLeftOf="@id/fragment_account_picker_remove" android:layout_toRightOf="@id/fragment_account_picker_thumbnail" android:layout_centerVertical="true" />
+                <com.resync.app.ui.views.core.SubView android:id="@id/fragment_account_picker_thumbnail" android:layout_width="48.0dp" android:layout_height="48.0dp" android:layout_alignParentLeft="true" android:layout_centerVertical="true" app:force_circular_outline="true" />
+                <com.resync.app.ui.views.buttons.CustomAppCompatButton android:id="@id/fragment_account_picker_remove" android:padding="6.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_alignParentRight="true" android:layout_centerVertical="true" app:srcCompat="@drawable/outline_remove_circle_outline_24" />
+            </RelativeLayout>
+            <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:id="@id/fragment_account_picker_accounts_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <com.resync.app.ui.views.core.MaterialRow android:id="@id/fragment_account_picker_add_account" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_person_add_24" app:rowTitle="Add account" />
+            </LinearLayout>
+            <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <com.resync.app.ui.views.core.MaterialRow android:id="@id/fragment_account_picker_upgrade" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_thumb_up_24" app:rowTitle="Remove ads" />
+                <com.resync.app.ui.views.core.MaterialRow android:id="@id/fragment_account_picker_ultra" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_offline_bolt_24" />
+                <com.resync.app.ui.views.core.MaterialRow android:id="@id/fragment_account_picker_profile" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_person_outline_24" app:rowTitle="Profile" />
+                <com.resync.app.ui.views.core.MaterialRow android:id="@id/fragment_account_picker_mod" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_shield" app:rowTitle="Moderator" />
+                <com.resync.app.ui.views.core.MaterialRow android:id="@id/fragment_account_picker_settings" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_settings_24" app:rowTitle="Settings" />
+            </LinearLayout>
+            <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+            <com.resync.app.ui.views.text.basic.RobotoTextView android:textSize="10.0dp" android:gravity="center_horizontal" android:id="@id/fragment_account_picker_info" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>

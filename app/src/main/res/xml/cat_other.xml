@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="App info" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_info_24" android:key="about_preference" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_help_outline_24" android:title="Help and support" android:key="feedback_preference" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_thumb_up_24" android:title="Rate app!" android:key="rate_preference" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Licenses" android:key="licenses_preference" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Credits" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/patreon" android:title="Patreon backers" android:key="backers" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_0" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_1" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_2" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_3" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_4" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_5" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_shield" android:title="Mod" android:key="mod_6" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_image_24" android:title="Icon design" android:key="credit_icon" android:summary="/u/deadsalas" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_image_24" android:title="Icon design" android:key="credit_icon_2" android:summary="/u/kimbalim" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_pets_24" android:title="Pupper" android:key="pupper" android:summary="Minnie" />
+    </PreferenceCategory>
+</PreferenceScreen>

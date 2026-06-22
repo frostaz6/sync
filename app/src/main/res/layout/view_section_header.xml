@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.buttons.DragButton android:layout_gravity="center_horizontal" android:id="@id/section_header_view_drag_button" android:layout_width="22.0dp" android:layout_height="22.0dp" android:layout_marginTop="12.0dp" android:layout_centerHorizontal="true" />
+    <RelativeLayout android:id="@id/section_header_view_subview_wrapper" android:paddingBottom="1.0dp" android:visibility="gone" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.images.CustomImageView android:id="@id/section_header_view_banner" android:layout_width="match_parent" android:layout_height="80.0dp" android:scaleType="centerCrop" />
+        <com.resync.app.ui.views.core.SubView android:id="@id/section_header_view_subview" android:layout_width="56.0dp" android:layout_height="56.0dp" android:layout_marginTop="48.0dp" android:layout_centerHorizontal="true" app:force_circular_outline="true" />
+    </RelativeLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:id="@id/section_header_view_text_wrapper" android:paddingBottom="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24.0dp" android:layout_below="@id/section_header_view_subview_wrapper">
+        <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="20.0dp" android:gravity="center" android:id="@id/section_header_view_textview" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <com.resync.app.ui.views.buttons.MoreButton android:id="@id/section_header_view_more" android:visibility="gone" android:layout_width="42.0dp" android:layout_height="42.0dp" android:layout_marginTop="14.0dp" android:layout_alignParentRight="true" />
+    <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:id="@id/section_header_view_divider" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_alignBottom="@id/section_header_view_text_wrapper" />
+</merge>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/onboarding_header" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="18.0dp" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="32.0dp" android:text="Select your preferred navigation style" android:layout_centerHorizontal="true" />
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/onboarding_buttons" android:layout_below="@id/onboarding_header">
+        <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:id="@id/fragment_onboarding_navigation_bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="32.0dp" android:layout_marginBottom="16.0dp" android:layout_weight="1.0" android:alpha="0.0">
+            <ImageView android:layout_width="match_parent" android:layout_height="160.0dp" android:src="@drawable/navigation_bottom" android:scaleType="fitCenter" android:layout_weight="5.0" />
+            <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginRight="16.0dp" android:layout_weight="3.0">
+                <com.resync.app.ui.views.responsive.CustomMaterialRadioButton android:layout_gravity="center_vertical" android:id="@id/fragment_onboarding_navigation_bottom_button" android:paddingLeft="16.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="Bottom navigation (new)" />
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="horizontal" android:id="@id/fragment_onboarding_navigation_classic" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" android:layout_marginBottom="32.0dp" android:layout_weight="1.0" android:alpha="0.0">
+            <ImageView android:layout_width="match_parent" android:layout_height="160.0dp" android:src="@drawable/navigation_drawer" android:scaleType="fitCenter" android:layout_weight="5.0" />
+            <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginRight="16.0dp" android:layout_weight="3.0">
+                <com.resync.app.ui.views.responsive.CustomMaterialRadioButton android:layout_gravity="center_vertical" android:id="@id/fragment_onboarding_navigation_classic_button" android:paddingLeft="16.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drawer navigation (classic)" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/onboarding_buttons" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16.0dp" android:layout_alignParentBottom="true">
+        <com.resync.app.ui.views.responsive.CustomPositiveMaterialButton android:id="@id/positive" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:text="Finish setup" />
+        <com.resync.app.ui.views.responsive.CustomNegativeMaterialButton android:id="@id/negative" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:text="Cancel" android:layout_weight="1.0" />
+    </LinearLayout>
+</RelativeLayout>

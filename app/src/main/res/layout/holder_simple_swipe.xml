@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:baselineAligned="false"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.media.SmartMediaView android:id="@id/mediaview" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <com.resync.app.ui.views.posts.simple_swipe.SimpleSwipeVideoContainer android:id="@id/video_container" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_centerInParent="true" />
+    <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:id="@id/contet_wrapper" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <androidx.appcompat.widget.LinearLayoutCompat android:orientation="horizontal" android:id="@id/description_wrapper" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8.0dp">
+            <com.resync.app.ui.views.core.SubView android:layout_gravity="center_vertical" android:id="@id/subview" android:layout_width="28.0dp" android:layout_height="28.0dp" android:layout_marginRight="8.0dp" app:force_circular_outline="true" />
+            <com.resync.app.ui.views.text.spannable.children.posts.PostDescriptionTextView android:layout_gravity="center_vertical" android:id="@id/description" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="secondary" app:textSize="medium" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <com.resync.app.ui.views.text.spannable.children.posts.PostTitleTextView android:id="@id/title" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="primary" app:textSize="large" app:typeface="googleSans" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_above="@id/button_wrapper" android:layout_below="@id/contet_wrapper">
+        <com.resync.app.ui.views.text.spannable.children.HtmlTextView android:id="@id/html" android:padding="16.0dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="primary" app:textSize="medium" />
+    </androidx.core.widget.NestedScrollView>
+    <com.resync.app.ui.views.insetted.InsetLinearLayout android:orientation="horizontal" android:id="@id/button_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <com.resync.app.ui.views.buttons.UpvoteButton android:id="@id/upvote" android:layout_width="match_parent" android:layout_height="56.0dp" android:layout_weight="1.0" />
+        <com.resync.app.ui.views.buttons.DownvoteButton android:id="@id/downvote" android:layout_width="match_parent" android:layout_height="56.0dp" android:layout_weight="1.0" />
+        <com.resync.app.ui.views.buttons.SaveButton android:id="@id/save" android:layout_width="match_parent" android:layout_height="56.0dp" android:layout_weight="1.0" />
+        <com.resync.app.ui.views.buttons.CommentButton android:id="@id/comment" android:layout_width="match_parent" android:layout_height="56.0dp" android:layout_weight="1.0" />
+        <com.resync.app.ui.views.buttons.DownloadButton android:id="@id/download" android:layout_width="match_parent" android:layout_height="56.0dp" android:layout_weight="1.0" />
+        <com.resync.app.ui.views.buttons.MoreButton android:id="@id/more" android:layout_width="match_parent" android:layout_height="56.0dp" android:layout_weight="1.0" />
+    </com.resync.app.ui.views.insetted.InsetLinearLayout>
+</RelativeLayout>

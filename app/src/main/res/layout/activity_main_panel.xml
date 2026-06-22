@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.panel.CustomPanelLayout android:id="@id/overlapping_panels" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.drawer.PanelContentFrameLayout android:layout_gravity="start" android:id="@id/start_panel" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <include layout="@layout/activity_casual" />
+    <com.resync.app.ui.views.drawer.PanelContentFrameLayout android:layout_gravity="end" android:id="@id/end_panel" android:layout_width="wrap_content" android:layout_height="match_parent" />
+</com.resync.app.ui.views.panel.CustomPanelLayout>

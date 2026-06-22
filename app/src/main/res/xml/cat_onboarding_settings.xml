@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_label_24" android:title="Show reddit post flair" android:key="onboarding_flair" android:summary="Display the new style of reddit flair" android:defaultValue="true" />
+    <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_medal_new" android:title="Show reddit awards" android:key="onboarding_awards" android:summary="Display the new style of reddit awards" android:defaultValue="true" />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="All of the above settings and more can be changed at any point at a later time so don't worry if you're not sure now." />
+    </PreferenceCategory>
+</PreferenceScreen>

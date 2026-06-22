@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/fragment_rules_main_root_wrapper" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/fragment_rules_main_wrapper" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/fragment_rules_header" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@id/fragment_rules_header">
+            <com.resync.app.ui.views.text.spannable.children.HtmlTableView android:id="@id/fragment_rules_content" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="match_parent" sync:layoutSource="wiki" />
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/fragment_rules_async_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="200.0dp">
+        <com.resync.app.ui.views.responsive.CustomProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+    </RelativeLayout>
+</RelativeLayout>

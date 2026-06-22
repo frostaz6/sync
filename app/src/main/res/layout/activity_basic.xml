@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/wrapper" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/content" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/ad_wrapper" />
+    <com.resync.app.ui.views.AdWrapper android:id="@id/ad_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:transitionName="ad_wrapper" />
+</RelativeLayout>

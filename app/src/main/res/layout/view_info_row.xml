@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/info_row" android:padding="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <TextView android:gravity="left" android:id="@id/info_row_text" android:paddingRight="4.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:foregroundGravity="left" />
+    <com.resync.app.ui.views.buttons.SettingsButton android:id="@id/info_row_icon" android:clickable="false" android:layout_width="28.0dp" android:layout_height="28.0dp" />
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:enabled="false" android:key="web_preferences_root"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="Reddit web preferences change the view of the desktop website but can also impact certain parts of the app (such as showing thumbnails).\n" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Privacy" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_perm_identity_24" android:title="Online presence" android:key="show_presence" android:summary="Show other users if you're online or not..." />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_ads_click_24" android:title="Track clicks" android:key="allow_clicktracking" android:summary="Allow Reddit to log my outbound clicks for personalization" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Media" />
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="Your media preference on the desktop website will also affect the thumbnails and previews shown in app." />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_photo_size_select_actual_24" android:title="Show thumbnails next to links" android:key="media_on" android:summary="This is the recommended setting for showing all thumbnails, previews and expanded content" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Don't show thumbnails next to links" android:key="media_off" android:summary="Completely disables all thumbnails and affects full height previews" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show thumbnails based on that subreddit's media preferences" android:key="media_subreddit" android:summary="Show thumbnails and expanded content depending on what a particular subreddit suggests" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Link options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_link_24" android:title="Compress the link display" android:key="link_compress" android:summary="Hide thumbnails on desktop to optimise space. Not recommended for use in-app as this will stop thumbnails and previews from showing." />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Content options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_adult" android:title="NSFW search" android:key="content_nsfw_search" android:summary="include not safe for work (NSFW) search results in searches" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="32.0dp" android:layout_marginRight="32.0dp" android:layout_marginBottom="32.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.resync.app.ui.views.onboarding.OnboardingFrameLayout android:id="@id/preview_wrapper" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.onboarding.OnboardingPostTypeLinearLayout android:orientation="vertical" android:id="@id/preview_inner" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:divider="@drawable/simple_divider_vertical_double" android:showDividers="middle" />
+    </com.resync.app.ui.views.onboarding.OnboardingFrameLayout>
+    <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="18.0dp" android:id="@id/post_type_description" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" />
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/header" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <androidx.core.widget.NestedScrollView android:id="@id/scrollview" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:layout_below="@id/header">
+        <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+            <com.resync.app.ui.views.chips.ContextualChipsDropInView android:id="@id/contextual_chips" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <FrameLayout android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:paddingBottom="16.0dp" android:layout_width="match_parent" android:layout_height="match_parent">
+                <com.resync.app.ui.views.text.spannable.children.HtmlTableView android:id="@id/content" android:layout_width="match_parent" android:layout_height="match_parent" app:layoutSource="wiki" />
+            </FrameLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

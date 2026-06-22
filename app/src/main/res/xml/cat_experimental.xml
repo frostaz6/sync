@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Toggles" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Snap scrolling" android:key="snap" android:summary="Snap bottom navigation elements to open or closed when finger is lifted" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Enhanced autoplay" android:key="enhanced_autoplay" android:summary="Grab higher quality autoplay videos with audio for Gfycat &amp; Redgifs" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show actions" android:key="navigation_bottom_actions" android:summary="Show More Actions in the bottom navigation bar. Bottom navigation must be enabled to use this." android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Sliding panel style drawer" android:key="use_panel" android:summary="Replace the default Android drawer with a Discord inspired sliding panel. Drawer navigation must be enabled to use this." android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Highlight stickied posts" android:key="sticky_highlight" android:summary="Color stickied posts with the accent of your theme" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Fixed height video" android:key="fixed_height_video" android:summary="Force videos to play inline with a fixed height" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="AMOLED post dividers" android:key="amoled_divider" android:summary="Add dividers between posts only when using AMOLED black mode" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/ic_search_black_24dp" android:id="@id/menu_search" android:visible="false" android:title="Search" app:showAsAction="always" />
+    <item android:icon="@drawable/ic_sort_white_24dp" android:id="@id/menu_sort" android:title="Sort" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_email_new" android:id="@id/menu_send_message" android:visible="false" android:title="New message" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_done_all_24" android:id="@id/menu_mark_as_read" android:visible="false" android:title="Mark all as read" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_more_vert_24" android:id="@id/menu_more" android:title="More actions" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_send_24" android:id="@id/menu_submit" android:visible="false" android:title="Submit" app:showAsAction="always" />
+</menu>

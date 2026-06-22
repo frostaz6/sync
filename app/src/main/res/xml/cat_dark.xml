@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Automatic" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:title="Follow system" android:key="night_mode_follow" android:defaultValue="true" app:icon="@drawable/ic_dark_mode_auto" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Manual" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:title="Light mode" android:key="night_mode_force_off" android:defaultValue="false" app:icon="@drawable/outline_wb_sunny_24" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:title="Dark mode" android:key="night_mode_force_on" android:defaultValue="false" app:icon="@drawable/ic_dark_mode_selected" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Legacy" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:title="Follow timed" android:key="night_mode_auto" android:defaultValue="false" app:icon="@drawable/outline_access_time_24" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Timed range" android:key="dark_auto_picker" />
+    </PreferenceCategory>
+</PreferenceScreen>

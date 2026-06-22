@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.posts.simple.SimpleLinearLayout android:id="@id/root" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/description_wrapper" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8.0dp">
+        <com.resync.app.ui.views.core.SubView android:layout_gravity="center_vertical" android:id="@id/subview" android:layout_width="28.0dp" android:layout_height="28.0dp" app:shape_background="content" app:shape_circular="true" />
+        <com.resync.app.ui.views.text.spannable.children.posts.PostDescriptionTextView android:layout_gravity="center_vertical" android:id="@id/description" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="36.0dp" app:layoutSource="slide_desc" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/title_thumbnail_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.posts.simple.PostThumbnailView android:layout_gravity="right" android:id="@id/thumbnail" android:visibility="gone" android:layout_width="80.0dp" android:layout_height="80.0dp" android:scaleType="center" android:transitionName="card_preview" app:shape_background="content" app:shape_round_corners="true" />
+        <LinearLayout android:orientation="vertical" android:id="@id/title_inner_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.resync.app.ui.views.text.spannable.children.posts.PostTitleTextView android:id="@id/title" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="slide_title" />
+            <com.google.android.material.chip.ChipGroup android:id="@id/flair_award_wrapper" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" app:chipSpacingVertical="2.0dp">
+                <com.resync.app.ui.views.text.spannable.children.image_components.flair.PostFlairTextView android:id="@id/flair" android:layout_width="wrap_content" android:layout_height="match_parent" app:layoutSource="slide_desc" app:show_border="true" />
+                <com.resync.app.ui.views.text.spannable.children.image_components.awards.AwardsTextView android:id="@id/awards" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layoutSource="slide_desc" app:show_border="true" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </FrameLayout>
+    <com.resync.app.ui.views.posts.simple.ImageFrameLayout android:id="@id/image_wrapper" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" app:shape_background="content" app:shape_round_corners="true">
+        <com.resync.app.ui.views.posts.simple.SimplePostPreviewHelper android:id="@id/image" android:layout_width="match_parent" android:layout_height="220.0dp" android:scaleType="fitCenter" android:transitionName="card_preview" />
+        <com.resync.app.ui.views.posts.simple.IndicatorView android:layout_gravity="center" android:id="@id/indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <com.resync.app.ui.views.posts.simple.UrlView android:layout_gravity="bottom" android:id="@id/url_label" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </com.resync.app.ui.views.posts.simple.ImageFrameLayout>
+    <com.resync.app.ui.views.posts.simple.SimpleSelftextPreviewTextView android:ellipsize="none" android:id="@id/selftext" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" app:layoutSource="slide_selftext" />
+    <com.resync.app.ui.views.posts.simple.TwitterEmbedded android:id="@id/twitter" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp">
+        <com.resync.app.ui.views.posts.simple.PostThumbnailView android:id="@id/twitter_thumbnail" android:layout_width="42.0dp" android:layout_height="42.0dp" android:scaleType="center" app:shape_background="content_highlight" app:shape_circular="true" />
+        <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="54.0dp" android:layout_centerVertical="true">
+            <com.resync.app.ui.views.posts.simple.TwitterDescription android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/twitter_description" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="2.0dp" app:layoutSource="slide_desc" />
+            <com.resync.app.ui.views.text.spannable.children.HtmlTextView android:id="@id/twitter_html" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="slide_selftext" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.resync.app.ui.views.posts.simple.TwitterEmbedded>
+    <FrameLayout android:id="@id/buttons_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp">
+        <LinearLayout android:orientation="horizontal" android:id="@id/buttons_wrapper_left" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <com.resync.app.ui.views.posts.simple.VotingChip android:gravity="center" android:id="@id/voting" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="8.0dp" android:minWidth="88.0dp" android:minHeight="32.0dp" />
+            <com.resync.app.ui.views.posts.simple.CommentChip android:gravity="center" android:id="@id/comments" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="32.0dp" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="right" android:orientation="horizontal" android:id="@id/buttons_wrapper_right" android:layout_width="wrap_content" android:layout_height="32.0dp">
+            <com.resync.app.ui.views.posts.simple.SimpleButton android:id="@id/share" android:padding="6.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_marginRight="8.0dp" app:srcCompat="@drawable/outline_share_24" />
+            <com.resync.app.ui.views.posts.simple.SimpleButton android:id="@id/mod" android:padding="6.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_marginRight="8.0dp" app:srcCompat="@drawable/outline_shield" />
+            <com.resync.app.ui.views.posts.simple.SimpleButton android:id="@id/hide" android:padding="0.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_marginRight="8.0dp" app:srcCompat="@drawable/ic_close_white_24dp" />
+            <com.resync.app.ui.views.posts.simple.SaveButton android:id="@id/save" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_marginRight="8.0dp" app:layout_constraintEnd_toStartOf="@id/more" />
+            <com.resync.app.ui.views.posts.simple.SimpleButton android:id="@id/more" android:padding="5.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" app:srcCompat="@drawable/ic_more_vert_white_24dp" />
+        </LinearLayout>
+    </FrameLayout>
+</com.resync.app.ui.views.posts.simple.SimpleLinearLayout>

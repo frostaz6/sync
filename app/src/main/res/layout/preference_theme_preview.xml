@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="32.0dp" android:layout_marginRight="16.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.preferences.ThemePreferencePreview android:id="@id/theme_preference_preview" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <View android:layout_width="match_parent" android:layout_height="16.0dp" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:divider="@drawable/simple_divider_horizontal_double" android:showDividers="middle">
+        <com.resync.app.ui.views.monet.buttons.MonetContentBackgroundButton android:id="@id/button_automatic" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="0.0dp" android:text="Automatic" android:layout_weight="1.0" android:insetTop="0.0dp" android:insetBottom="0.0dp" />
+        <com.resync.app.ui.views.monet.buttons.MonetContentBackgroundButton android:id="@id/button_manual" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="0.0dp" android:text="Manual selection" android:layout_weight="1.0" android:insetTop="0.0dp" android:insetBottom="0.0dp" />
+    </LinearLayout>
+</LinearLayout>

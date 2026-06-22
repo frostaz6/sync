@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Setup" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_folder_24" android:title="Change backup directory" android:key="backup_dir" />
+    </PreferenceCategory>
+    <com.resync.app.ui.preferences.custom.DividerPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Backup and restore" />
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="Each of your accounts has its own settings. You will need to backup settings for each account on this device.\n" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_save_24" android:title="Backup now" android:key="backup_all" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_settings_backup_restore_24" android:title="Restore from backup" android:key="backup_restore" />
+    </PreferenceCategory>
+    <com.resync.app.ui.preferences.custom.DividerPreference android:key="ultra_backup_divider" />
+    <PreferenceCategory android:key="ultra_backup">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Cloud backup and restore" />
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="With ReSync Ultra you can save your account settings to the cloud and sync across devices with ease.\n" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_backup_24" android:title="Cloud backup now" android:key="ultra_backup_all" android:summary="Create a backup for your current account" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_cloud_download_24" android:title="Restore from cloud backup" android:key="ultra_backup_restore" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_cloud_off_24" android:title="Remove cloud backup" android:key="ultra_backup_delete" />
+    </PreferenceCategory>
+</PreferenceScreen>

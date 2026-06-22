@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Toolbar" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Expanded Toolbar" android:key="toolbar_expanded" android:summary="Show a large toolbar / header at the top of posts" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Autohide Toolbar" android:key="toolbar_autohide_preference" android:summary="Hide when scrolling" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Toolbar quick return" android:key="posts_quick_scroll" android:summary="Tap the Toolbar to return to the top" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Subreddit icons" android:key="subreddit_icons" android:summary="Show sub icons in the toolbar" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Transparent status" android:key="transparent_status" android:summary="Draw behind the status for an edge-to-edge experience" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="drawer">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Drawer navigation" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Use drawer navigation" android:key="use_drawer" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="bottom">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Bottom navigation" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Use bottom navigation" android:key="navigation_bottom" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Autohide bottom navigation" android:key="navigation_bottom_hide" android:summary="Hide when scrolling" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show labels" android:key="navigation_bottom_labels_new" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Floating Action Button" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show FAB" android:key="main_fab_display" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Autohide FAB" android:key="main_fab_hide" android:summary="Hide on scroll" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_more_horiz_24" android:entries="@array/fab_labels" android:title="FAB action" android:key="main_fab_action" android:defaultValue="2" android:entryValues="@array/fab_actions" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="General" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/sizes" android:title="Base font size" android:key="fontsize_preference" android:defaultValue="@integer/default_font_size" android:entryValues="@array/sizes_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show top visited subs icon shortcuts" android:key="icon_shotcuts" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show changelogs after update" android:key="changelog_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show a reminder to update when available" android:key="update_reminder" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Confirm exit" android:key="exit_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Click back to open the left drawer" android:key="drawer_back_preference" android:summary="This overrides confirm exit!" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Launcher icon" android:key="icon_preference" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Gestures" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Swipe to return" android:key="swipe_hide" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Dim behind activity" android:key="swipe_dim" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/swipe_sens_labels" android:title="Swipe to return sensitivity" android:key="swipe_sens" android:defaultValue="1.0" android:entryValues="@array/swipe_sens" />
+    </PreferenceCategory>
+</PreferenceScreen>

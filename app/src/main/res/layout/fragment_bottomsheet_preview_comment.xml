@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:id="@id/content_wrapper" android:fitsSystemWindows="true" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:layout_width="match_parent" android:layout_height="wrap_content" app:title_text="Preview" />
+        <com.resync.app.ui.views.onboarding.OnboardingBackgroundFrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16.0dp">
+            <com.resync.app.ui.views.text.spannable.children.HtmlTextView android:id="@id/html" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="primary" app:textSize="large" />
+        </com.resync.app.ui.views.onboarding.OnboardingBackgroundFrameLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

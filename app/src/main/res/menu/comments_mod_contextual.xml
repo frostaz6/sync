@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@id/comment_mod_approve" android:title="@string/common_approve" />
+    <item android:id="@id/comment_mod_remove" android:title="@string/common_remove" />
+    <item android:id="@id/comment_mod_distinguish" android:visible="false" android:title="Distinguish comment" />
+    <item android:id="@id/comment_mod_ban" android:title="@string/common_ban_user" />
+    <item android:id="@id/comment_mod_report_reasons" android:title="Report Reasons" />
+</menu>

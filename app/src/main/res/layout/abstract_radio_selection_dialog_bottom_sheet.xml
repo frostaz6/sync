@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/abstract_radio_selection_dialog_bottom_sheet_root_wrapper" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/abstract_radio_selection_dialog_bottom_sheet_async_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="200.0dp">
+        <com.resync.app.ui.views.responsive.CustomProgressBar android:id="@id/abstract_radio_selection_dialog_bottom_sheet_async_progress_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/abstract_radio_selection_dialog_bottom_sheet_main_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/abstract_radio_selection_dialog_bottom_sheet_header" android:layout_width="match_parent" android:layout_height="wrap_content" app:show_menu="false" />
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView android:id="@id/abstract_radio_selection_dialog_bottom_sheet_items" android:clipToPadding="true" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <LinearLayout android:layout_gravity="bottom" android:orientation="vertical" android:id="@id/abstract_radio_selection_dialog_bottom_sheet_buttons" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_marginBottom="16.0dp" />
+                <com.resync.app.ui.views.monet.buttons.MonetActionButtons android:layout_width="match_parent" android:layout_height="wrap_content" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

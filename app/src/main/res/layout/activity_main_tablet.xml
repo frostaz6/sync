@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.insetted.InsetTabletLinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <com.resync.app.ui.views.main.SyncNavigationRailView android:id="@id/navigation_rail" android:layout_width="wrap_content" android:layout_height="match_parent" app:menu="@menu/main_rail" />
+        <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="80.0dp">
+            <include layout="@layout/activity_casual" />
+            <View android:layout_gravity="right" android:background="@drawable/shadow_vertical" android:layout_width="2.0dp" android:layout_height="match_parent" />
+        </FrameLayout>
+    </FrameLayout>
+    <com.resync.app.ui.views.tablet.TabletSecondPaneFrameLayout android:id="@id/second_pane" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" />
+</com.resync.app.ui.views.insetted.InsetTabletLinearLayout>

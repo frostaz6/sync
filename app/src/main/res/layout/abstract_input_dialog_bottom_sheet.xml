@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/abstract_input_dialog_bottom_sheet_header" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <LinearLayout android:orientation="vertical" android:id="@id/abstract_input_dialog_bottom_sheet_content" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/abstract_input_dialog_bottom_sheet_header">
+        <com.resync.app.ui.views.responsive.CustomTextInputLayout android:id="@id/abstract_input_dialog_bottom_sheet_input_outlined" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.resync.app.ui.views.responsive.CustomTextInputEditText android:id="@id/abstract_input_dialog_bottom_sheet_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" android:imeOptions="actionGo" />
+        </com.resync.app.ui.views.responsive.CustomTextInputLayout>
+        <com.resync.app.ui.views.responsive.CustomTextInputLayout android:id="@id/abstract_input_dialog_bottom_sheet_input_outlined_second" android:paddingLeft="16.0dp" android:paddingTop="8.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.resync.app.ui.views.responsive.CustomTextInputEditText android:id="@id/abstract_input_dialog_bottom_sheet_input_second" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" android:imeOptions="actionGo" />
+        </com.resync.app.ui.views.responsive.CustomTextInputLayout>
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_marginTop="16.0dp" android:layout_marginBottom="16.0dp" />
+        <com.resync.app.ui.views.monet.buttons.MonetActionButtons android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

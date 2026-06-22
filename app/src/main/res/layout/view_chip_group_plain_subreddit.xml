@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_sort" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hot" app:chipIcon="@drawable/ic_sort_white_24dp" app:closeIcon="@drawable/outline_arrow_drop_down_24" app:closeIconEnabled="true" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_join" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Join" app:chipIcon="@drawable/outline_playlist_add_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_about" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="About" app:chipIcon="@drawable/ic_info_outline_black_24dp" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_wiki" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Wiki" app:chipIcon="@drawable/outline_book_24" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_flair" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Flairs" app:chipIcon="@drawable/outline_label_24" app:closeIcon="@drawable/outline_arrow_drop_down_24" app:closeIconEnabled="true" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_watch" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_fav" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/chip_more" android:layout_width="wrap_content" android:layout_height="wrap_content" app:chipIcon="@drawable/ic_more_vert_white_24dp" app:textEndPadding="0.0dp" app:textStartPadding="0.0dp" />
+</merge>

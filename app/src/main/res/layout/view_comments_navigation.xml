@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dp">
+        <androidx.appcompat.widget.AppCompatImageView android:id="@id/nav_collapse" android:paddingLeft="16.0dp" android:paddingTop="8.0dp" android:paddingRight="16.0dp" android:paddingBottom="8.0dp" android:layout_width="56.0dp" android:layout_height="40.0dp" android:layout_marginRight="16.0dp" android:translationZ="0.0dp" app:srcCompat="@drawable/arrow_collapse" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/inner_wrapper" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView android:id="@id/nav_previous" android:paddingLeft="16.0dp" android:paddingTop="8.0dp" android:paddingRight="16.0dp" android:paddingBottom="8.0dp" android:layout_width="56.0dp" android:layout_height="40.0dp" app:srcCompat="@drawable/ic_navigate_previous_white_24dp" />
+            <androidx.appcompat.widget.AppCompatImageView android:id="@id/nav_icon" android:paddingTop="8.0dp" android:paddingBottom="8.0dp" android:layout_width="40.0dp" android:layout_height="40.0dp" app:srcCompat="@drawable/outline_explore_24" />
+            <androidx.appcompat.widget.AppCompatImageView android:id="@id/nav_next" android:paddingLeft="16.0dp" android:paddingTop="8.0dp" android:paddingRight="16.0dp" android:paddingBottom="8.0dp" android:layout_width="56.0dp" android:layout_height="40.0dp" app:srcCompat="@drawable/ic_navigate_next_white_24dp" />
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView android:id="@id/nav_reply" android:paddingLeft="16.0dp" android:paddingTop="8.0dp" android:paddingRight="16.0dp" android:paddingBottom="8.0dp" android:layout_width="56.0dp" android:layout_height="40.0dp" android:layout_marginLeft="16.0dp" android:translationZ="0.0dp" app:srcCompat="@drawable/outline_reply" />
+    </LinearLayout>
+</merge>

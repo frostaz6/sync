@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:icon="@drawable/outline_brightness_medium_24" android:title="Follow system" android:key="onboarding_dark_automatic" android:summary="Automatically change between dark and light mode" />
+    <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:icon="@drawable/outline_brightness_7_24" android:title="Light mode" android:key="onboarding_dark_light" />
+    <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:icon="@drawable/outline_dark_mode_24" android:title="Dark mode" android:key="onboarding_dark_dark" />
+</PreferenceScreen>

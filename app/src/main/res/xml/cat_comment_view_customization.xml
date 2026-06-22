@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <com.resync.app.ui.preferences.custom.tooltips.CommentsLegacyTooltipPreference />
+    <com.resync.app.ui.preferences.custom.ViewTypePreviewPreference app:ui_mode="7" />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Fonts and sizing" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Comment description font" android:key="comments_description" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:title="Comment body font" android:key="comments_body" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:title="Comment body font line space multiplier" android:key="comments_body_space" android:summary="The space between each line" app:defaultValue="1x" app:entries="@array/lineheight" app:entryValues="@array/lineheight_values" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Post media preview size" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_photo_size_select_small_24" android:title="Thumbnail" android:key="media_preview_thumbnail" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_photo_size_select_large_24" android:title="Cropped height" android:key="media_preview_cropped" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_photo_size_select_actual_24" android:title="Full height" android:key="media_preview_full" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Style" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_double_arrow_24" android:title="Use double width comment indents" android:key="comments_row_double" android:defaultValue="false" app:isPreferenceVisible="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_color_lens_24" android:title="Show colorful comment indents" android:key="comments_colored_preference" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comment_padding" android:title="Padding style" android:key="comment_padding" android:defaultValue="1" android:entryValues="@array/comment_padding_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_format_quote_24" android:title="Show colorful comment quotes" android:key="comments_colored_quotes" android:defaultValue="false" app:isPreferenceVisible="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="View tweaks" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_text" android:title="Show emotes pictures" android:key="comments_emotes" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_24" android:title="Show animated image comments" android:key="comments_animated_images" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_perm_identity_24" android:title="Show profile pictures" android:key="comments_author_profile_pic" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_new_releases_24" android:title="Highlight new comments with a dot" android:key="comments_highlight_new" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_new_releases_24" android:title="Highlight new comment backgrounds" android:key="comments_highlight_new_background" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_label_24" android:title="Show user flair" android:key="comment_flair_preference" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_sentiment_dissatisfied_24" android:title="Show a dagger (†) on controversial comments" android:key="comments_controversial" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comment dividers" android:key="comments_dividers_" android:summary="Show dividers between comments" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Top level comment padding" android:key="comments_top_level_padding" android:summary="Show padding between top level comments" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Left handed mode" android:key="comments_reverse_actions" android:summary="Reverse comment actions" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show scrollbar" android:key="comments_scrollbar" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Delimit scores with a bullet point" android:key="delimit_preference" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Hide AutoMod comments" android:key="comments_hide_automod" android:summary="Also hide other similar bots" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Always show comment actions" android:key="comments_always_show_bar" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Highlighting" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/account_voice" android:title="Highlight OP" android:key="highlight_op" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/filled_in_person" android:title="Highlight yourself" android:key="highlight_yourself" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/emoticon_happy" android:title="Highlight friends" android:key="highlight_friends" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/baby_carriage" android:title="Highlight new accounts" android:key="highlight_new_accounts" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

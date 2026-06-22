@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.tooltips.TooltipView android:layout_width="match_parent" android:layout_height="wrap_content" app:tooltip_icon="@drawable/outline_color_lens_24" app:tooltip_setting_name="first_time_monet_intro_settings" app:tooltip_setting_show_once="false" app:tooltip_text="Themes in Sync have been rewritten to fully support Android Material You (Monet).\n\nSync can automatically follow your system theme (A12+ devices) or manually select a color to generate a theme from." />
+</FrameLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defultsMap>
+    <entry>
+        <key>4266fa</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>ultra_backup</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>ultra</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>ultra_translate</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>ultra_restore</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>patreon_backers</key>
+        <value>"[]"</value>
+    </entry>
+    <entry>
+        <key>ultra_testers</key>
+        <value>"[]"</value>
+    </entry>
+</defultsMap>

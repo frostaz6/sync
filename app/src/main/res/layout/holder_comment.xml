@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:baselineAligned="false"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:id="@id/search_divider" android:visibility="gone" android:layout_width="match_parent" android:layout_height="1.0dp" />
+    <com.resync.app.ui.views.comments.CommentRow android:orientation="vertical" android:id="@id/comment_row_base" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/comment_row_new" android:layout_alignWithParentIfMissing="true">
+                <ImageView android:layout_gravity="center_vertical" android:id="@id/comment_row_profile" android:paddingBottom="2.0dp" android:layout_width="22.0dp" android:layout_height="22.0dp" />
+                <com.resync.app.ui.views.text.spannable.children.comments.CommentDescriptionTextView android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/comment_row_info" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="comments_description" app:textColor="secondary" />
+            </FrameLayout>
+            <com.resync.app.ui.views.responsive.NewIndicator android:textSize="10.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/comment_row_new" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dp" android:layout_toLeftOf="@id/comment_row_indicator" android:layout_alignWithParentIfMissing="true" />
+            <com.resync.app.ui.views.responsive.HideIndicator android:textSize="10.0dp" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/comment_row_indicator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dp" android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <com.resync.app.ui.views.text.spannable.children.image_components.awards.AwardsTextView android:id="@id/comment_row_awards" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3.0dp" app:layoutSource="comments_description" app:show_border="true" app:textColor="secondary" />
+        <com.resync.app.ui.views.comments.CommentsHtmlTextView android:layout_gravity="fill" android:id="@id/comment_row_content" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3.0dp" app:layoutSource="comments_body" app:textColor="primary" />
+    </com.resync.app.ui.views.comments.CommentRow>
+    <com.resync.app.ui.views.responsive.CustomButtonsWrapper android:orientation="horizontal" android:id="@id/comment_actions" android:duplicateParentState="false" android:layout_width="match_parent" android:layout_height="48.0dp">
+        <com.resync.app.ui.views.buttons.UpvoteButton android:id="@id/comment_actions_upvote" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.DownvoteButton android:id="@id/comment_actions_downvote" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.SaveButton android:id="@id/comment_actions_save" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.ModButton android:id="@id/comment_actions_mod" android:visibility="gone" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.ProfileButton android:id="@id/comment_actions_profile" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.ReplyButton android:id="@id/comment_actions_reply" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.ParentButton android:id="@id/comment_actions_parent" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+        <com.resync.app.ui.views.buttons.MoreButton android:id="@id/comment_actions_more" android:duplicateParentState="false" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" app:filterColor="white" app:showRipple="true" />
+    </com.resync.app.ui.views.responsive.CustomButtonsWrapper>
+</LinearLayout>

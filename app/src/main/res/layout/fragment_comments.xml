@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.comments.CommentsCoordinatorLayout android:id="@id/fragment_comments_coordinator" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/fragment_comments_sports">
+        <com.resync.app.ui.views.monet.MonetSwipeRefreshLayout android:id="@id/fragment_comments_swipe_refresh_layout" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <com.resync.app.ui.views.recycler.CommentsRecyclerView android:scrollbarStyle="outsideOverlay" android:id="@id/fragment_comments_recycler_view" android:scrollbars="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </com.resync.app.ui.views.monet.MonetSwipeRefreshLayout>
+        <com.resync.app.ui.views.transparent_status.CustomAppBarLayout android:id="@id/fragment_comments_app_bar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:liftOnScroll="true">
+            <com.resync.app.ui.views.core.MaterialYouToolbar android:layout_width="match_parent" android:layout_height="wrap_content" app:layout_scrollFlags="scroll|enterAlways" app:menu="@menu/comments">
+                <com.resync.app.sections.posts.toolbar.PostsSmallSubredditToolbarView android:id="@id/toolbar_small_header_view" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            </com.resync.app.ui.views.core.MaterialYouToolbar>
+        </com.resync.app.ui.views.transparent_status.CustomAppBarLayout>
+        <com.resync.app.ui.views.comments.CommentsNavigationView android:layout_gravity="center|bottom" android:id="@id/navigation_material" android:visibility="gone" android:fitsSystemWindows="true" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <com.resync.app.ui.views.comments.CommentsReplyFab android:layout_gravity="right|bottom" android:id="@id/fab" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/outline_reply" android:translationX="-24.0dp" android:translationY="-24.0dp" />
+    </com.resync.app.ui.views.comments.CommentsCoordinatorLayout>
+    <com.resync.app.ui.views.comments.SportsButton android:id="@id/fragment_comments_sports" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_above="@id/fragment_comments_tts" android:layout_alignWithParentIfMissing="true" />
+    <com.resync.app.ui.views.TTSView android:id="@id/fragment_comments_tts" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+</RelativeLayout>

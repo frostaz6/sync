@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.posts.swipe.SwipeLinearLayout android:orientation="vertical" android:id="@id/fragment_swipe_text_wrapper" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.text.BaseTextView android:id="@id/fragment_swipe_title" android:layout_width="match_parent" android:layout_height="wrap_content" sync:textColor="primary" sync:textSize="medium" sync:typeface="robotoCondensed" />
+    <com.resync.app.ui.views.text.BaseTextView android:textColor="@android:color/white" android:id="@id/fragment_swipe_desc" android:layout_width="match_parent" android:layout_height="wrap_content" sync:textColor="primary" sync:textSize="regular" sync:typeface="robotoCondensed" />
+</com.resync.app.ui.views.posts.swipe.SwipeLinearLayout>

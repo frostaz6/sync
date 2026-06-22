@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Old settings" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/ic_subreddits_circle_outline" android:title="View old subreddits" android:key="legacy_subs" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Restore look and feel" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_comments" android:title="Restore comments to older style" android:key="restore_legacy_comments" android:summary="Rollback all comment styling options to look like v19" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_restore_24" android:title="Restore entire app to older style" android:key="restore_legacy" android:summary="Rollback all settings to look like v19" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/holder_subreddit_header_row" android:layout_width="match_parent" android:layout_height="wrap_content" android:foreground="@drawable/button_light"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.text.BaseTextView android:id="@id/holder_subreddit_header_textview" android:paddingLeft="16.0dp" android:paddingTop="16.0dp" android:paddingRight="16.0dp" android:paddingBottom="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/holder_subreddit_header_more" app:textColor="secondary" app:textSize="medium" app:typeface="roboto" />
+    <com.resync.app.ui.views.text.BaseTextView android:id="@id/holder_subreddit_header_more" android:paddingLeft="10.0dp" android:paddingTop="16.0dp" android:paddingRight="10.0dp" android:paddingBottom="16.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:foreground="@drawable/button_light" android:text="Search all subs" android:layout_toLeftOf="@id/holder_subreddit_header_icon" app:textColor="link" app:textSize="medium" app:typeface="roboto" />
+    <androidx.appcompat.widget.AppCompatImageView android:id="@id/holder_subreddit_header_icon" android:paddingRight="10.0dp" android:layout_width="32.0dp" android:layout_height="18.0dp" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

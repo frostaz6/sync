@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SubView android:layout_gravity="center_vertical" android:id="@id/subview" android:visibility="gone" android:layout_width="32.0dp" android:layout_height="32.0dp" app:force_circular_outline="true" />
+    <LinearLayout android:orientation="vertical" android:id="@id/text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_centerVertical="true">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="16.0dp" android:ellipsize="end" android:id="@id/toolbar_title_small" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="80.0dp" android:maxLines="1" />
+            <ImageView android:id="@id/toolbar_title_dropdown" android:layout_width="20.0dp" android:layout_height="20.0dp" android:src="@drawable/outline_arrow_drop_down_24" />
+        </LinearLayout>
+        <com.resync.app.ui.views.text.basic.RobotoTextView android:textSize="12.0dp" android:id="@id/toolbar_sort_small" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="80.0dp" android:singleLine="true" />
+    </LinearLayout>
+</merge>

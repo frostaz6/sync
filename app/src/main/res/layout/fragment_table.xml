@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/fragment_table_header" android:layout_width="match_parent" android:layout_height="wrap_content" sync:title_text="Viewing table" />
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/fragment_table_header" android:overScrollMode="never">
+        <com.resync.app.ui.views.text.spannable.children.HtmlTableView android:layout_gravity="fill" android:id="@id/fragment_table_tableview" android:paddingLeft="12.0dp" android:paddingRight="12.0dp" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" sync:layoutSource="comments_body" sync:textColor="primary" />
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

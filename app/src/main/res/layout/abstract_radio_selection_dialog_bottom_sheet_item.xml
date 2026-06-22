@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:foreground="@drawable/button_light"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:paddingLeft="16.0dp" android:paddingTop="8.0dp" android:paddingRight="16.0dp" android:paddingBottom="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="32.0dp">
+        <FrameLayout android:id="@id/holder_post_flair_radio_wrapper" android:layout_width="wrap_content" android:layout_height="32.0dp" android:layout_centerVertical="true">
+            <com.resync.app.ui.views.responsive.CustomMaterialRadioButton android:id="@id/abstract_radio_selection_dialog_bottom_sheet_item_radio_button" android:background="@android:color/transparent" android:clickable="false" android:duplicateParentState="false" android:layout_width="32.0dp" android:layout_height="32.0dp" android:layout_marginRight="16.0dp" android:layout_centerVertical="true" />
+        </FrameLayout>
+        <FrameLayout android:clickable="false" android:duplicateParentState="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginRight="16.0dp" android:layout_toRightOf="@id/holder_post_flair_radio_wrapper" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true">
+            <com.resync.app.ui.views.text.BaseTextView android:ellipsize="end" android:gravity="center_vertical" android:id="@id/abstract_radio_selection_dialog_bottom_sheet_item_text_view" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="32.0dp" android:singleLine="true" app:textColor="primary" app:textSize="medium" app:typeface="roboto" />
+        </FrameLayout>
+    </RelativeLayout>
+</FrameLayout>

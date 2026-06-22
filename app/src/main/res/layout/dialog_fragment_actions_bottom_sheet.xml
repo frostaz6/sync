@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@null" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/header" android:layout_width="match_parent" android:layout_height="wrap_content" app:show_menu="true" app:title_text="More actions" />
+    <com.resync.app.ui.views.chips.ContextualChipsDropInView android:id="@id/contextual_chips" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <com.resync.app.ui.views.tooltips.TooltipView android:id="@id/tooltip" android:layout_width="match_parent" android:layout_height="wrap_content" app:tooltip_setting_name="first_time_full_height" app:tooltip_setting_show_once="false" app:tooltip_text="Hold and drag to re-arrange actions\n\nYou can also customize which actions are shown or hidden using the three dots top right" />
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView android:id="@id/recycler" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:overScrollMode="never" />
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

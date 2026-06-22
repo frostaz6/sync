@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.tooltips.TooltipView android:layout_width="match_parent" android:layout_height="wrap_content" app:tooltip_icon="@drawable/outline_restore_24" app:tooltip_setting_name="first_time_legacy_settings" app:tooltip_setting_show_once="false" app:tooltip_text="ReSync has had quite a big update!\n\nIf you're looking to restore the look and feel of ReSync tap here." />
+</FrameLayout>

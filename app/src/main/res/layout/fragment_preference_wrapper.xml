@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout android:id="@id/coordinator" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/content" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <com.resync.app.ui.views.transparent_status.CustomAppBarLayout android:id="@id/appbar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:liftOnScroll="true">
+        <com.resync.app.ui.views.insetted.InsetCollapsingToolbarLayout android:id="@id/collapsing_toolbar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:contentScrim="@android:color/transparent" app:statusBarScrim="@android:color/transparent">
+            <com.resync.app.ui.views.core.MaterialYouToolbar android:layout_width="match_parent" android:layout_height="wrap_content">
+                <com.resync.app.sections.preferences.toolbar.PreferencesSmallSubredditToolbarView android:id="@id/toolbar_small" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </com.resync.app.ui.views.core.MaterialYouToolbar>
+        </com.resync.app.ui.views.insetted.InsetCollapsingToolbarLayout>
+    </com.resync.app.ui.views.transparent_status.CustomAppBarLayout>
+</com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout>

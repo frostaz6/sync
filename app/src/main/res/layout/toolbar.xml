@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.app_bars.PostsAppBarLayout android:id="@id/appbar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:liftOnScroll="true">
+        <com.resync.app.ui.views.core.MaterialYouToolbar android:layout_width="match_parent" android:layout_height="wrap_content" android:translationZ="2.0dp" app:layout_scrollFlags="scroll|enterAlways" app:menu="@menu/new_main">
+            <com.resync.app.sections.posts.toolbar.PostsSmallSubredditToolbarView android:id="@id/toolbar_small_header_view" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </com.resync.app.ui.views.core.MaterialYouToolbar>
+        <com.resync.app.ui.views.insetted.InsetCollapsingToolbarLayout android:id="@id/collapsing_toolbar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:contentScrim="@android:color/transparent" app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed" app:statusBarScrim="@android:color/transparent">
+            <com.resync.app.sections.posts.toolbar.PostsLargeSubredditToolbarView android:id="@id/toolbar_large_header_view" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </com.resync.app.ui.views.insetted.InsetCollapsingToolbarLayout>
+    </com.resync.app.ui.views.app_bars.PostsAppBarLayout>
+</merge>

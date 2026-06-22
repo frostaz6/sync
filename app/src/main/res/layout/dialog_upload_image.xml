@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="200.0dp" android:layout_marginTop="20.0dp" android:layout_marginBottom="4.0dp">
+        <com.resync.app.ui.views.images.CustomImageView android:id="@id/dialog_upload_image_preview" android:background="@android:color/black" android:layout_width="match_parent" android:layout_height="match_parent" />
+        <ImageView android:layout_gravity="center" android:id="@id/dialog_upload_image_indicator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:adjustViewBounds="false" android:layout_centerInParent="true" android:transitionName="holder_card_image_indicator" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/dialog_upload_image_button_wrapper" android:layout_width="match_parent" android:layout_height="match_parent">
+            <com.resync.app.ui.views.buttons.upload.CameraButton android:id="@id/dialog_upload_image_button_camera" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" />
+            <com.resync.app.ui.views.buttons.upload.ImageButton android:id="@id/dialog_upload_image_button_gallery" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

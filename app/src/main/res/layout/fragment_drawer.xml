@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:fitsSystemWindows="true" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/drawer_inner" android:layout_width="match_parent" android:layout_height="match_parent">
+        <com.resync.app.ui.views.drawer.DrawerRecyclerView android:id="@id/fragment_drawer_recyclerview" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="match_parent" />
+        <com.resync.app.ui.views.monet.MonetFab android:id="@id/fragment_drawer_fab" android:src="@drawable/ic_keyboard_arrow_up_white_24dp" android:translationX="-12.0dp" android:translationY="-12.0dp" app:fabSize="mini" style="@style/floating_action_button" />
+    </FrameLayout>
+</FrameLayout>

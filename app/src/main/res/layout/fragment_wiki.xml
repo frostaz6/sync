@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/fragment_wiki_main_root_wrapper" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/fragment_wiki_main_wrapper" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/header" android:layout_width="match_parent" android:layout_height="wrap_content" app:show_menu="false" />
+        <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/header">
+            <com.resync.app.ui.views.text.spannable.children.HtmlTableView android:id="@id/fragment_wiki_content" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:paddingBottom="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="wiki" />
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/fragment_wiki_async_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="200.0dp">
+        <com.resync.app.ui.views.responsive.CustomProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+    </RelativeLayout>
+</RelativeLayout>

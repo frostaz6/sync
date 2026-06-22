@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/holder_card_generic_buttons_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.text.spannable.children.posts.PostStatsTextView android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/holder_card_generic_buttons_stats" android:paddingLeft="10.0dp" android:paddingTop="10.0dp" android:paddingRight="10.0dp" android:paddingBottom="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48.0dp" android:maxLines="3" android:minLines="2" android:transitionName="card_stats" sync:layoutSource="card_desc" />
+    <View android:id="@id/holder_card_generic_buttons_expand" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <LinearLayout android:gravity="right" android:layout_gravity="right" android:orientation="horizontal" android:id="@id/holder_card_generic_buttons" android:layout_width="match_parent" android:layout_height="match_parent" android:baselineAligned="false" android:transitionName="card_buttons">
+        <com.resync.app.ui.views.buttons.ReplyButton android:id="@id/holder_card_buttons_reply" android:visibility="gone" android:layout_width="44.0dp" android:layout_height="match_parent" />
+        <com.resync.app.ui.views.buttons.UpvoteButton android:id="@id/holder_card_buttons_up" android:layout_width="44.0dp" android:layout_height="match_parent" />
+        <com.resync.app.ui.views.buttons.DownvoteButton android:id="@id/holder_card_buttons_down" android:layout_width="44.0dp" android:layout_height="match_parent" />
+        <com.resync.app.ui.views.buttons.SaveButton android:id="@id/holder_card_buttons_save" android:layout_width="44.0dp" android:layout_height="match_parent" />
+        <com.resync.app.ui.views.buttons.ModButton android:id="@id/holder_card_buttons_mod" android:visibility="gone" android:layout_width="40.0dp" android:layout_height="match_parent" sync:filterColor="grey" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.ShareButton android:id="@id/holder_card_buttons_share" android:visibility="gone" android:layout_width="44.0dp" android:layout_height="match_parent" sync:filterColor="grey" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.HideButton android:id="@id/holder_card_buttons_hide" android:visibility="gone" android:layout_width="44.0dp" android:layout_height="match_parent" sync:filterColor="grey" sync:showRipple="true" />
+        <com.resync.app.ui.views.cards.CardButton android:id="@id/holder_card_buttons_more" android:padding="5.0dp" android:layout_width="44.0dp" android:layout_height="match_parent" sync:srcCompat="@drawable/ic_more_vert_white_24dp" />
+    </LinearLayout>
+</FrameLayout>

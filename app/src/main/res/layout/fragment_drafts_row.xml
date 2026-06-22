@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.text.BaseTextView android:gravity="center_vertical" android:id="@id/fragment_drafts_list_textview" android:background="@drawable/button_night" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/fragment_drafts_list_hide" app:textColor="primary" app:textSize="large" />
+    <com.resync.app.ui.views.buttons.HideButton android:id="@id/fragment_drafts_list_hide" android:layout_width="42.0dp" android:layout_height="42.0dp" android:layout_alignParentRight="true" />
+</RelativeLayout>

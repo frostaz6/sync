@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="General" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_sort_24" android:entries="@array/post_sort" android:title="Default post sort" android:key="post_sort_preference" android:defaultValue="sort_0" android:entryValues="@array/post_sort_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Return to your default sub before exiting" android:key="posts_home" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Flair" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_label_24" android:title="Show modern post flair" android:key="flair_modern" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show minimal post flair " android:key="flair_minimal" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Hide post flair" android:key="flair_none" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Swipe actions" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Swipe to hide" android:key="swipe_hide_posts_new" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Extended swipe posts for additional options" android:key="post_swipe_actions" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/post_swipe" android:title="First swipe action" android:key="post_navigation_first" android:defaultValue="0" android:entryValues="@array/post_swipe_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/post_swipe" android:title="Second swipe action" android:key="post_navigation_second" android:defaultValue="1" android:entryValues="@array/post_swipe_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/post_swipe" android:title="Third swipe action" android:key="post_navigation_third" android:defaultValue="5" android:entryValues="@array/post_swipe_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Force vibrate on selection" android:key="post_swipe_actions_vibrate" android:summary="Override your system preference" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="View tweaks" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show post author" android:key="posts_show_author" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show scrollbar" android:key="posts_scrollbar" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display new comment count" android:key="posts_display_new" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display short scores" android:key="post_scores_short" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display if a post is OC" android:key="post_oc" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display page dividers" android:key="post_dividers" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Hiding" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Sync hidden posts to reddit" android:key="posts_hide_reddit" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Legacy" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Long press cards to open comments in the background" android:key="posts_comments_new_activity" android:summary="Ideal for keeping track of multiple posts" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Long press selftext to select text" android:key="post_long_press" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

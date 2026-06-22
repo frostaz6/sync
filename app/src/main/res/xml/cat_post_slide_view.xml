@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <com.resync.app.ui.preferences.custom.ViewChipGroundPreference />
+    <com.resync.app.ui.preferences.custom.ViewTypePreviewPreference app:ui_mode="5" />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Preview options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_24" android:title="Show image previews" android:key="slide_image_previews" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_text_snippet_24" android:title="Show selftext previews" android:key="slide_selftext_previews" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/twitter" android:title="Show Twitter previews" android:key="slide_twitter_previews" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_text" android:title="Show subreddit icons" android:key="slide_subreddit_thumbnail" android:summary="Shown on Frontpage, All, search etc" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Image options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_image_24" android:title="Preview full height" android:key="slide_image_full_height" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_expand_horizontal" android:title="Preview full width" android:key="slide_full_width" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_arrow_drop_up_24" android:title="Preview before title" android:key="slide_image_top" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Fonts and sizing" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_text_fields_24" android:title="Title font" android:key="slide_title" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_text_fields_24" android:title="Description font" android:key="slide_description" />
+        <com.resync.app.ui.preferences.defaults.SyncPreference android:icon="@drawable/outline_text_fields_24" android:title="Selftext font" android:key="slide_selftext" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Buttons" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_bookmark_border_24" android:title="Save" android:key="slide_buttons_save" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_close_24" android:title="Hide" android:key="slide_buttons_hide" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_share_24" android:title="Share" android:key="slide_buttons_share" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_shield" android:title="Mod tools" android:key="slide_buttons_mod" android:summary="This is only shown for subs you moderate" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_hand_right" android:title="Right aligned voting" android:key="slide_button_vote_right" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_eye_hide" android:title="Hide all buttons" android:key="slide_hide_all_buttons" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Experimental options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show a thick divider between posts" android:key="slide_thick_divider" android:summary="Recommended as this improves post viewability" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show a border around selftext" android:key="slide_selftext_border" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

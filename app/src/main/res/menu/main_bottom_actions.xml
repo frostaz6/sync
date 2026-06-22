@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/home_icon" android:id="@id/menu_posts" android:title="Posts" app:showAsAction="always" />
+    <item android:icon="@drawable/ic_outline_sync_24" android:id="@id/menu_actions" android:title="Actions" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_explore_24" android:id="@id/menu_explore" android:title="Explore" app:showAsAction="always" />
+    <item android:icon="@drawable/messaging_icon" android:id="@id/menu_messages" android:title="Inbox" app:showAsAction="always" />
+</menu>

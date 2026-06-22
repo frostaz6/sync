@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <FrameLayout android:id="@id/content_wrapper" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <com.resync.app.ui.views.transparent_status.CustomAppBarLayout android:id="@id/appbar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:liftOnScroll="true">
+            <com.resync.app.ui.views.core.MaterialYouToolbar android:id="@id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </com.resync.app.ui.views.transparent_status.CustomAppBarLayout>
+    </com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout>
+    <com.resync.app.ui.views.AdWrapper android:id="@id/ad_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:transitionName="ad_wrapper" />
+</RelativeLayout>

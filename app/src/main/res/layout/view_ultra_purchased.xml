@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatImageView android:layout_gravity="center" android:id="@id/view_ultra_purchase_icon" android:layout_width="26.0dp" android:layout_height="26.0dp" />
+        <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="14.0dp" android:gravity="center" android:id="@id/view_ultra_purchase_price" android:paddingTop="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_above="@id/view_ultra_purchase_duration_description" />
+        <com.resync.app.ui.views.text.basic.ProductSansTextView android:textSize="12.0dp" android:gravity="center" android:id="@id/view_ultra_purchase_duration_description" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <com.resync.app.ui.views.responsive.CustomProgressBar android:layout_gravity="center" android:id="@id/view_ultra_purchase_progress_bar" android:layout_width="26.0dp" android:layout_height="26.0dp" />
+    <androidx.appcompat.widget.AppCompatImageView android:layout_gravity="center" android:id="@id/view_ultra_purchase_error" android:visibility="gone" android:layout_width="26.0dp" android:layout_height="26.0dp" app:srcCompat="@drawable/outline_error_outline_24" />
+</FrameLayout>

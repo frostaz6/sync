@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:baselineAligned="false" android:layout_above="@id/formatting_wrapper" android:showDividers="middle">
+        <ScrollView android:id="@id/editor_preview_wrapper" android:padding="16.0dp" android:visibility="gone" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0">
+            <com.resync.app.ui.views.text.BaseTextView android:gravity="top" android:id="@id/editor_preview" android:padding="0.0dp" android:scrollbars="vertical" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_margin="0.0dp" android:textIsSelectable="true" sync:textColor="primary" sync:textSize="medium" sync:typeface="roboto" />
+        </ScrollView>
+        <com.resync.app.ui.views.responsive.CustomSubtleDividerView android:id="@id/editor_preview_divider" android:visibility="gone" android:layout_width="match_parent" android:layout_height="1.0dp" />
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0">
+            <com.resync.app.ui.views.editor.GifCustomEditText android:gravity="top" android:layout_gravity="fill" android:id="@id/editor_input" android:background="#30f0" android:padding="16.0dp" android:scrollbars="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_margin="0.0dp" android:hint="Type a comment" android:maxLength="10000" android:inputType="textLongMessage|textCapSentences|textAutoCorrect|textMultiLine" android:textCursorDrawable="@null" />
+            <TextView android:textSize="10.0dp" android:textColor="#fff" android:id="@id/max_length" android:background="#66000000" android:padding="4.0dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLength="10000" android:layout_alignParentRight="@bool/transitions_comments" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/formatting_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <com.resync.app.ui.views.text.BaseTextView android:textColor="@android:color/white" android:gravity="center_vertical" android:id="@id/user_display" android:background="#444" android:padding="16.0dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" sync:textSize="regular" />
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="48.0dp">
+            <com.resync.app.ui.views.buttons.SubmitButton android:visibility="gone" android:layout_width="48.0dp" android:layout_height="48.0dp" android:layout_alignParentRight="true" />
+            <HorizontalScrollView android:id="@id/format_hor_scroll" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="48.0dp">
+                <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_user" android:visibility="gone" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_supervisor_account_white_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_ultra" android:visibility="gone" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/outline_offline_bolt_24" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_preview" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_remove_red_eye_white_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_emoji" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_tag_faces_white_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_draft" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_folder_open_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_image" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_image_white_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_spoiler" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_spoiler_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_album" android:visibility="gone" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_collections_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_link" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_link_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_bold" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_bold_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_italic" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_italic_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_strikethrough" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_strikethrough_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_superscript" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_superscript_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_speech" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_quote_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_bullet" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_list_bulleted_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_numbered" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_format_list_numbered_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_promo" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_shop_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_info" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_info_outline_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_bug_report" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_bug_report_black_24dp" />
+                    <com.resync.app.ui.views.buttons.FormattingButton android:id="@id/format_settings" android:layout_width="48.0dp" android:layout_height="match_parent" sync:imageSource="@drawable/ic_settings_white_24dp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </RelativeLayout>
+    </LinearLayout>
+</merge>

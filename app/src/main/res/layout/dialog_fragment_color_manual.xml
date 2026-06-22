@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingBottom="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16.0dp">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <View android:id="@id/dialog_fragment_color_manual_preview" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignTop="@id/dialog_fragment_color_manual_color_input" android:layout_alignBottom="@id/dialog_fragment_color_manual_color_input" />
+            <TextView android:textSize="22.0dp" android:textStyle="bold" android:id="@id/dialog_fragment_color_manual_color_input_label" android:background="@android:color/transparent" android:paddingTop="32.0dp" android:paddingBottom="32.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="8.0dp" android:text="#" android:layout_toLeftOf="@id/dialog_fragment_color_manual_color_input" android:layout_centerInParent="true" android:layout_centerVertical="true" />
+            <EditText android:textSize="22.0dp" android:id="@id/dialog_fragment_color_manual_color_input" android:background="@android:color/transparent" android:paddingTop="32.0dp" android:paddingBottom="32.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ff0000" android:hint="000000" android:maxLength="6" android:digits="0123456789ABCDEFabcdef" android:layout_centerInParent="true" android:inputType="textVisiblePassword" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/dialog_fragment_color_manual_swatches" android:paddingLeft="32.0dp" android:paddingTop="16.0dp" android:paddingRight="32.0dp" android:paddingBottom="32.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:divider="@drawable/simple_divider_horizontal_double" android:showDividers="middle">
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_1" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#2a68c1" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_2" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#588164" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_3" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#736ea8" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_4" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#92703b" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_5" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#9b656e" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_6" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#D15600" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_7" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#B71C1C" />
+        <com.resync.app.ui.views.preferences.MonetColorView android:id="@id/swatch_8" android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" app:swatchColor="#218b94" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="40.0dp">
+        <TextView android:textStyle="bold" android:textColor="#b71c1c" android:gravity="center" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R" android:minEms="3" />
+        <SeekBar android:id="@id/dialog_fragment_color_manual_red" android:layout_width="match_parent" android:layout_height="match_parent" android:max="255" android:progressTint="#b71c1c" android:progressBackgroundTint="#b71c1c" android:thumbTint="#b71c1c" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="40.0dp">
+        <TextView android:textStyle="bold" android:textColor="#43a047" android:gravity="center" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="G" android:minEms="3" />
+        <SeekBar android:id="@id/dialog_fragment_color_manual_green" android:layout_width="match_parent" android:layout_height="match_parent" android:max="255" android:progressTint="#43a047" android:progressBackgroundTint="#43a047" android:thumbTint="#43a047" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="40.0dp">
+        <TextView android:textStyle="bold" android:textColor="#1e88e5" android:gravity="center" android:layout_gravity="center" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="B" android:minEms="3" />
+        <SeekBar android:id="@id/dialog_fragment_color_manual_blue" android:layout_width="match_parent" android:layout_height="match_parent" android:max="255" android:progressTint="#1e88e5" android:progressBackgroundTint="#1e88e5" android:thumbTint="#1e88e5" />
+    </LinearLayout>
+</LinearLayout>

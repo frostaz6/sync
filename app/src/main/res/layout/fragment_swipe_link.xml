@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/fragment_swipe_titles" />
+    <ScrollView android:id="@id/fragment_swipe_article_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_above="@id/fragment_swipe_buttons_wrapper" android:layout_below="@id/fragment_swipe_text_wrapper">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <View android:layout_width="match_parent" android:layout_height="16.0dp" />
+            <com.resync.app.ui.views.LegacyCustomImageView android:id="@id/fragment_swipe_article_image" android:layout_width="match_parent" android:layout_height="200.0dp" android:scaleType="centerCrop" />
+            <com.resync.app.ui.views.text.BaseTextView android:textColor="@android:color/white" android:id="@id/fragment_swipe_article_title" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" sync:textSize="medium" sync:typeface="robotoCondensed" />
+            <View android:background="#3fff" android:layout_width="match_parent" android:layout_height="1.0dp" />
+            <com.resync.app.ui.views.text.BaseTextView android:textColor="@android:color/white" android:id="@id/fragment_swipe_article_body" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" sync:textSize="medium" sync:typeface="roboto" />
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/fragment_swipe_buttons" />
+</RelativeLayout>

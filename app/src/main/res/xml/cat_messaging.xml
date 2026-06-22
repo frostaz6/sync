@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Basic setup" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/message_types" android:title="Periodically check for new messages" android:key="message_preference_new" android:defaultValue="3" android:entryValues="@array/message_types_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Check for mod mail" android:key="message_mod_mail" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Advanced" />
+        <com.resync.app.ui.preferences.PushPreference />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference android:key="notification_options" app:categoryTitle="Notification options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Notification sound" android:key="message_sound" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Notification LED" android:key="message_led" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

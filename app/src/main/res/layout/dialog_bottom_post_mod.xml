@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/header" android:layout_width="match_parent" android:layout_height="wrap_content" app:title_text="Mod options" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_lock" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_lock_24" app:rowTitle="Lock" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_spam" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_remove_circle_outline_24" app:rowTitle="Spam" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_remove" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_thumb_down_24" app:rowTitle="Remove" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_approve" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_thumb_up_24" app:rowTitle="Approve" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_distinguish" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/crown_outline" app:rowTitle="Distinguish" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_sticky" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/sticker_outline" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_nsfw" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/outline_adult" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_spoiler" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/baseline_error_outline_24" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_flair" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/tag_outline" app:rowTitle="Flair" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_ban" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/shield_remove_outline" app:rowTitle="Ban user" />
+        <com.resync.app.ui.views.core.MaterialRow android:id="@id/mod_reasons" android:layout_width="match_parent" android:layout_height="wrap_content" app:rowImageSrc="@drawable/playlist_remove" app:rowTitle="Report reasons" />
+    </LinearLayout>
+</ScrollView>

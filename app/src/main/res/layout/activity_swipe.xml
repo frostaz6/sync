@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout android:id="@id/coordinator" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.main.PostsFragmentFrameLayout android:id="@id/content_wrapper" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <com.resync.app.ui.views.app_bars.PostsAppBarLayout android:id="@id/appbar" android:background="@android:color/transparent" android:layout_width="match_parent" android:layout_height="wrap_content" app:liftOnScroll="false">
+        <com.resync.app.ui.views.core.MaterialYouToolbar android:layout_width="match_parent" android:layout_height="wrap_content" android:translationZ="2.0dp" app:layout_scrollFlags="noScroll" app:menu="@menu/new_main">
+            <com.resync.app.sections.posts.toolbar.PostsSmallSubredditToolbarView android:id="@id/toolbar_small_header_view" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </com.resync.app.ui.views.core.MaterialYouToolbar>
+    </com.resync.app.ui.views.app_bars.PostsAppBarLayout>
+    <com.resync.app.ui.views.monet.MonetLinearProgressIndicator android:layout_gravity="bottom" android:id="@id/progress" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:translationZ="2.0dp" />
+</com.resync.app.ui.views.transparent_status.CustomCoordinatorLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/fragment_swipe_buttons_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.posts.swipe.SwipeDivider android:layout_width="match_parent" android:layout_height="1.0dp" />
+    <com.resync.app.ui.views.posts.swipe.SwipeLinearLayout android:orientation="horizontal" android:id="@id/fragment_swipe_buttons_wrapper_inner" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="?actionBarSize">
+        <com.resync.app.ui.views.buttons.UpvoteButton android:id="@id/fragment_swipe_upvote" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.DownvoteButton android:id="@id/fragment_swipe_downvote" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.SaveButton android:id="@id/fragment_swipe_save" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.CommentButton android:id="@id/fragment_swipe_comments" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.DownloadButton android:id="@id/fragment_swipe_download" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:showRipple="true" />
+        <com.resync.app.ui.views.buttons.MoreButton android:id="@id/fragment_swipe_more" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.0" sync:showRipple="true" />
+    </com.resync.app.ui.views.posts.swipe.SwipeLinearLayout>
+    <com.resync.app.ui.views.posts.swipe.SwipeDivider android:layout_width="match_parent" android:layout_height="1.0dp" />
+</LinearLayout>

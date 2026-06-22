@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Setup" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_tablet_24" android:title="Tablet mode" android:key="tablet_mode" android:defaultValue="@bool/tablet" />
+        <com.resync.app.ui.preferences.CategoryInfoHeaderPreference app:categoryInfoTitle="Tablet mode is an optimised interface for large screen devices featuring the new navigation rail. When enabled you will be able to use dual pane mode and tabbed comments.\n\nNote: Although you can enable this on any device it is only recommended for tablets or large foldable devices." />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="tablet_options">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Options" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_dual_pane" android:title="Dual pane (landscape)" android:key="tablet_dual_pane_landscape" android:summary="Show comments next to posts in landscape" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_dual_pane" android:title="Dual pane (portrait)" android:key="tablet_dual_pane_portrait" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_tab_24" android:title="Tabbed comments" android:key="tablet_tabs" android:summary="Load comments as tabs in dual pane mode" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="tablet_options_2">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Advanced" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:icon="@drawable/outline_menu_open_24" android:entries="@array/rail_gravity_labels" android:title="Navigation rail item position" android:key="rail_gravity" android:defaultValue="0" android:entryValues="@array/rail_gravity_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_settings_overscan_24" android:title="Advanced insets" android:key="tablet_insets" android:summary="Resize the app to respect additional window insets" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:icon="@drawable/outline_screen_rotation_24" android:title="Foldable display support" android:key="tablet_foldable" android:summary="Automatically adjust the UI depending on fold state" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

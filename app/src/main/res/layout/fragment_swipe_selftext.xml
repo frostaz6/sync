@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="?actionBarSize">
+        <include layout="@layout/fragment_swipe_titles" />
+        <com.resync.app.ui.views.posts.swipe.SwipeDivider android:layout_width="match_parent" android:layout_height="1.0dp" />
+        <ScrollView android:id="@id/fragment_swipe_selftext_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.resync.app.ui.views.text.ActiveTextView android:id="@id/fragment_swipe_selftext" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" sync:textSize="medium" sync:typeface="roboto" />
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/fragment_swipe_bottomsheet" android:layout_width="match_parent" android:layout_height="match_parent" sync:behavior_peekHeight="?actionBarSize" sync:layout_behavior="com.resync.app.ui.views.behaviour.CommentsBottomSheetBehavior">
+        <include layout="@layout/fragment_swipe_buttons" />
+        <com.resync.app.ui.views.posts.swipe.SwipeBottomSheetWrapper android:id="@id/fragment_swipe_comments_holder" android:layout_width="match_parent" android:layout_height="match_parent" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@id/tts_stop" android:layout_width="match_parent" android:layout_height="48.0dp" android:src="@drawable/outline_stop_24" android:layout_weight="1.0" />
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@id/tts_previous" android:layout_width="match_parent" android:layout_height="48.0dp" android:src="@drawable/outline_skip_previous_24" android:layout_weight="1.0" />
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@id/tts_play" android:layout_width="match_parent" android:layout_height="48.0dp" android:layout_weight="1.0" />
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@id/tts_next" android:layout_width="match_parent" android:layout_height="48.0dp" android:src="@drawable/outline_skip_next_24" android:layout_weight="1.0" />
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@id/tts_more" android:layout_width="match_parent" android:layout_height="48.0dp" android:src="@drawable/outline_more_horiz_24" android:layout_weight="1.0" />
+</merge>

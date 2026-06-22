@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.posts.simple.SimpleLinearLayout android:id="@id/root" android:padding="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.text.spannable.children.posts.PostTitleTextView android:id="@id/title" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="slide_desc" app:textColor="primary" app:typeface="robotoItalic" />
+    <com.resync.app.ui.views.text.spannable.children.comments.CommentDescriptionTextView android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/description" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="slide_desc" />
+    <com.resync.app.ui.views.text.spannable.children.image_components.awards.AwardsTextView android:id="@id/awards" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4.0dp" app:layoutSource="slide_desc" app:show_border="true" />
+    <com.resync.app.ui.views.text.spannable.children.HtmlTextView android:id="@id/content" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="comments_body" />
+</com.resync.app.ui.views.posts.simple.SimpleLinearLayout>

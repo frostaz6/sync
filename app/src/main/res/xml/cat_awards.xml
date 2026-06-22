@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Display" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:icon="@drawable/outline_medal" android:title="Show modern awards " android:key="awards_modern" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:title="Show minimal awards " android:key="awards_minimal" />
+        <com.resync.app.ui.preferences.defaults.SyncRadioButtonPreference android:title="Hide awards " android:key="awards_none" />
+    </PreferenceCategory>
+</PreferenceScreen>

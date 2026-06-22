@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.resync.app.ui.views.responsive.CustomMaterialCardView android:orientation="vertical" android:id="@id/root" android:clipToPadding="false" android:addStatesFromChildren="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:foreground="@drawable/button_light"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:addStatesFromChildren="true" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.text.spannable.children.posts.PostTitleTextView android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/title" android:paddingLeft="10.0dp" android:paddingTop="10.0dp" android:paddingRight="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="smaller_card_desc" app:textColor="primary" app:typeface="robotoItalic" />
+        <com.resync.app.ui.views.text.spannable.children.comments.CommentDescriptionTextView android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/description" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="smaller_card_desc" />
+        <com.resync.app.ui.views.text.spannable.children.image_components.awards.AwardsTextView android:id="@id/awards" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginTop="2.0dp" android:layout_marginRight="10.0dp" app:layoutSource="smaller_card_desc" app:show_border="true" />
+        <com.resync.app.ui.views.text.spannable.children.HtmlTextView android:id="@id/content" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:paddingBottom="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="comments_body" />
+    </LinearLayout>
+</com.resync.app.ui.views.responsive.CustomMaterialCardView>

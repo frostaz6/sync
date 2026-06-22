@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="horizontal" android:paddingBottom="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" android:divider="@drawable/simple_divider_horizontal_double" android:showDividers="middle">
+        <LinearLayout android:orientation="horizontal" android:id="@id/action_button_negative_neural_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:divider="@drawable/simple_divider_horizontal" android:layout_weight="1.0" android:showDividers="middle">
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:textSize="12.0dp" android:id="@id/action_button_negative" android:padding="2.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="0.0dp" android:singleLine="true" android:layout_weight="1.0" android:insetTop="0.0dp" android:insetBottom="0.0dp" />
+            <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:textSize="12.0dp" android:id="@id/action_button_neutral" android:padding="2.0dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="0.0dp" android:singleLine="true" android:layout_weight="1.0" android:insetTop="0.0dp" android:insetBottom="0.0dp" />
+        </LinearLayout>
+        <com.resync.app.ui.views.monet.buttons.MonetContentHighlightButton android:textSize="12.0dp" android:id="@id/action_button_positive" android:padding="2.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="0.0dp" android:singleLine="true" android:layout_weight="1.0" android:insetTop="0.0dp" android:insetBottom="0.0dp" app:selected="true" />
+    </LinearLayout>
+</merge>

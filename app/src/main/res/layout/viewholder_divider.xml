@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.buttons.PreviousButton android:id="@id/divider_previous" android:layout_width="48.0dp" android:layout_height="48.0dp" android:layout_alignTop="@id/divider_textview" android:layout_alignBottom="@id/divider_textview" android:layout_alignParentLeft="true" />
+    <com.resync.app.ui.views.text.BaseTextView android:gravity="center" android:id="@id/divider_textview" android:padding="20.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/divider_next" android:layout_toRightOf="@id/divider_previous" android:foregroundGravity="center" sync:textColor="secondary" sync:textSize="medium" sync:typeface="robotoBold" />
+    <com.resync.app.ui.views.buttons.NextButton android:id="@id/divider_next" android:layout_width="48.0dp" android:layout_height="48.0dp" android:layout_alignTop="@id/divider_textview" android:layout_alignBottom="@id/divider_textview" android:layout_alignParentRight="true" />
+</RelativeLayout>

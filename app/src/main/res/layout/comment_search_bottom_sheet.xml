@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.recyclerview.widget.RecyclerView android:id="@id/bottom_sheet_comment_search_recycler" android:layout_width="match_parent" android:layout_height="match_parent" android:overScrollMode="never" />
+    <FrameLayout android:id="@id/search_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.resync.app.ui.views.monet.MonetSearchBoxView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dp" android:layout_marginTop="24.0dp" android:layout_marginRight="16.0dp" android:layout_marginBottom="16.0dp" android:imeOptions="actionSearch|flagNoExtractUi" app:hide_more="true" app:hint="Search comments" />
+    </FrameLayout>
+    <com.resync.app.ui.views.buttons.DragButton android:layout_gravity="center_horizontal" android:layout_width="22.0dp" android:layout_height="22.0dp" android:layout_marginTop="12.0dp" android:layout_centerHorizontal="true" />
+</RelativeLayout>

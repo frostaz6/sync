@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Native login. The WebView is NOT here on purpose: a live WebView in the tree steals the
+  single IME "served view" from the EditTexts (cursor blink / text not registering). It's created
+  lazily at submit and added to login_webview_container, which stays behind the form/overlay.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Worker WebView is added here at submit time; behind everything. -->
+    <FrameLayout
+        android:id="@+id/login_webview_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Native credential form (default view). -->
+    <ScrollView
+        android:id="@+id/login_form_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/colorBackground"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:padding="28.0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6.0dp"
+                android:text="Sign in to Reddit"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="26.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28.0dp"
+                android:alpha="0.7"
+                android:textColor="?android:attr/textColorPrimary"
+                android:text="Your credentials go straight to Reddit's own login, handled in the background." />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_username_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textNoSuggestions"
+                    android:imeOptions="actionNext"
+                    android:autofillHints="username"
+                    android:maxLines="1"
+                    android:nextFocusForward="@+id/login_password" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_password_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.0dp"
+                android:hint="Password"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone"
+                    android:autofillHints="password"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26.0dp"
+                android:text="Sign in" />
+
+            <TextView
+                android:id="@+id/login_web_fallback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22.0dp"
+                android:padding="8.0dp"
+                android:alpha="0.8"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
+                android:text="Having trouble? Open the web sign-in" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Reveal header: shown only when we surface the WebView for the human to finish. -->
+    <TextView
+        android:id="@+id/login_reveal_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="?android:attr/colorBackground"
+        android:padding="14.0dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textStyle="bold"
+        android:text="Almost there — finish signing in with Reddit"
+        android:visibility="gone" />
+
+    <!-- Progress overlay (3-phase). Opaque so it hides the working WebView behind it. -->
+    <LinearLayout
+        android:id="@+id/login_progress_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/colorBackground"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+
+        <TextView
+            android:id="@+id/login_phase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="Signing in…"
+            android:textSize="16.0sp" />
+    </LinearLayout>
+</FrameLayout>

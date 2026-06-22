@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/holder_subreddit_base" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.responsive.CustomMaterialCardView android:orientation="vertical" android:id="@id/holder_subreddit_card" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16.0dp">
+            <com.resync.app.ui.views.core.SubView android:id="@id/subview" android:layout_width="48.0dp" android:layout_height="48.0dp" android:layout_marginRight="16.0dp" android:transitionName="card_preview" app:enable_click_preview="true" app:force_circular_outline="true" />
+            <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toRightOf="@id/subview">
+                <com.resync.app.ui.views.text.BaseTextView android:id="@id/holder_subreddit_title" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="primary" app:textSize="huge" app:typeface="googleSans" />
+                <com.resync.app.ui.views.text.spannable.children.other.SearchSubsDetailedDescription android:id="@id/holder_subreddit_description" android:paddingTop="4.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="secondary" app:textSize="regular" />
+                <com.resync.app.ui.views.text.spannable.children.HtmlTextView android:id="@id/holder_subreddit_body" android:paddingTop="8.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="primary" app:textSize="medium" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.resync.app.ui.views.responsive.CustomMaterialCardView>
+</LinearLayout>

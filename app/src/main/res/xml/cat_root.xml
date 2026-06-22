@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference app:title="Settings" />
+    <com.resync.app.ui.preferences.custom.SearchPreference />
+    <com.resync.app.ui.preferences.custom.tooltips.RootLegacyTooltipPreference />
+    <PreferenceCategory android:key="ultra_wrapper">
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="New" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="ReSync Ultra" android:summary="Website previews, cloud backup, translation &amp; more" app:custom_icon="@drawable/outline_offline_bolt_24" app:preference_ref="@integer/ULTRA" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Developer options" android:summary="Bleep bloop" app:custom_icon="@drawable/outline_robot" app:preference_ref="@integer/DEVELOPER_OPTIONS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Legacy settings" android:summary="Restore the old look and feel of ReSync and more" app:custom_icon="@drawable/outline_restore_24" app:preference_ref="@integer/LEGACY" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Appearance" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Run setup" android:summary="Configure basic settings in ReSync" app:custom_icon="@drawable/hammer_wrench" app:preference_ref="@integer/SETUP" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="General" android:summary="Toolbar, navigation style, gestures &amp; more" app:custom_icon="@drawable/outline_settings_24" app:preference_ref="@integer/GENERAL" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Experimental" android:summary="Beta experiments" app:custom_icon="@drawable/test_tube" app:preference_ref="@integer/EXPERIMENTS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Tablet" android:summary="Setup options for tablet mode &amp; foldable devices" app:custom_icon="@drawable/outline_tablet_24" app:preference_ref="@integer/TABLET" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Animations" android:summary="Activity transitions &amp; view animations" app:custom_icon="@drawable/outline_animation" app:preference_ref="@integer/ANIMATIONS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Theme management" android:summary="Customize the app theme" app:custom_icon="@drawable/outline_color_lens_24" app:preference_ref="@integer/MONET_ADVANCED" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Dark mode" android:summary="Light, dark or auto" app:custom_icon="@drawable/outline_dark_mode_24" app:preference_ref="@integer/DARK_MODE" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="View type" android:summary="Customize how posts look" app:custom_icon="@drawable/outline_view_agenda_24" app:preference_ref="@integer/POST_VIEW_OPTIONS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Comments" android:summary="Customize how comments look" app:custom_icon="@drawable/outline_mode_comment_24" app:preference_ref="@integer/COMMENT_VIEW_OPTIONS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Awards" android:summary="Customize how awards are shown" app:custom_icon="@drawable/outline_medal_new" app:preference_ref="@integer/AWARDS" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Content" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Reddit web preferences" android:summary="Configure reddit.com preferences" app:custom_icon="@drawable/ic_snoo_24dp" app:preference_ref="@integer/WEB_PREFERENCES" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Post options" android:summary="Sorting, flair, swipe actions &amp; more" app:custom_icon="@drawable/outline_edit_24" app:preference_ref="@integer/POSTS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Comment options" android:summary="Navigation, swipe actions &amp; more" app:custom_icon="@drawable/outline_comments" app:preference_ref="@integer/COMMENTS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Messaging" android:summary="Message interval &amp; push notifications" app:custom_icon="@drawable/outline_mail_outline_24" app:preference_ref="@integer/MESSAGING" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Media" android:summary="Media interaction, download setup &amp; more" app:custom_icon="@drawable/outline_image_24" app:preference_ref="@integer/IMAGES" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Link handling" android:summary="Configure which sites open in ReSync, default browser &amp; link styles" app:custom_icon="@drawable/outline_link_24" app:preference_ref="@integer/LINKS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="History" android:summary="Marking as read, search &amp; clear history data" app:custom_icon="@drawable/outline_history_24" app:preference_ref="@integer/HISTORY" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="General" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Data options" android:summary="Data saving, autoplay &amp; preloading" app:custom_icon="@drawable/outline_data_usage_24" app:preference_ref="@integer/DATA" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Filters" android:summary="Post filters, advanced &amp; content filters" app:custom_icon="@drawable/outline_filter_list_24" app:preference_ref="@integer/FILTERS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Backup" android:summary="Setup &amp; backup / restore" app:custom_icon="@drawable/outline_backup_24" app:preference_ref="@integer/BACKUP" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Other" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Restore purchases" android:summary="Restore any previously made purchases" app:custom_icon="@drawable/ic_outline_sync_24" app:preference_ref="@integer/PURCHASES" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Privacy" android:summary="Privacy policy &amp; terms" app:custom_icon="@drawable/outline_track_changes_24" app:preference_ref="@integer/ANALYTICS" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Security" android:summary="Biometric app lock" app:custom_icon="@drawable/outline_shield" app:preference_ref="@integer/SECURITY" />
+        <com.resync.app.ui.preferences.custom.RootPreference android:title="Everything else" android:summary="App info, licenses &amp; credits" app:custom_icon="@drawable/outline_help_outline_24" app:preference_ref="@integer/OTHER" />
+    </PreferenceCategory>
+</PreferenceScreen>

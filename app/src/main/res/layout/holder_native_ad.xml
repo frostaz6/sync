@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/holder_native_wrapper" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:layout_marginBottom="8.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ads.custom.MediumRectangleAdWrapper android:layout_gravity="center_horizontal" android:id="@id/holder_native_wrapper_inner" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</FrameLayout>

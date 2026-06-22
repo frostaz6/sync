@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.text.spannable.children.posts.PostTitleTextView android:id="@id/holder_card_generic_title" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:layoutSource="card_title" />
+    <com.resync.app.ui.views.text.spannable.children.posts.PostDescriptionTextView android:id="@id/holder_card_generic_desc" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layoutSource="card_desc" />
+    <com.google.android.material.chip.ChipGroup android:orientation="horizontal" android:id="@id/holder_card_generic_extra_wrapper" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp">
+        <com.resync.app.ui.views.text.spannable.children.image_components.flair.PostFlairTextView android:id="@id/holder_card_generic_flair" android:layout_width="wrap_content" android:layout_height="match_parent" app:layoutSource="card_desc" app:show_border="true" />
+        <com.resync.app.ui.views.text.spannable.children.image_components.awards.AwardsTextView android:id="@id/holder_card_generic_awards" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layoutSource="card_desc" app:show_border="true" />
+    </com.google.android.material.chip.ChipGroup>
+</merge>

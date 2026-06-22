@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.util.ConsumingHorizontalScrollView android:layout_gravity="center_horizontal" android:scrollbars="none" android:layout_width="wrap_content" android:layout_height="wrap_content" android:foregroundGravity="center_horizontal">
+        <com.resync.app.sections.posts.toolbar.chip_groups.ChipWrapper android:id="@id/chip_wrapper" android:paddingLeft="16.0dp" android:paddingTop="14.0dp" android:paddingRight="16.0dp" android:paddingBottom="16.0dp" android:clipToPadding="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </com.resync.app.ui.views.util.ConsumingHorizontalScrollView>
+</merge>

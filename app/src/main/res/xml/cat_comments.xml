@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Navigation" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Display navigation bar" android:key="md2_comment_nav_bar" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Autohide navigation bar" android:key="md2_comment_nav_bar_hide" android:summary="Hide when scrolling" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Volume key navigation" android:key="comments_volume_nav" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/nav_position" android:title="Navigation bar position" android:key="comment_navigation_position" android:defaultValue="1" android:entryValues="@array/nav_position_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Show reply fab" android:key="comments_reply_fab" android:summary="Only shown when the navigation bar is disabled" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Autohide FAB" android:key="comments_reply_fab_autohide" android:summary="Hide on scroll" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Swipe actions" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Swipe comments for additional options" android:key="comment_swipe_actions" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comment_swipe" android:title="First swipe action" android:key="comment_navigation_first" android:defaultValue="1" android:entryValues="@array/comment_swipe_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comment_swipe" android:title="Second swipe action" android:key="comment_navigation_second" android:defaultValue="3" android:entryValues="@array/comment_swipe_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comment_swipe" android:title="Third swipe action" android:key="comment_navigation_third" android:defaultValue="0" android:entryValues="@array/comment_swipe_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Force vibrate on selection" android:key="comment_swipe_actions_vibrate" android:summary="Override your system preference" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="General" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comments_load" android:title="Initial comment count" android:key="comments_load" android:summary="The number of comments to load" android:defaultValue="75" android:entryValues="@array/comments_load_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comment_sort" android:title="Default comment sort" android:key="comment_sort_preference" android:defaultValue="6" android:entryValues="@array/comment_sort_values" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comment_parent_button" android:title="View parent button" android:key="comments_parent_button" android:summary="Hide, show or change the behaviour" android:defaultValue="2" android:entryValues="@array/comment_parent_button_actions" />
+        <com.resync.app.ui.preferences.defaults.SyncListPreference android:entries="@array/comments_live_refresh_labels" android:title="Live comments refresh rate" android:key="live_comments_refresh" android:summary="How often comments are refreshed in live mode" android:defaultValue="15" android:entryValues="@array/comments_live_refresh_values" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Remember comment position" android:key="comments_remember_pos" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Collapse all threads by default" android:key="comments_collapse_all_default" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Single click to hide comment" android:key="comments_single" android:summary="Reverse the comment click actions" android:defaultValue="false" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Collapse parent" android:key="collapse_parent" android:summary="Hide the parent when hiding children" android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

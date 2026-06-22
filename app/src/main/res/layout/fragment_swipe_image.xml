@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:sync="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView android:id="@id/fragment_swipe_image" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitCenter" />
+        <ImageView android:layout_gravity="center" android:id="@id/fragment_swipe_indicator" android:layout_width="100.0dp" android:layout_height="100.0dp" android:scaleType="center" android:adjustViewBounds="false" android:layout_centerInParent="true" />
+        <com.resync.app.ui.views.video.CustomExoPlayerView android:id="@id/fragment_swipe_video_player" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" sync:zoomable="true" />
+        <com.resync.app.ui.views.image_progressbar.ImageProgressBar android:id="@id/fragment_swipe_progress_bar" android:focusable="false" android:focusableInTouchMode="false" android:visibility="gone" android:clickable="false" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_centerInParent="true" />
+        <include layout="@layout/fragment_swipe_titles" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/fragment_swipe_bottomsheet" android:layout_width="match_parent" android:layout_height="match_parent" sync:behavior_peekHeight="?actionBarSize" sync:layout_behavior="com.resync.app.ui.views.behaviour.CommentsBottomSheetBehavior">
+        <include layout="@layout/fragment_swipe_buttons" />
+        <com.resync.app.ui.views.posts.swipe.SwipeBottomSheetWrapper android:id="@id/fragment_swipe_comments_holder" android:layout_width="match_parent" android:layout_height="match_parent" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

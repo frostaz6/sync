@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.util.ConsumingHorizontalScrollView android:id="@id/chip_scroll" android:paddingTop="14.0dp" android:paddingBottom="12.0dp" android:scrollbars="none" android:clipToPadding="false" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <com.google.android.material.chip.ChipGroup android:id="@id/chip_wrapper" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/view_mode_slides" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Slides" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/view_mode_cards" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cards" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/view_mode_small_cards" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Small cards" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/view_mode_smaller_cards" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Smaller cards" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/view_mode_compact" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Compact" />
+            <com.resync.app.ui.views.responsive.chips.ContentChip android:id="@id/view_mode_list" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="List" />
+        </com.google.android.material.chip.ChipGroup>
+    </com.resync.app.ui.views.util.ConsumingHorizontalScrollView>
+</FrameLayout>

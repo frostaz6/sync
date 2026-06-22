@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.preferences.HeaderPreference />
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Transitions" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Image transitions" android:key="animate_transition_image" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comment transitions" android:key="animate_comments_transition" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory>
+        <com.resync.app.ui.preferences.defaults.CategoryHeaderPreference app:categoryTitle="Animations" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Enter / exit animations" android:key="animate_enter_exit" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Post hide animations" android:key="animate_hide_posts" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comments collapsing animation" android:key="animate_comment_collapse" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comments more animation" android:key="animate_comment_more" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comments action animation" android:key="animate_comment_action" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comments insert animation" android:key="animate_comment_insert" android:defaultValue="true" />
+        <com.resync.app.ui.preferences.defaults.SyncCheckBoxPreference android:title="Comments navigation animation" android:key="animate_comment_nav" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

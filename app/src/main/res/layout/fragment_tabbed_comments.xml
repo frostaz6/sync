@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/tabbed_comments_content" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_above="@id/chips" />
+    <com.resync.app.ui.views.comments.tabbed.CommentsTabbedScrollView android:id="@id/chips" android:paddingTop="14.0dp" android:paddingBottom="12.0dp" android:visibility="gone" android:scrollbars="none" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <com.google.android.material.chip.ChipGroup android:id="@id/chip_group" android:paddingLeft="16.0dp" android:paddingRight="16.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </com.resync.app.ui.views.comments.tabbed.CommentsTabbedScrollView>
+</RelativeLayout>

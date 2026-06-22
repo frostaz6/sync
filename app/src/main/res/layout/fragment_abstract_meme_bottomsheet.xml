@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/sidebar_ad_wrapper"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.resync.app.ui.views.core.SheetHeaderView android:id="@id/header" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:id="@id/image" android:background="#000" android:layout_width="match_parent" android:layout_height="160.0dp" android:scaleType="fitCenter" />
+        <com.resync.app.ui.views.responsive.CustomProgressBar android:layout_gravity="center" android:id="@id/image_progress_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <com.resync.app.ui.views.text.BaseTextView android:id="@id/text" android:paddingLeft="16.0dp" android:paddingTop="32.0dp" android:paddingRight="16.0dp" android:paddingBottom="16.0dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:textColor="primary" app:textSize="large" />
+    <com.resync.app.ui.views.monet.buttons.MonetActionButtons android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dp" />
+</LinearLayout>

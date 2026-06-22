@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:fitsSystemWindows="true" android:layout_width="match_parent" android:layout_height="match_parent">
+        <GridView android:scrollbarStyle="outsideOverlay" android:id="@id/image_grid" android:paddingLeft="@dimen/static_padding_regular" android:paddingRight="@dimen/static_padding_regular" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:listSelector="@android:color/transparent" android:horizontalSpacing="@dimen/static_padding_regular" android:verticalSpacing="@dimen/static_padding_regular" android:numColumns="@integer/grid_columns" />
+    </FrameLayout>
+</RelativeLayout>

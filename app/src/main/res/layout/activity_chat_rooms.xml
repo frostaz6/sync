@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20.0dp"
+        android:paddingRight="20.0dp"
+        android:paddingTop="20.0dp"
+        android:paddingBottom="12.0dp"
+        android:text="Chat"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="26.0sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_rooms_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="12.0dp" />
+
+        <TextView
+            android:id="@+id/chat_rooms_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="24.0dp"
+            android:alpha="0.7"
+            android:gravity="center"
+            android:text="Loading chats…"
+            android:textColor="?android:attr/textColorPrimary" />
+    </FrameLayout>
+</LinearLayout>
