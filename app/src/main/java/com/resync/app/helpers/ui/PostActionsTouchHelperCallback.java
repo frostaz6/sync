@@ -216,7 +216,9 @@ public class PostActionsTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
     public boolean isItemViewSwipeEnabled() {
-        return false;
+        // This IS the post swipe-action gesture — must be enabled (original never overrode it, so it
+        // used the androidx default of true). A prior pass set it to false, disabling post swiping.
+        return true;
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback

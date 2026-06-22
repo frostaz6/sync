@@ -198,7 +198,10 @@ public class ReplyTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
     public boolean isItemViewSwipeEnabled() {
-        return false;
+        // This IS the comment swipe-action gesture — it must be enabled (the original never overrode
+        // this, so it used the androidx default of true). A prior pass set it to false, which disabled
+        // comment swiping entirely ("swiping doesn't work at all").
+        return true;
     }
 
     @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback

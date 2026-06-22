@@ -21,6 +21,10 @@ Nothing yet.
 - **Crash when changing dropdown settings.** Tapping options like Autoplay, comment swipe actions, or
   the data-saving preload settings crashed the app or kicked you back to the previous screen. These now
   open a picker and save your choice correctly.
+- **Comment and post swipe actions didn't work.** Swiping a comment (or post) to trigger a quick action
+  did nothing. Swiping now works again.
+- **"Autoplay on WiFi only" not playing.** WiFi detection used an outdated method that fails on newer
+  Android, so WiFi-only autoplay never triggered. Reworked to detect the connection reliably.
 
 ## [1.0.2] - 2026-06-22
 
