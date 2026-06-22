@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 Nothing yet.
 
+## [1.0.3] - 2026-06-22
+
+### Fixed
+
+- **Crash when changing dropdown settings.** Tapping options like Autoplay, comment swipe actions, or
+  the data-saving preload settings crashed the app or kicked you back to the previous screen. These now
+  open a picker and save your choice correctly.
+
 ## [1.0.2] - 2026-06-22
 
 ### Fixed
@@ -151,7 +159,8 @@ buildable, modern project exist at all — not end-user-facing, but they are the
   stale resource-ID literals, characterized the resource-shrinker drawable "tombstones" as harmless,
   and produce a non-debuggable build with a clean strict-dex merge.
 
-[Unreleased]: https://github.com/X-15/ReSync/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/X-15/ReSync/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/X-15/ReSync/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/X-15/ReSync/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/X-15/ReSync/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/X-15/ReSync/releases/tag/v1.0.0

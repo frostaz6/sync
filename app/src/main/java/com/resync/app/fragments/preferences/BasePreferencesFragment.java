@@ -383,7 +383,10 @@ public abstract class BasePreferencesFragment extends PreferenceFragmentCompat {
     @Override // androidx.preference.PreferenceFragmentCompat, androidx.preference.PreferenceManager.OnDisplayPreferenceDialogListener
     public void onDisplayPreferenceDialog(Preference preference) {
         PreferenceInputDialogBottomSheet preferenceInputDialogBottomSheetH4 = PreferenceInputDialogBottomSheet.newInstance(preference.getKey());
-        preferenceInputDialogBottomSheetH4.setTargetFragment(this, 0);
+        // The dialog is shown in this fragment's CHILD FragmentManager and resolves its preference via
+        // getParentFragment(). Calling setTargetFragment(this, 0) sets a target that lives in the PARENT
+        // FragmentManager, which androidx rejects ("target fragment ... does not belong to this
+        // FragmentManager") and crashes the app the moment any list preference is tapped. Don't set it.
         preferenceInputDialogBottomSheetH4.show(getChildFragmentManager(), "androidx.preference.PreferenceFragment.DIALOG");
     }
 
