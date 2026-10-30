@@ -40,6 +40,9 @@ public class OAuthLoginFragment extends RedditDialogFragment {
     private WebView webView;
     private ProgressBar progressBar;
     private boolean completing;
+    private boolean addingAccount;
+    private boolean sessionReady;
+    private String previousAccount;
     private final android.os.Handler pollHandler = new android.os.Handler(android.os.Looper.getMainLooper());
 
     class LoginWebChromeClient extends WebChromeClient {
@@ -87,7 +90,7 @@ public class OAuthLoginFragment extends RedditDialogFragment {
         String cookies = CookieManager.getInstance().getCookie("https://www.reddit.com");
         android.util.Log.i("OAuthLoginFragment", "poll: cookies=" + (cookies == null ? "null"
                 : (cookies.contains("reddit_session") ? "HAS reddit_session" : "no session (" + cookies.length() + " chars)")));
-        if (cookies != null && cookies.contains("reddit_session")) {
+        if (sessionReady && cookies != null && cookies.contains("reddit_session")) {
             completing = true;
             CookieManager.getInstance().flush();
             completeLogin();
@@ -114,6 +117,7 @@ public class OAuthLoginFragment extends RedditDialogFragment {
         mgr.getToken(new WebSessionManager.TokenCallback() {
             @Override
             public void onToken(final String jwt) {
+                if (!isAdded() || webView == null) return;
                 // Authoritative: ask oauth.reddit.com/api/v1/me for the real username (the JWT is a
                 // valid oauth bearer). Only fall back to the DOM scrape if that fails — the scrape
                 // returned empty on the post-login SPA and produced the bogus "Reddit user" name
@@ -134,6 +138,7 @@ public class OAuthLoginFragment extends RedditDialogFragment {
 
             @Override
             public void onError(String reason) {
+                if (!isAdded()) return;
                 android.util.Log.i("OAuthLoginFragment", "Token error: " + reason);
                 StaticToast.showWithContext(getActivity(), "Login failed: " + reason);
                 completing = false;
@@ -153,7 +158,7 @@ public class OAuthLoginFragment extends RedditDialogFragment {
                 webView.post(new Runnable() {
                     @Override
                     public void run() {
-                        finishLogin(name == null || name.isEmpty() ? "Reddit user" : name);
+                        finishLogin(name);
                     }
                 });
             }
@@ -176,7 +181,7 @@ public class OAuthLoginFragment extends RedditDialogFragment {
             @Override
             public void run() {
                 if (completing && getActivity() != null && isAdded()) {
-                    finishLogin("Reddit user");
+                    finishLogin(null);
                 }
             }
         }, 3000);
@@ -185,16 +190,50 @@ public class OAuthLoginFragment extends RedditDialogFragment {
     private boolean finished;
 
     private void finishLogin(String username) {
-        if (finished) {
+        if (finished || !isAdded() || getActivity() == null) return;
+        if (TextUtils.isEmpty(username) || "Reddit user".equalsIgnoreCase(username)) {
+            StaticToast.showWithContext("Could not identify Reddit account. Try signing in again.", getActivity());
+            completing = false;
+            return;
+        }
+        if (addingAccount && username.equalsIgnoreCase(previousAccount)) {
+            StaticToast.showWithContext("That's your existing account. Sign in with a different account.", getActivity());
+            completing = false;
+            startFreshLogin();
+            return;
+        }
+        if (!WebSessionAccountStore.save(getActivity(), username)
+                || !WebSessionAccountStore.ensureAccountRow(getActivity(), username)) {
+            StaticToast.showWithContext("Unable to securely save the new account. Sign-in was not changed.", getActivity());
+            completing = false;
             return;
         }
         finished = true;
-        android.util.Log.i("OAuthLoginFragment", "finishLogin as " + username);
-        // refresh_token = "web_session" sentinel makes AccountSingleton.isLoggedIn() true; the
-        // real bearer is served live by WebSessionManager. Username drives the UI.
+        android.util.Log.i("OAuthLoginFragment", "Account added: " + username);
+        // Only a non-sensitive sentinel goes in the legacy account database.
         AccountSingleton.getInstance().updateSession(username, "web_session", true);
         StaticToast.showWithContext("Signed in as " + username, getActivity());
-        dismiss();
+        android.app.Activity activity = getActivity();
+        dismissAllowingStateLoss();
+        com.resync.app.singletons.SingletonManager.reloadAll(true);
+        com.resync.app.helpers.ActivityHelper.restartToMain(activity);
+    }
+
+    /** Retain the outgoing account and open a login with NO active Reddit session. */
+    private void startFreshLogin() {
+        sessionReady = false;
+        completing = false;
+        WebSessionAccountStore.clearForNewLogin(getActivity(), ok -> {
+            if (!isAdded() || webView == null) return;
+            if (!ok) {
+                StaticToast.showWithContext("Could not clear Reddit login session", getActivity());
+                return;
+            }
+            sessionReady = true;
+            webView.loadUrl(LOGIN_URL);
+            pollHandler.removeCallbacks(sessionPoll);
+            pollHandler.post(sessionPoll);
+        });
     }
 
     @Override
@@ -239,20 +278,40 @@ public class OAuthLoginFragment extends RedditDialogFragment {
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
         cookieManager.setAcceptThirdPartyCookies(this.webView, true);
-        if (bundle != null) {
-            this.webView.restoreState(bundle);
+        previousAccount = AccountSingleton.getInstance().getUsername();
+        addingAccount = AccountSingleton.getInstance().isLoggedIn()
+                && !"Logged out".equalsIgnoreCase(previousAccount);
+        if (addingAccount) {
+            if (!WebSessionAccountStore.save(getActivity(), previousAccount)) {
+                StaticToast.showWithContext("Can't save your current Reddit session. Account was not changed.", getActivity());
+                dismissAllowingStateLoss();
+                return;
+            }
+            WebSessionAccountStore.ensureAccountRow(getActivity(), previousAccount);
+            // A new account must not inherit the old WebView cookie or cached JWT.
+            startFreshLogin();
         } else {
-            this.webView.loadUrl(LOGIN_URL);
+            sessionReady = true;
+            if (bundle != null) {
+                this.webView.restoreState(bundle);
+            } else {
+                this.webView.loadUrl(LOGIN_URL);
+            }
+            pollHandler.post(sessionPoll);
         }
-        // Reddit logs in via client-side SPA navigation (no page reload), so poll the cookie jar for
-        // the session cookie rather than relying on onPageFinished. Also completes instantly if a
-        // reddit.com session already exists.
-        pollHandler.post(sessionPoll);
     }
 
     @Override
     public void onDestroyView() {
         pollHandler.removeCallbacks(sessionPoll);
+        // Cancelling "Add account" must put the previous account's cookies back.
+        if (addingAccount && !finished && previousAccount != null) {
+            WebSessionAccountStore.restore(requireContext(), previousAccount, ok -> {
+                if (!ok) android.util.Log.e("ReSyncAccounts", "Previous session restore failed after login cancellation");
+            });
+        }
+        sessionReady = false;
+        webView = null;
         super.onDestroyView();
     }
 }

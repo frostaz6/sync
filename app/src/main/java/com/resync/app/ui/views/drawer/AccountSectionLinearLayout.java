@@ -31,6 +31,7 @@ import com.resync.app.helpers.AnimationHelper;
 import com.resync.app.helpers.ContextHelper;
 import com.resync.app.dialogs.RemoveAccountAlertDialogBottomSheet;
 import com.resync.app.auth.OAuthLoginFragment;
+import com.resync.app.auth.WebSessionAccountStore;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class AccountSectionLinearLayout extends SectionLinearLayout {
@@ -54,10 +55,24 @@ public class AccountSectionLinearLayout extends SectionLinearLayout {
 
             @Override // java.lang.Runnable
             public void run() {
-                AccountSingleton.getInstance().updateSession(this.accountName, this.refreshToken, true);
-                SingletonManager.reloadAll(true);
-                AccountSectionLinearLayout.this.getContext().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
-                ActivityHelper.restartToMain((Activity) AccountSectionLinearLayout.this.getContext());
+                if ("Logged out".equalsIgnoreCase(this.accountName)) {
+                    AccountSingleton.getInstance().logout();
+                    SingletonManager.reloadAll(true);
+                    AccountSectionLinearLayout.this.getContext().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
+                    ActivityHelper.restartToMain((Activity) AccountSectionLinearLayout.this.getContext());
+                    return;
+                }
+                WebSessionAccountStore.switchTo(AccountSectionLinearLayout.this.getContext(), this.accountName, ok -> {
+                    if (!ok) {
+                        StaticToast.showWithContext("Session unavailable for " + this.accountName
+                                + ". Remove and re-add that account.", AccountSectionLinearLayout.this.getContext());
+                        return;
+                    }
+                    AccountSingleton.getInstance().updateSession(this.accountName, "web_session", true);
+                    SingletonManager.reloadAll(true);
+                    AccountSectionLinearLayout.this.getContext().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
+                    ActivityHelper.restartToMain((Activity) AccountSectionLinearLayout.this.getContext());
+                });
             }
         }
 
@@ -164,7 +179,9 @@ public class AccountSectionLinearLayout extends SectionLinearLayout {
     @Subscribe
     public void onRemoveAccountEvent(RemoveAccountEvent removeAccountEvent) {
         if (StringUtils.equalsAnyIgnoreCase(removeAccountEvent.username, AccountSingleton.getInstance().getUsername())) {
-            getContext().getContentResolver().delete(RedditProvider.URI_ACCOUNTS, removeAccountEvent.username, null);
+            WebSessionAccountStore.remove(getContext(), removeAccountEvent.username);
+            WebSessionAccountStore.remove(getContext(), removeAccountEvent.username);
+        getContext().getContentResolver().delete(RedditProvider.URI_ACCOUNTS, removeAccountEvent.username, null);
             getContext().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
             AccountSingleton.getInstance().logout();
             SingletonManager.reloadAll(true);

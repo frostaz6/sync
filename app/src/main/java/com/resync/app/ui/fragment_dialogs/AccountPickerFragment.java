@@ -49,6 +49,7 @@ import com.resync.app.helpers.WindowHelper;
 import com.resync.app.dialogs.RemoveAccountAlertDialogBottomSheet;
 import com.resync.app.premium.UltraHelper;
 import com.resync.app.auth.OAuthLoginFragment;
+import com.resync.app.auth.WebSessionAccountStore;
 import com.resync.app.util.Logger;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -107,10 +108,24 @@ public class AccountPickerFragment extends AppCompatDialogFragment {
 
             @Override // java.lang.Runnable
             public void run() {
-                AccountSingleton.getInstance().updateSession(this.accountName, this.refreshToken, true);
-                SingletonManager.reloadAll(true);
-                AccountPickerFragment.this.getActivity().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
-                ActivityHelper.restartToMain(AccountPickerFragment.this.getActivity());
+                if ("Logged out".equalsIgnoreCase(this.accountName)) {
+                    AccountSingleton.getInstance().logout();
+                    SingletonManager.reloadAll(true);
+                    AccountPickerFragment.this.getActivity().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
+                    ActivityHelper.restartToMain(AccountPickerFragment.this.getActivity());
+                    return;
+                }
+                WebSessionAccountStore.switchTo(AccountPickerFragment.this.getActivity(), this.accountName, ok -> {
+                    if (!ok) {
+                        StaticToast.showWithContext("Session unavailable for " + this.accountName
+                                + ". Remove and re-add that account.", AccountPickerFragment.this.getActivity());
+                        return;
+                    }
+                    AccountSingleton.getInstance().updateSession(this.accountName, "web_session", true);
+                    SingletonManager.reloadAll(true);
+                    AccountPickerFragment.this.getActivity().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
+                    ActivityHelper.restartToMain(AccountPickerFragment.this.getActivity());
+                });
             }
         }
 
@@ -314,10 +329,12 @@ public class AccountPickerFragment extends AppCompatDialogFragment {
     @Subscribe
     public void onRemoveAccountEvent(RemoveAccountEvent removeAccountEvent) {
         if (!StringUtils.equalsAnyIgnoreCase(removeAccountEvent.username, AccountSingleton.getInstance().getUsername())) {
+            WebSessionAccountStore.remove(getActivity(), removeAccountEvent.username);
             getActivity().getContentResolver().delete(RedditProvider.URI_ACCOUNTS, removeAccountEvent.username, null);
             loadAccounts();
             StaticToast.showWithContext("Account removed", getActivity());
         } else {
+            WebSessionAccountStore.remove(getActivity(), removeAccountEvent.username);
             getActivity().getContentResolver().delete(RedditProvider.URI_ACCOUNTS, removeAccountEvent.username, null);
             getActivity().getContentResolver().delete(RedditProvider.URI_SWAP_ACCOUNTS, null, null);
             AccountSingleton.getInstance().logout();
