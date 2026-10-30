@@ -1,0 +1,103 @@
+name: Build ReSync gallery-fix APK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "gradle.properties"
+      - ".github/workflows/build-apk.yml"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Prepare Android SDK 35
+        run: |
+          set -euo pipefail
+          if command -v sdkmanager >/dev/null 2>&1; then
+            sdkmanager --install "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          else
+            SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -path '*/bin/sdkmanager' -type f | sort -V | tail -1)
+            test -n "$SDKMANAGER"
+            "$SDKMANAGER" --install "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          fi
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          chmod +x gradlew
+
+      - name: Configure private persistent signing key
+        env:
+          RESYNC_KEYSTORE_B64: ${{ secrets.RESYNC_KEYSTORE_B64 }}
+          RESYNC_KEYSTORE_PASSWORD: ${{ secrets.RESYNC_KEYSTORE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [[ -n "$RESYNC_KEYSTORE_B64" && -n "$RESYNC_KEYSTORE_PASSWORD" ]]; then
+            printf '%s' "$RESYNC_KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/resync-test-signing.p12"
+            chmod 600 "$RUNNER_TEMP/resync-test-signing.p12"
+            keytool -list -storetype PKCS12 -keystore "$RUNNER_TEMP/resync-test-signing.p12" \
+              -storepass "$RESYNC_KEYSTORE_PASSWORD" -alias resync >/dev/null
+            echo "RESYNC_SIGNING_KEYSTORE_PATH=$RUNNER_TEMP/resync-test-signing.p12" >> "$GITHUB_ENV"
+            echo "RESYNC_KEYSTORE_PASSWORD=$RESYNC_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+            echo "SIGNING_MODE=persistent" >> "$GITHUB_ENV"
+            echo "Persistent signing key loaded from GitHub Actions secrets."
+          else
+            echo "SIGNING_MODE=temporary-debug" >> "$GITHUB_ENV"
+            echo "::warning::No persistent signing secrets. This APK is signed with a disposable runner key and CANNOT update an earlier APK. Install only after configuring both secrets."
+          fi
+
+      - name: Build APK
+        env:
+          RESYNC_CI_RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          set -euo pipefail
+          ./gradlew :app:assembleDebug --no-daemon --stacktrace
+          test -s app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Verify APK signing and write build information
+        env:
+          RESYNC_CI_RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          set -euo pipefail
+          apk=app/build/outputs/apk/debug/app-debug.apk
+          apksigner="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          "$apksigner" verify --verbose --print-certs "$apk" | grep -E 'Verified|Signer #1 certificate SHA-256 digest'
+          sha256sum "$apk" | tee apk-sha256.txt
+          {
+            echo "ReSync gallery lookup: /comments/<post-id>.json?limit=1"
+            echo "Signing mode: $SIGNING_MODE"
+            echo "Build run number: $RESYNC_CI_RUN_NUMBER"
+            "$apksigner" verify --print-certs "$apk" | grep -E 'Signer #1 certificate SHA-256 digest'
+            echo "INSTALLATION: An in-place update requires the same signing certificate and a lower installed versionCode."
+            if [[ "$SIGNING_MODE" != "persistent" ]]; then
+              echo "WARNING: This build uses an ephemeral GitHub runner key. Do not use it for ongoing updates."
+            fi
+          } > apk-build-info.txt
+          cp "$apk" ReSync-gallery-fix.apk
+
+      - name: Upload APK and signing report
+        uses: actions/upload-artifact@v4
+        with:
+          name: resync-gallery-${{ env.SIGNING_MODE }}-apk
+          path: |
+            ReSync-gallery-fix.apk
+            apk-build-info.txt
+            apk-sha256.txt
+          if-no-files-found: error
+          retention-days: 30
