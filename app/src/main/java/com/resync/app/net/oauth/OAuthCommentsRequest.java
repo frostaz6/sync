@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -77,17 +78,28 @@ public class OAuthCommentsRequest extends RedditRequest<Void> {
         this.commentId = str3;
         this.clearList = clearList;
         this.keepNewCommentFlag = keepNewCommentFlag;
+        Log.i("ReSyncComments", "Thread GET " + getUrl());
     }
 
     public static String buildUrl(Context context, String str, String str2, String str3, String str4, boolean rawJson) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(SettingsSingleton.getOauthUrl(context));
+        // October 2026: Reddit's edge rejects the literal /comments/ path
+        // with HTTP 403 even for otherwise valid OAuth sessions. Redlib
+        // verified that encoding ONE path separator still returns the usual
+        // two-listing [post, comments] JSON, which our existing parser reads.
+        //
+        // Preserve the subreddit and the rest of the query string so sorting,
+        // direct comment links, and normal thread pagination are unchanged.
         if (!TextUtils.isEmpty(str2)) {
             stringBuffer.append("r/");
             stringBuffer.append(str2);
-            stringBuffer.append("/");
+            stringBuffer.append("%2Fcomments/");
+        } else {
+            // Scoped post links can reach this request with no subreddit.
+            // Encoding the slash after 'comments' avoids /comments/<id>.
+            stringBuffer.append("comments%2F");
         }
-        stringBuffer.append("comments/");
         stringBuffer.append(str);
         if (str3 != null) {
             stringBuffer.append("/_/");
