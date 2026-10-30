@@ -1,4 +1,4 @@
-name: Build ReSync gallery-fix APK
+name: Build and release ReSync APK
 
 on:
   push:
@@ -10,9 +10,15 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      publish_first_release:
+        description: "Publish signed ReSync v1.0.0 as the first GitHub release"
+        type: boolean
+        default: false
+        required: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   apk:
@@ -46,6 +52,8 @@ jobs:
         env:
           RESYNC_KEYSTORE_B64: ${{ secrets.RESYNC_KEYSTORE_B64 }}
           RESYNC_KEYSTORE_PASSWORD: ${{ secrets.RESYNC_KEYSTORE_PASSWORD }}
+          EXPECTED_CERT_SHA256: ${{ vars.RESYNC_SIGNING_CERT_SHA256 }}
+          RELEASE_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_first_release }}
         run: |
           set -euo pipefail
           if [[ -n "$RESYNC_KEYSTORE_B64" && -n "$RESYNC_KEYSTORE_PASSWORD" ]]; then
@@ -53,10 +61,21 @@ jobs:
             chmod 600 "$RUNNER_TEMP/resync-test-signing.p12"
             keytool -list -storetype PKCS12 -keystore "$RUNNER_TEMP/resync-test-signing.p12" \
               -storepass "$RESYNC_KEYSTORE_PASSWORD" -alias resync >/dev/null
+            actual=$(keytool -list -v -storetype PKCS12 -keystore "$RUNNER_TEMP/resync-test-signing.p12" \
+              -storepass "$RESYNC_KEYSTORE_PASSWORD" -alias resync \
+              | sed -n 's/^[[:space:]]*SHA256: //p' | head -n 1 | tr -d ':' | tr '[:upper:]' '[:lower:]')
+            expected=$(printf '%s' "$EXPECTED_CERT_SHA256" | tr -d ':' | tr '[:upper:]' '[:lower:]')
+            if [[ -z "$expected" || "$actual" != "$expected" ]]; then
+              echo "::error::Missing or mismatched pinned signing certificate. Run the setup-release-signing.sh script."
+              exit 1
+            fi
             echo "RESYNC_SIGNING_KEYSTORE_PATH=$RUNNER_TEMP/resync-test-signing.p12" >> "$GITHUB_ENV"
             echo "RESYNC_KEYSTORE_PASSWORD=$RESYNC_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
             echo "SIGNING_MODE=persistent" >> "$GITHUB_ENV"
             echo "Persistent signing key loaded from GitHub Actions secrets."
+          elif [[ "$RELEASE_REQUESTED" == "true" ]]; then
+            echo "::error::A GitHub Release requires permanent signing secrets. Run scripts/setup-release-signing.sh locally."
+            exit 1
           else
             echo "SIGNING_MODE=temporary-debug" >> "$GITHUB_ENV"
             echo "::warning::No persistent signing secrets. This APK is signed with a disposable runner key and CANNOT update an earlier APK. Install only after configuring both secrets."
@@ -69,6 +88,7 @@ jobs:
       - name: Build APK
         env:
           RESYNC_CI_RUN_NUMBER: ${{ github.run_number }}
+          RESYNC_RELEASE_BUILD: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_first_release }}
         run: |
           set -euo pipefail
           ./gradlew :app:assembleDebug --no-daemon --stacktrace
@@ -82,9 +102,11 @@ jobs:
           apk=app/build/outputs/apk/debug/app-debug.apk
           apksigner="$ANDROID_HOME/build-tools/35.0.0/apksigner"
           "$apksigner" verify --verbose --print-certs "$apk" | grep -E 'Verified|Signer #1 certificate SHA-256 digest'
-          sha256sum "$apk" | tee apk-sha256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" | head -n 1 | grep "name='com.resync.app'"
+          cp "$apk" ReSync-v1.0.0.apk
+          sha256sum ReSync-v1.0.0.apk | tee apk-sha256.txt
           {
-            echo "ReSync gallery lookup: /comments/<post-id>.json?limit=1"
+            echo "ReSync gallery lookup: /by_id/t3_<post-id>.json?raw_json=1"
             echo "Signing mode: $SIGNING_MODE"
             echo "Build run number: $RESYNC_CI_RUN_NUMBER"
             "$apksigner" verify --print-certs "$apk" | grep -E 'Signer #1 certificate SHA-256 digest'
@@ -93,15 +115,40 @@ jobs:
               echo "WARNING: This build uses an ephemeral GitHub runner key. Do not use it for ongoing updates."
             fi
           } > apk-build-info.txt
-          cp "$apk" ReSync-gallery-fix.apk
-
+  
       - name: Upload APK and signing report
         uses: actions/upload-artifact@v4
         with:
           name: resync-gallery-${{ env.SIGNING_MODE }}-apk
           path: |
-            ReSync-gallery-fix.apk
+            ReSync-v1.0.0.apk
             apk-build-info.txt
             apk-sha256.txt
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish first release v1.0.0
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_first_release }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [[ "$SIGNING_MODE" != "persistent" ]]; then
+            echo "::error::Cannot publish an APK without permanent signing."
+            exit 1
+          fi
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            echo "::error::v1.0.0 already exists; refusing to silently replace the release signing identity."
+            exit 1
+          fi
+          gh release create v1.0.0 ReSync-v1.0.0.apk apk-sha256.txt apk-build-info.txt \
+            --target "$GITHUB_SHA" \
+            --title "ReSync v1.0.0" \
+            --notes-file docs/RELEASE-NOTES-v1.0.0.md \
+            --latest
+          gh release view v1.0.0 --json url --jq '.url'
+
+      - name: Remove key from runner
+        if: always()
+        run: rm -f "$RUNNER_TEMP/resync-test-signing.p12"

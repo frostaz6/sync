@@ -1,55 +1,41 @@
-# ReSync gallery fix and stable APK signing
+# Permanent APK signing and first ReSync release
 
-The app opens native Reddit galleries using `OAuthGalleryRequest`. In October 2026 Reddit
-stopped responding successfully to `/api/info.json?id=t3_...`. ReSync now requests
-`https://oauth.reddit.com/comments/<post-id>.json?limit=1` and extracts the first listing's
-post `data.children[0].data`. The existing gallery viewer still reads
-`gallery_data.items` and `media_metadata`; unrelated post requests are unchanged.
+Reddit album loading works using `/by_id/t3_<post-id>.json?raw_json=1`. The
+previous `/comments/` endpoint returned 403, which the on-device diagnostics
+helped identify.
 
-## Build and download
+## Set up once on your own Linux computer
 
-Open **Actions > Build ReSync gallery-fix APK > Run workflow** (branch `main`).
-The `resync-gallery-persistent-apk` artifact contains `ReSync-gallery-fix.apk`,
-`apk-build-info.txt`, and its SHA-256 digest. Extract APK from GitHub's ZIP and install.
+Install and authenticate GitHub CLI (`gh auth login`), plus Java `keytool` and
+OpenSSL. Then execute:
 
-The workflow can also run without signing secrets, but produces an explicitly marked
-`resync-gallery-temporary-debug-apk` whose runner-generated signature CHANGES each time.
-**Do not install temporary-debug builds** if you want reliable in-place updates.
+```bash
+curl -fL https://raw.githubusercontent.com/frostaz6/sync/main/scripts/setup-release-signing.sh -o setup-release-signing.sh
+bash setup-release-signing.sh
+```
 
-## Configure signing once
+This creates a private PKCS12 key and a strong password in
+`~/.config/resync/signing/` (or `$XDG_CONFIG_HOME/resync/signing/`),
+reusing them on subsequent runs. It uploads them through `gh secret set` as
+the encrypted GitHub Actions secrets `RESYNC_KEYSTORE_B64` and
+`RESYNC_KEYSTORE_PASSWORD`. It also pins the public certificate fingerprint
+in variable `RESYNC_SIGNING_CERT_SHA256`.
 
-Obtain your privately generated signing bundle (it is **not** in this public repository).
-Keep `resync-test-signing.p12` and `password.txt` in private storage. The provided
-`setup-github-signing.sh` script, run on Linux with `gh auth login`, installs two
-encrypted repository Actions secrets to `frostaz6/sync`:
+The script then launches a workflow-dispatched build that creates and uploads
+the permanently signed first release `v1.0.0`. **Back up both the .p12
+keystore and its password securely.** Neither belongs in a public repo.
+Builds verify the fingerprint and refuse to publish an APK with a temporary
+signature or a changed signing identity.
 
-- `RESYNC_KEYSTORE_B64`: base64 of your PKCS12 keystore (alias `resync`).
-- `RESYNC_KEYSTORE_PASSWORD`: the keystore/key password.
+See https://github.com/frostaz6/sync/releases/tag/v1.0.0 after the release
+workflow completes.
 
-For manual setup: `base64 -w 0 resync-test-signing.p12` is the first secret value; the
-contents of `password.txt` are the second. Set them in **Settings > Secrets and
-variables > Actions > Repository secrets**. The workflow loads them only during CI,
-checks the key alias, and never uploads the private key.
+## One final reinstall
 
-### Android signature limitation
-
-**An APK cannot update an installed app signed by a different key.** ReSync's earlier
-test builds were signed by disposable GitHub runner keys, and those original private
-keys were not preserved. This new permanent key therefore cannot update those existing
-installations. Android requires one final uninstall/reinstall when switching to the
-permanent key; afterwards, keep the same keystore and use newer versions produced
-from this workflow to update without losing app data.
-
-ReSync's manifest specifies `android:allowBackup="false"` and the app's debug
-build type specifies `debuggable false`, so Android normally cannot save or
-restore its data across this one-time uninstall. Save any configuration using
-a supported in-app export before uninstalling, where available. Do **not** expect
-`adb backup` or `run-as` to transfer the data.
-
-**Never publish the keystore or its password.** If both leak, someone else can sign
-a malicious package recognized as an update to your app, potentially accessing saved
-Reddit credentials and data.
-
-The gallery network fix is compiled and built by CI but still needs testing against
-Reddit on a logged-in device. It is independent of the October 2026 `media_metadata`
-`status: failed` issue affecting some API-uploaded galleries.
+Previous temporary runner signing certificates cannot be recovered from APKs.
+Android checks the certificate and versionCode, so even the next signed APK
+cannot update these test installations. Export settings first, uninstall the
+temporary test APK once, install signed `v1.0.0` and keep the signing key.
+Subsequent releases with that same certificate and newer versionCode can
+update without resetting app data. Normal Android backups are not reliable
+here because the manifest opts out with `allowBackup=false`.

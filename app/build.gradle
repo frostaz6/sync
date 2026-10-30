@@ -11,8 +11,9 @@ android {
         minSdk 23
         targetSdk 35
         // Monotonic per workflow run; later signed builds can upgrade in place.
-        versionCode 24003 + (System.getenv('RESYNC_CI_RUN_NUMBER') ?: '1').toInteger()
-        versionName "1.0.4-gallery." + (System.getenv('RESYNC_CI_RUN_NUMBER') ?: '1')
+        def runNumber = (System.getenv('RESYNC_CI_RUN_NUMBER') ?: '1').toInteger()
+        versionCode 30000 + runNumber
+        versionName (System.getenv('RESYNC_RELEASE_BUILD') == 'true') ? '1.0.0' : "1.0.0-dev.${runNumber}"
         multiDexEnabled true
     }
 
