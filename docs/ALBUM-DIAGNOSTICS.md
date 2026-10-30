@@ -33,3 +33,16 @@ RESYNC_KEYSTORE_PASSWORD repository secrets are set. Its temporary-debug
 artifacts cannot replace other temporary-debug APKs, even when the build
 succeeds. Before uninstalling, export app configuration where possible.
 Never commit keystores or signing passwords to this public repo.
+
+## 2026-10-30: HTTP 403 diagnosis
+
+An on-device report identified the failing endpoint as
+`https://oauth.reddit.com/comments/1xjajlb.json?limit=1` (403 AuthFailureError).
+Redlib's October 20 investigation found the Reddit edge rejecting `/comments/`
+while still accepting `/by_id/` on the same bearer and network connection
+(redlib-org/redlib issue #591). Instead of retrieving comments just to get
+`gallery_data`, the viewer now requests
+`https://oauth.reddit.com/by_id/t3_<id>.json?raw_json=1`.
+That endpoint returns a standard post Listing, parsed by the already-supported
+JSONObject branch. The on-screen diagnostic dialog and Logcat tracing remain.
+The new path is not yet proven against the user's exact session; test it in-app.

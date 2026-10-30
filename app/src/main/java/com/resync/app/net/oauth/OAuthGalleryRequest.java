@@ -30,9 +30,10 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
     }
 
     /**
-     * Reddit stopped serving post lookups through /api/info in October 2026.
-     * The same post (including media_metadata and gallery_data) is available in
-     * the first listing returned by /comments/<id>.json. Keep OAuth and caching.
+     * Reddit returns 403 for /api/info and /comments/<id>.json on some 2026
+     * web-session OAuth tokens, even while normal listings work. /by_id remains
+     * available and returns the full post (including gallery_data/media_metadata)
+     * as a single Listing object. No comments endpoint is needed for a gallery.
      */
     public static String buildUrl(String str) {
         String address = str == null ? "" : str.split("[?#]", 2)[0];
@@ -41,7 +42,7 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
         }
         String id = LinkHandler.getCommentsId(address);
         if (id != null && id.startsWith("t3_")) id = id.substring(3);
-        return "https://oauth.reddit.com/comments/" + id + ".json?limit=1";
+        return "https://oauth.reddit.com/by_id/t3_" + id + ".json?raw_json=1";
     }
 
     @Override // com.android.volley.Request
@@ -50,8 +51,8 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
         try {
             String str = new String(networkResponse.data, java.nio.charset.StandardCharsets.UTF_8);
             Log.i(TAG, "HTTP " + networkResponse.statusCode + " responseBytes=" + networkResponse.data.length);
-            // /comments/<id>.json returns [postListing, commentListing].
-            // Keep the old single-listing shape as a compatible fallback.
+            // /by_id/t3_<id>.json returns a single post Listing object.
+            // Accept array roots as a fallback for older responses.
             Object responseRoot = new JSONTokener(str).nextValue();
             stage = "read post listing";
             Log.i(TAG, "Root=" + responseRoot.getClass().getSimpleName());
@@ -104,9 +105,8 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
             if (playable == 0) {
                 throw new org.json.JSONException("No playable media entries; items=" + jSONArray.length());
             }
-            // /comments/<id>.json has a JSON array at the root. Trying to create
-            // a JSONObject from that array throws even after the gallery images
-            // have been parsed successfully. Gallery requests start at image zero.
+            // The gallery parser starts at the first image. Do not try to
+            // parse the entire response as a second JSONObject.
             gallery.position = 0;
             return Response.success(gallery, CustomHttpHeaderParser.parseCacheEntry(networkResponse, DateUtils.MILLIS_PER_HOUR));
         } catch (Exception e) {
