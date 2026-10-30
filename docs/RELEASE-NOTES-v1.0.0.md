@@ -3,7 +3,7 @@
 First release of this ReSync fork.
 
 - Fixed native Reddit image albums using the `/by_id/` endpoint.
-- Restored Reddit comment threads through encoded comment-route URLs (HTTP 403 workaround).
+- Reworked Reddit comment loading to use `/by_id/` post metadata and the GraphQL comment forest after Reddit blocked both legacy and encoded comment URLs.
 - Improved gallery parsing with copyable diagnostics.
 - Retained web-session Reddit sign-in fixes.
 - Fixed adding and switching Reddit accounts with separately encrypted login sessions.
