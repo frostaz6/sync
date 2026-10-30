@@ -62,6 +62,10 @@ jobs:
             echo "::warning::No persistent signing secrets. This APK is signed with a disposable runner key and CANNOT update an earlier APK. Install only after configuring both secrets."
           fi
 
+      - name: Apply prior ReSync web-session token fix
+        run: |
+          python3 ci/resync-login-fix.py app/src/main/java/com/resync/app/auth/WebSessionManager.java
+
       - name: Build APK
         env:
           RESYNC_CI_RUN_NUMBER: ${{ github.run_number }}
