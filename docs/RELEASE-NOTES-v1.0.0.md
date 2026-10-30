@@ -5,6 +5,7 @@ First release of this ReSync fork.
 - Fixed native Reddit image albums using the `/by_id/` endpoint.
 - Improved gallery parsing with copyable diagnostics.
 - Retained web-session Reddit sign-in fixes.
+- Fixed adding and switching Reddit accounts with separately encrypted login sessions.
 - Permanently signed APK for future in-place updates.
 
 Download `ReSync-v1.0.0.apk` below.
