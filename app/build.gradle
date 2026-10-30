@@ -13,7 +13,7 @@ android {
         // Monotonic per workflow run; later signed builds can upgrade in place.
         def runNumber = (System.getenv('RESYNC_CI_RUN_NUMBER') ?: '1').toInteger()
         versionCode 30000 + runNumber
-        versionName (System.getenv('RESYNC_RELEASE_BUILD') == 'true') ? '1.0.0' : "1.0.0-dev.${runNumber}"
+        versionName ((System.getenv('RESYNC_RELEASE_BUILD') == 'true') ? '1.0.0' : "1.0.0-dev.${runNumber}")
         multiDexEnabled true
     }
 

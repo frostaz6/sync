@@ -102,7 +102,7 @@ jobs:
           apk=app/build/outputs/apk/debug/app-debug.apk
           apksigner="$ANDROID_HOME/build-tools/35.0.0/apksigner"
           "$apksigner" verify --verbose --print-certs "$apk" | grep -E 'Verified|Signer #1 certificate SHA-256 digest'
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" | head -n 1 | grep "name='com.resync.app'"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" | sed -n '1p' | grep "name='com.resync.app'"
           cp "$apk" ReSync-v1.0.0.apk
           sha256sum ReSync-v1.0.0.apk | tee apk-sha256.txt
           {
