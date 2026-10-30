@@ -10,9 +10,25 @@ android {
         applicationId "com.resync.app"
         minSdk 23
         targetSdk 35
-        versionCode 24003
-        versionName "1.0.3"
+        // Monotonic per workflow run; later signed builds can upgrade in place.
+        versionCode 24003 + (System.getenv('RESYNC_CI_RUN_NUMBER') ?: '1').toInteger()
+        versionName "1.0.4-gallery." + (System.getenv('RESYNC_CI_RUN_NUMBER') ?: '1')
         multiDexEnabled true
+    }
+
+    // Signing key is supplied at build time via encrypted GitHub Actions secrets.
+    // Never commit a private keystore or password to this public repository.
+    def persistentKeyPath = System.getenv('RESYNC_SIGNING_KEYSTORE_PATH')
+    def hasPersistentKey = persistentKeyPath && file(persistentKeyPath).isFile()
+    signingConfigs {
+        if (hasPersistentKey) {
+            persistent {
+                storeFile file(persistentKeyPath)
+                storePassword System.getenv('RESYNC_KEYSTORE_PASSWORD')
+                keyAlias 'resync'
+                keyPassword System.getenv('RESYNC_KEYSTORE_PASSWORD')
+            }
+        }
     }
 
     buildTypes {
@@ -21,6 +37,7 @@ android {
             // never appears, while keeping the lenient debug dex pipeline (the release
             // pipeline fails on a Material color-fork duplicate-class clash).
             debuggable false
+            if (hasPersistentKey) signingConfig signingConfigs.persistent
         }
         release {
             minifyEnabled false
@@ -28,7 +45,7 @@ android {
             // Sign the (non-debuggable) release with the debug key so it installs for testing
             // and updates the debug build in place (same signature). Removes the Android-15
             // "debuggable app" / 16 KB compatibility warning dialog.
-            signingConfig signingConfigs.debug
+            signingConfig hasPersistentKey ? signingConfigs.persistent : signingConfigs.debug
         }
     }
 

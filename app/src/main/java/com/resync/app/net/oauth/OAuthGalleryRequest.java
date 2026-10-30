@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import com.resync.app.net.CustomHttpHeaderParser;
 import com.resync.app.model.Gallery;
 import com.resync.app.util.Logger;
@@ -24,8 +25,19 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
         setShouldCache(true);
     }
 
+    /**
+     * Reddit stopped serving post lookups through /api/info in October 2026.
+     * The same post (including media_metadata and gallery_data) is available in
+     * the first listing returned by /comments/<id>.json. Keep OAuth and caching.
+     */
     public static String buildUrl(String str) {
-        return "https://oauth.reddit.com/api/info.json?id=t3_" + LinkHandler.getCommentsId(str.replace("?is_gallery=true", ""));
+        String address = str == null ? "" : str.split("[?#]", 2)[0];
+        while (address.endsWith("/") && !address.isEmpty()) {
+            address = address.substring(0, address.length() - 1);
+        }
+        String id = LinkHandler.getCommentsId(address);
+        if (id != null && id.startsWith("t3_")) id = id.substring(3);
+        return "https://oauth.reddit.com/comments/" + id + ".json?limit=1";
     }
 
     @Override // com.android.volley.Request
@@ -33,7 +45,14 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
         try {
             String str = new String(networkResponse.data);
             Logger.verbose(str);
-            JSONObject jSONObject = new JSONObject(str).getJSONObject("data").getJSONArray("children").getJSONObject(0).getJSONObject("data");
+            // /comments/<id>.json returns [postListing, commentListing].
+            // Keep the old single-listing shape as a compatible fallback.
+            Object responseRoot = new JSONTokener(str).nextValue();
+            JSONObject listing = responseRoot instanceof JSONArray
+                    ? ((JSONArray) responseRoot).getJSONObject(0)
+                    : (JSONObject) responseRoot;
+            JSONObject jSONObject = listing.getJSONObject("data")
+                    .getJSONArray("children").getJSONObject(0).getJSONObject("data");
             JSONObject jSONObject2 = jSONObject.getJSONObject("media_metadata");
             JSONArray jSONArray = jSONObject.getJSONObject("gallery_data").getJSONArray("items");
             Gallery gallery = new Gallery(jSONArray.length());
