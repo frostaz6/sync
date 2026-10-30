@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
+import org.json.JSONObject;
 import com.resync.app.text.parsing.CommentParserHelper;
 import com.resync.app.text.parsing.ContentValuesListHelper;
 import com.resync.app.net.OAuthRequestManager;
@@ -32,6 +33,9 @@ public class OAuthCommentsRequest extends RedditRequest<Void> {
     private final String commentId;
     private final boolean clearList;
     private final boolean keepNewCommentFlag;
+    private final String sort;
+    private JSONObject postListing;
+    private boolean graphRequested;
     ArrayList<String> authorFullnames;
 
     /* JADX INFO: renamed from: y8.g$a */
@@ -78,58 +82,29 @@ public class OAuthCommentsRequest extends RedditRequest<Void> {
         this.commentId = str3;
         this.clearList = clearList;
         this.keepNewCommentFlag = keepNewCommentFlag;
+        this.sort = str4;
         Log.i("ReSyncComments", "Thread GET " + getUrl());
     }
 
-    public static String buildUrl(Context context, String str, String str2, String str3, String str4, boolean rawJson) {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(SettingsSingleton.getOauthUrl(context));
-        // October 2026: Reddit's edge rejects the literal /comments/ path
-        // with HTTP 403 even for otherwise valid OAuth sessions. Redlib
-        // verified that encoding ONE path separator still returns the usual
-        // two-listing [post, comments] JSON, which our existing parser reads.
-        //
-        // Preserve the subreddit and the rest of the query string so sorting,
-        // direct comment links, and normal thread pagination are unchanged.
-        if (!TextUtils.isEmpty(str2)) {
-            stringBuffer.append("r/");
-            stringBuffer.append(str2);
-            stringBuffer.append("%2Fcomments/");
-        } else {
-            // Scoped post links can reach this request with no subreddit.
-            // Encoding the slash after 'comments' avoids /comments/<id>.
-            stringBuffer.append("comments%2F");
-        }
-        stringBuffer.append(str);
-        if (str3 != null) {
-            stringBuffer.append("/_/");
-            stringBuffer.append(str3);
-        }
-        stringBuffer.append(".json");
-        stringBuffer.append("?always_show_media=1&profile_img=true");
-        if (str3 != null) {
-            if (!rawJson) {
-                stringBuffer.append("&context=100");
-            }
-        } else if (str4 != null) {
-            if (!"suggested".equalsIgnoreCase(str4)) {
-                stringBuffer.append("&sort=");
-                stringBuffer.append(str4.toLowerCase(Locale.ENGLISH).replaceAll("\\&", ""));
-            }
-            int commentsCount = SettingsSingleton.getSettings().commentsCount;
-            stringBuffer.append("&limit=");
-            if (commentsCount == 0) {
-                stringBuffer.append("500");
-            } else {
-                stringBuffer.append(commentsCount);
-            }
-        }
-        return stringBuffer.toString();
+    /**
+     * The JSON comments endpoints now return 403, including encoded aliases.
+     * First fetch the post from /by_id, then comments through GraphQL.
+     */
+    public static String buildUrl(Context context, String postId, String subreddit,
+            String commentId, String sort, boolean rawJson) {
+        return SettingsSingleton.getOauthUrl(context) + "by_id/t3_" + postId + ".json?raw_json=1";
     }
 
     @Override // com.resync.app.net.RedditRequest, com.android.volley.Request
     /* JADX INFO: renamed from: g, reason: merged with bridge method [inline-methods] */
     public void deliverResponse(Void result) {
+        if (!graphRequested && postListing != null) {
+            graphRequested = true;
+            OAuthRequestManager.sendWithAppContext(new GraphQLCommentsRequest(
+                    this.context, this, articleId, commentId, sort,
+                    SettingsSingleton.getSettings().commentsCount));
+            return;
+        }
         if (this.authorFullnames.size() > 0) {
             OAuthRequestManager.sendWithAppContext(new OAuthAuthorInfoRequest(this.context, this.authorFullnames, new AuthorInfoResponseListener(result), new AuthorInfoErrorListener(result)));
         } else {
@@ -139,6 +114,27 @@ public class OAuthCommentsRequest extends RedditRequest<Void> {
 
     @Override // com.android.volley.Request
     public Response<Void> parseNetworkResponse(NetworkResponse networkResponse) {
+        try {
+            JSONObject listing = new JSONObject(new String(networkResponse.data,
+                    java.nio.charset.StandardCharsets.UTF_8));
+            if (listing.getJSONObject("data").getJSONArray("children").length() < 1) {
+                return Response.error(new ParseError(new JSONException("Post missing from /by_id listing")));
+            }
+            postListing = listing;
+            Log.i("ReSyncComments", "Post lookup succeeded; requesting comments via GraphQL");
+            return Response.success(null, HttpHeaderParser.parseCacheHeaders(networkResponse));
+        } catch (Exception e) {
+            Log.e("ReSyncComments", "Could not parse post lookup", e);
+            return Response.error(new ParseError(e));
+        }
+    }
+
+    JSONObject getPostListing() {
+        return postListing;
+    }
+
+    /** Reuse existing comment database ingestion after adapting the GraphQL response. */
+    Response<Void> parseLegacyCommentsResponse(NetworkResponse networkResponse) {
         ArrayList topLevelIndices;
         int one;
         try {
