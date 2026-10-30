@@ -72,8 +72,9 @@ public class ImageGridFragment extends RedditFragment {
 
         @Override // android.widget.AdapterView.OnItemClickListener
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-            if (position >= ImageGridFragment.this.imageUrls.length) {
-                ImageGridFragment.this.getActivity().finish();
+            // Empty cells only pad the last grid row; they aren't album pages.
+            if (position < 0 || position >= ImageGridFragment.this.imageUrls.length) {
+                return;
             }
             BusSingleton.getBus().post(new GridItemSelected(position));
         }

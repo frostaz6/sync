@@ -345,7 +345,9 @@ public class MultiImageActivity extends AbstractImageActivity {
 
         @Override // androidx.viewpager.widget.PagerAdapter
         public int getCount() {
-            return (MultiImageActivity.this.thumbnails == null || MultiImageActivity.this.urls.length <= 1) ? MultiImageActivity.this.urls.length : MultiImageActivity.this.urls.length + 1;
+            // Reserve the last pager position for the selectable thumbnail grid.
+            // The grid also supports image-URL fallbacks when previews are missing.
+            return MultiImageActivity.this.urls.length + (MultiImageActivity.this.hasGrid() ? 1 : 0);
         }
 
         @Override // androidx.fragment.app.FragmentStatePagerAdapter, androidx.viewpager.widget.PagerAdapter
@@ -362,7 +364,7 @@ public class MultiImageActivity extends AbstractImageActivity {
         public Fragment getItem(int position) {
             Fragment pageFragment;
             if (position >= MultiImageActivity.this.urls.length) {
-                pageFragment = ImageGridFragment.newInstance(MultiImageActivity.this.thumbnails);
+                pageFragment = ImageGridFragment.newInstance(MultiImageActivity.this.getGridThumbnailUrls());
             } else if (MultiImageActivity.this.urls[position].equals("ad")) {
                 pageFragment = AdFragment.newInstance();
             } else {
@@ -406,6 +408,22 @@ public class MultiImageActivity extends AbstractImageActivity {
     private boolean hasUrls() {
         String[] strArr = this.urls;
         return strArr != null && strArr.length > 0;
+    }
+
+    /** A thumbnail grid is available for any album with at least two images. */
+    private boolean hasGrid() {
+        return this.urls != null && this.urls.length > 1;
+    }
+
+    /** Fall back to original images if an album provider omits thumbnails. */
+    private String[] getGridThumbnailUrls() {
+        String[] gridUrls = new String[this.urls.length];
+        for (int i = 0; i < gridUrls.length; i++) {
+            gridUrls[i] = this.thumbnails != null && i < this.thumbnails.length
+                    && !TextUtils.isEmpty(this.thumbnails[i])
+                    ? this.thumbnails[i] : this.urls[i];
+        }
+        return gridUrls;
     }
 
     private void loadGallery() {
@@ -539,14 +557,13 @@ public class MultiImageActivity extends AbstractImageActivity {
     @Override // com.resync.app.ui.activities.media.AbstractImageActivity, androidx.activity.ComponentActivity, android.app.Activity
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.findItem(R.id.menu_grid).setVisible(false);
-        menu.findItem(R.id.menu_download).setVisible(false);
-        if (hasUrls() && getPosition() < this.urls.length && this.urls.length > 1 && this.thumbnails != null) {
-            menu.findItem(R.id.menu_download).setVisible(true);
+        boolean onImage = hasUrls() && getPosition() >= 0 && getPosition() < this.urls.length;
+        // Previously the grid action was only visible *while already on the grid*.
+        // Show it on each image page; hide it after opening the grid itself.
+        menu.findItem(R.id.menu_grid).setVisible(onImage && hasGrid());
+        menu.findItem(R.id.menu_download).setVisible(onImage && hasGrid());
+        if (onImage && hasGrid()) {
             this.toolbar.setNavigationIcon(new ColorDrawable(0));
-        } else if (hasUrls() && getPosition() >= this.urls.length) {
-            menu.findItem(R.id.menu_download).setVisible(false);
-            menu.findItem(R.id.menu_grid).setVisible(true);
         }
         com.resync.app.helpers.ui.MonetUtil.tintMenu(menu, -1);
         return true;
@@ -625,7 +642,10 @@ public class MultiImageActivity extends AbstractImageActivity {
 
     @Subscribe
     public void onGridItemSelected(GridItemSelected gridItemSelected) {
-        this.mViewPager.setCurrentItem(gridItemSelected.position, false);
+        if (this.mViewPager != null && hasUrls()
+                && gridItemSelected.position >= 0 && gridItemSelected.position < this.urls.length) {
+            this.mViewPager.setCurrentItem(gridItemSelected.position, false);
+        }
     }
 
     @Override // com.resync.app.ui.activities.BaseActivity, androidx.activity.ComponentActivity, android.app.Activity
@@ -633,8 +653,9 @@ public class MultiImageActivity extends AbstractImageActivity {
         ImagePagerAdapter adapter;
         if (menuItem.getItemId() == R.id.menu_grid) {
             HackyViewPager hackyViewPager = this.mViewPager;
-            if (hackyViewPager != null && (adapter = this.pagerAdapter) != null) {
-                hackyViewPager.setCurrentItem(adapter.getCount(), false);
+            if (hackyViewPager != null && (adapter = this.pagerAdapter) != null && hasGrid()) {
+                // Adapter positions are zero-based. The extra final page is the grid.
+                hackyViewPager.setCurrentItem(adapter.getCount() - 1, false);
             }
             return true;
         }
