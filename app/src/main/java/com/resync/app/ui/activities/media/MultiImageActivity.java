@@ -1,6 +1,10 @@
 package com.resync.app.ui.activities.media;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
@@ -180,8 +184,9 @@ public class MultiImageActivity extends AbstractImageActivity {
             if (MultiImageActivity.this.getActivity() == null) {
                 return;
             }
-            if (gallery == null) {
-                MultiImageActivity.this.showErrorAndFinish("This gallery had no images");
+            if (gallery == null || gallery.urls == null || gallery.urls.length == 0) {
+                MultiImageActivity.this.showGalleryDiagnostic("Reddit",
+                        new VolleyError("Reddit returned no gallery images"));
             } else {
                 MultiImageActivity.this.applyGallery(gallery);
                 MultiImageActivity.this.setupPager();
@@ -198,7 +203,7 @@ public class MultiImageActivity extends AbstractImageActivity {
             if (MultiImageActivity.this.getActivity() == null) {
                 return;
             }
-            MultiImageActivity.this.showLoadError();
+            MultiImageActivity.this.showGalleryDiagnostic("Reddit", volleyError);
         }
     }
 
@@ -460,6 +465,52 @@ public class MultiImageActivity extends AbstractImageActivity {
     /* JADX INFO: Access modifiers changed from: private */
     public void showLoadError() {
         showErrorAndFinish("Error loading album");
+    }
+
+    /**
+     * Display useful diagnostics because the legacy Sync Logger is a no-op.
+     * Deliberately exclude authentication headers, cookies and response bodies.
+     */
+    private void showGalleryDiagnostic(String provider, VolleyError error) {
+        final StringBuilder details = new StringBuilder("ReSync album diagnostics v1");
+        details.append("\nProvider: ").append(provider);
+        if ("Reddit".equals(provider)) {
+            details.append("\nEndpoint: ").append(OAuthGalleryRequest.buildUrl(getContentUrl()));
+        }
+        int status = error != null && error.networkResponse != null
+                ? error.networkResponse.statusCode : -1;
+        details.append("\nHTTP status: ").append(status < 0 ? "no HTTP response" : status);
+        if (error != null) {
+            details.append("\nError type: ").append(error.getClass().getSimpleName());
+            if (error.getMessage() != null) {
+                details.append("\nReason: ").append(error.getMessage());
+            }
+            Throwable cause = error.getCause();
+            if (cause != null) {
+                details.append("\nCause: ").append(cause.getClass().getSimpleName());
+                if (cause.getMessage() != null) {
+                    details.append(": ").append(cause.getMessage());
+                }
+            }
+        }
+        final String report = details.toString();
+        Log.e("ReSyncGallery", report, error);
+        if (isFinishing() || isDestroyed()) return;
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Album failed to load")
+                .setMessage("Copy this report to find the cause:\n\n" + report)
+                .setPositiveButton("Copy details", (dialog, which) -> {
+                    ClipboardManager clipboard = (ClipboardManager)
+                            getSystemService(Context.CLIPBOARD_SERVICE);
+                    if (clipboard != null) {
+                        clipboard.setPrimaryClip(ClipData.newPlainText("ReSync album diagnostic", report));
+                    }
+                    StaticToast.showWithContext("Album diagnostic copied", getContext());
+                    finish();
+                })
+                .setNegativeButton("Close", (dialog, which) -> finish())
+                .setOnCancelListener(dialog -> finish())
+                .show();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
