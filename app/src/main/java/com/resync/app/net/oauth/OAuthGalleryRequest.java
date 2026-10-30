@@ -87,11 +87,14 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
                     gallery.captions[index] = "";
                 }
             }
-            gallery.position = new JSONObject(str).optInt("position", 0);
+            // /comments/<id>.json has a JSON array at the root. Trying to create
+            // a JSONObject from that array throws even after the gallery images
+            // have been parsed successfully. Gallery requests start at image zero.
+            gallery.position = 0;
             return Response.success(gallery, CustomHttpHeaderParser.parseCacheEntry(networkResponse, DateUtils.MILLIS_PER_HOUR));
         } catch (Exception e) {
             Logger.logException(e);
-            return Response.error(new VolleyError("Could not load gallery"));
+            return Response.error(new VolleyError("Could not parse Reddit gallery response", e));
         }
     }
 }
