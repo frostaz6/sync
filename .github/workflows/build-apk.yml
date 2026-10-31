@@ -57,18 +57,38 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -n "$RESYNC_KEYSTORE_B64" && -n "$RESYNC_KEYSTORE_PASSWORD" ]]; then
-            printf '%s' "$RESYNC_KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/resync-test-signing.p12"
-            chmod 600 "$RUNNER_TEMP/resync-test-signing.p12"
-            keytool -list -storetype PKCS12 -keystore "$RUNNER_TEMP/resync-test-signing.p12" \
-              -storepass "$RESYNC_KEYSTORE_PASSWORD" -alias resync >/dev/null
-            actual=$(keytool -list -v -storetype PKCS12 -keystore "$RUNNER_TEMP/resync-test-signing.p12" \
+            # Keep private data out of logs. Report the exact stage on failure.
+            keyfile="$RUNNER_TEMP/resync-test-signing.p12"
+            echo "Stage 1/3: decoding the encrypted repository signing secret"
+            if ! printf '%s' "$RESYNC_KEYSTORE_B64" | base64 --decode > "$keyfile"; then
+              echo "::error::RESYNC_KEYSTORE_B64 was not valid base64. Re-upload it from the existing local .p12 file."
+              exit 1
+            fi
+            chmod 600 "$keyfile"
+            if [[ ! -s "$keyfile" ]]; then
+              echo "::error::Decoded signing keystore was empty."
+              exit 1
+            fi
+            echo "Decoded keystore successfully ($(wc -c < "$keyfile") bytes)"
+            echo "Stage 2/3: validating PKCS12 keystore, alias, and password"
+            if ! keytool -list -storetype PKCS12 -keystore "$keyfile" \
+              -storepass "$RESYNC_KEYSTORE_PASSWORD" -alias resync > "$RUNNER_TEMP/resync-keycheck.log" 2>&1; then
+              echo "::error::Could not open the PKCS12 keystore with this password and alias. Verify the two GitHub secrets were uploaded from the SAME local signing directory."
+              # keytool's error contains no passwords, but don't expose detailed
+              # internal contents of the certificate or keystore to workflow logs.
+              exit 1
+            fi
+            echo "PKCS12 keystore and signing alias verified"
+            echo "Stage 3/3: checking pinned signing certificate fingerprint"
+            actual=$(keytool -list -v -storetype PKCS12 -keystore "$keyfile" \
               -storepass "$RESYNC_KEYSTORE_PASSWORD" -alias resync \
               | sed -n 's/^[[:space:]]*SHA256: //p' | head -n 1 | tr -d ':' | tr '[:upper:]' '[:lower:]')
             expected=$(printf '%s' "$EXPECTED_CERT_SHA256" | tr -d ':' | tr '[:upper:]' '[:lower:]')
-            if [[ -z "$expected" || "$actual" != "$expected" ]]; then
-              echo "::error::Missing or mismatched pinned signing certificate. Run the setup-release-signing.sh script."
+            if [[ -z "$actual" || -z "$expected" || "$actual" != "$expected" ]]; then
+              echo "::error::Pinned signing certificate fingerprint missing or mismatched; no APK was built."
               exit 1
             fi
+            echo "Signing fingerprint matches the pinned repository variable"
             echo "RESYNC_SIGNING_KEYSTORE_PATH=$RUNNER_TEMP/resync-test-signing.p12" >> "$GITHUB_ENV"
             echo "RESYNC_KEYSTORE_PASSWORD=$RESYNC_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
             echo "SIGNING_MODE=persistent" >> "$GITHUB_ENV"
