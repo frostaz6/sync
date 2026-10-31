@@ -8,6 +8,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.bumptech.glide.MaterialPostsHelper;
 import com.resync.app.provider.RedditProvider;
@@ -40,12 +41,16 @@ public class OAuthPostsRequest extends RedditRequest<PostsInfo> {
 
     private final PostsInfo postsInfo;
     private final boolean clearFirst;
+    private final boolean searchDiagnostics;
+    private volatile String lastSearchDiagnostic;
 
     public OAuthPostsRequest(Context context, Object obj, String str, String str2, String str3, PostsInfo postsInfo, boolean clearFirst, boolean saveVisited, Response.Listener<PostsInfo> listener, Response.ErrorListener errorListener) {
         super(context, 0, buildUrl(context, str, str, postsInfo, str3, str2), listener, errorListener);
         this.postsInfo = postsInfo;
         this.subreddit = str.toLowerCase(Locale.ENGLISH);
         this.clearFirst = clearFirst;
+        this.searchDiagnostics = MaterialPostsHelper.isSearch(str)
+                || MaterialPostsHelper.isSubSearch(str);
         if (saveVisited) {
             VisitedManager.saveVisited(str);
             if (postsInfo == null || StringUtils.isEmpty(postsInfo.after)) {
@@ -248,6 +253,28 @@ public class OAuthPostsRequest extends RedditRequest<PostsInfo> {
             }
             sb.append("always_show_media=1");
             return sb.toString();
+        }
+    }
+
+    @Override
+    public VolleyError parseNetworkError(VolleyError error) {
+        if (searchDiagnostics) {
+            // Snapshot the raw Volley response before the superclass may
+            // replace an HTTP error with a higher-level OAuthError.
+            lastSearchDiagnostic = PostSearchDebugDialog.format(getUrl(), error);
+        }
+        return super.parseNetworkError(error);
+    }
+
+    @Override
+    public void deliverError(VolleyError error) {
+        super.deliverError(error);
+        if (searchDiagnostics && !isCanceled()) {
+            String diagnostic = lastSearchDiagnostic;
+            if (diagnostic == null) {
+                diagnostic = PostSearchDebugDialog.format(getUrl(), error);
+            }
+            PostSearchDebugDialog.show(context, diagnostic);
         }
     }
 
