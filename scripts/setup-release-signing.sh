@@ -44,7 +44,22 @@ if [[ ! "$fingerprint" =~ ^[0-9a-f]{64}$ ]]; then
 fi
 base64 "$KEYSTORE" | tr -d '\n' | gh secret set RESYNC_KEYSTORE_B64 -R "$REPO"
 gh secret set RESYNC_KEYSTORE_PASSWORD -R "$REPO" < "$PASSWORD_FILE"
-gh variable set RESYNC_SIGNING_CERT_SHA256 -R "$REPO" --body "$fingerprint"
+# GitHub CLI 2.4 (Ubuntu/Mint) predates 'gh variable'.
+# The Actions variables REST API works through its built-in 'gh api'.
+if gh variable --help >/dev/null 2>&1; then
+  gh variable set RESYNC_SIGNING_CERT_SHA256 -R "$REPO" --body "$fingerprint"
+elif gh api "repos/$REPO/actions/variables/RESYNC_SIGNING_CERT_SHA256" >/dev/null 2>&1; then
+  gh api --method PATCH "repos/$REPO/actions/variables/RESYNC_SIGNING_CERT_SHA256" \
+    -f name=RESYNC_SIGNING_CERT_SHA256 -f value="$fingerprint"
+else
+  gh api --method POST "repos/$REPO/actions/variables" \
+    -f name=RESYNC_SIGNING_CERT_SHA256 -f value="$fingerprint"
+fi
+actual_remote=$(gh api "repos/$REPO/actions/variables/RESYNC_SIGNING_CERT_SHA256" --jq .value)
+if [[ "$actual_remote" != "$fingerprint" ]]; then
+  echo "GitHub Actions fingerprint verification failed; refusing to trigger release." >&2
+  exit 1
+fi
 echo "Signing certificate SHA256: $fingerprint"
 echo "BACK UP these files securely. Never regenerate the signing key:"
 echo "  $KEYSTORE"
