@@ -716,7 +716,7 @@ public class SyncHtmlToSpannedConverter implements ContentHandler {
         if (tag.length() == 2 && Character.toLowerCase(tag.charAt(0)) == 'h' && tag.charAt(1) >= '1' && tag.charAt(1) <= '6') {
             startHeading(this.builder, tag.charAt(1) - '1');
         } else if (tag.equalsIgnoreCase("img")) {
-            handleImg(this.builder, attributes);
+            handleImg(this.builder, this.options, attributes);
         }
     }
 
@@ -767,10 +767,41 @@ public class SyncHtmlToSpannedConverter implements ContentHandler {
         spannableTextViewStringBuilder.append("\n");
     }
 
-    private static void handleImg(SpannableTextViewStringBuilder spannableTextViewStringBuilder, Attributes attributes) {
+    private static boolean isRedditCommentMediaUrl(String value) {
+        try {
+            android.net.Uri uri = android.net.Uri.parse(value);
+            String host = uri.getHost();
+            return "https".equalsIgnoreCase(uri.getScheme()) && host != null
+                    && ("i.redd.it".equalsIgnoreCase(host)
+                    || "preview.redd.it".equalsIgnoreCase(host)
+                    || "external-preview.redd.it".equalsIgnoreCase(host));
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+    private static void handleImg(SpannableTextViewStringBuilder spannableTextViewStringBuilder, Options options, Attributes attributes) {
         float fMax;
         int iMin;
         String value = attributes.getValue("", "src");
+        // Reddit-native images in GraphQL comments use ![img](URL) after
+        // resolution. Show the picture inline instead of treating it as the
+        // small 42dp emote/icon used by other <img> nodes.
+        String alt = attributes.getValue("", "alt");
+        if (value != null && ("img".equalsIgnoreCase(alt) || "gif".equalsIgnoreCase(alt))
+                && isRedditCommentMediaUrl(value)) {
+            String mediaUrl = ImageHelper.normalizeImageUrl(value);
+            int maxWidth = SizeHelper.dpToPx(320);
+            int displayWidth = options.width > 0 ? Math.min(options.width, maxWidth) : maxWidth;
+            displayWidth = Math.max(SizeHelper.dpToPx(120), displayWidth);
+            // Default to a 4:3 preview if GraphQL omits dimensions. Clicking
+            // opens the unmodified source URL at its full native resolution.
+            int displayHeight = Math.max(SizeHelper.dpToPx(90), displayWidth * 3 / 4);
+            spannableTextViewStringBuilder.appendWithSpans("￼",
+                    new EmoteImageSpan(mediaUrl, displayWidth, displayHeight),
+                    new CustomUrlSpan(mediaUrl));
+            return;
+        }
         if (!StringUtils.isNotEmpty(value) || !value.contains("giphy%7C")) {
             if (SettingsSingleton.getSettings().commentsEmotes) {
                 String emoteUrl = ImageHelper.normalizeImageUrl(value);

@@ -197,6 +197,10 @@ final class GraphQLCommentsRequest extends RedditRequest<Void> {
         String authorName = author == null ? "[deleted]" : author.optString("name", "[deleted]");
         JSONObject content = node.optJSONObject("content");
         String body = content == null ? "" : content.optString("markdown", "");
+        // The GraphQL comment body may contain ![img](media-id) instead of a
+        // URL. Resolve its content.richtextMedia before Sync's Markdown/HTML
+        // parser sees it; otherwise embedded images silently disappear.
+        body = GraphQLCommentMedia.resolve(content, body);
         if ("DeletedComment".equals(node.optString("__typename"))) {
             authorName = "[deleted]";
             body = "[deleted]";
