@@ -235,7 +235,19 @@ public class SpannableTextViewStringBuilder {
             } else if (obj instanceof EmoteImageSpan) {
                 EmoteImageSpan emoteImageSpan = (EmoteImageSpan) obj;
                 emoteImageSpan.setTextView(spannableTextView);
-                Glide.with(RedditApplication.getAppContext()).load(emoteImageSpan.getUrl()).override(emoteImageSpan.getWidth(), emoteImageSpan.getWidth()).priority(Priority.LOW).transform(new RoundedCorners(SizeHelper.dpToPx(8))).into(emoteImageSpan);
+                if (emoteImageSpan.preservesAspectRatio()) {
+                    // Don't transform the image into the old square decode.
+                    // Bounded Glide decode retains the original width:height,
+                    // which EmoteImageSpan uses to measure the actual display.
+                    Glide.with(RedditApplication.getAppContext())
+                            .load(emoteImageSpan.getUrl())
+                            .override(emoteImageSpan.getWidth(), emoteImageSpan.getWidth())
+                            .dontTransform()
+                            .priority(Priority.LOW)
+                            .into(emoteImageSpan);
+                } else {
+                    Glide.with(RedditApplication.getAppContext()).load(emoteImageSpan.getUrl()).override(emoteImageSpan.getWidth(), emoteImageSpan.getWidth()).priority(Priority.LOW).transform(new RoundedCorners(SizeHelper.dpToPx(8))).into(emoteImageSpan);
+                }
             } else if (obj instanceof WebPreviewImageSpan) {
                 WebPreviewImageSpan webPreviewImageSpan = (WebPreviewImageSpan) obj;
                 // Skip if already loading/loaded — refresh() re-runs loadImages to expand a loaded span,

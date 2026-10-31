@@ -793,12 +793,11 @@ public class SyncHtmlToSpannedConverter implements ContentHandler {
             String mediaUrl = ImageHelper.normalizeImageUrl(value);
             int maxWidth = SizeHelper.dpToPx(320);
             int displayWidth = options.width > 0 ? Math.min(options.width, maxWidth) : maxWidth;
-            displayWidth = Math.max(SizeHelper.dpToPx(120), displayWidth);
-            // Default to a 4:3 preview if GraphQL omits dimensions. Clicking
-            // opens the unmodified source URL at its full native resolution.
-            int displayHeight = Math.max(SizeHelper.dpToPx(90), displayWidth * 3 / 4);
+            displayWidth = Math.max(1, displayWidth);
+            // The image span measures its native ratio after Glide downloads
+            // the drawable; never force full-size comment photos into 4:3.
             spannableTextViewStringBuilder.appendWithSpans("￼",
-                    new EmoteImageSpan(mediaUrl, displayWidth, displayHeight),
+                    EmoteImageSpan.forCommentImage(mediaUrl, displayWidth),
                     new CustomUrlSpan(mediaUrl));
             return;
         }

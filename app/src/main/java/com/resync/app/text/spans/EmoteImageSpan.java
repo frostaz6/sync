@@ -26,9 +26,14 @@ public class EmoteImageSpan extends ReplacementSpan implements Target<Drawable>,
     private WeakReference<TextView> textViewRef;
     private int textColor;
     private Request request;
-    private final int width;
-    private final int height;
+    private int width;
+    private int height;
     private final boolean showPlaceholder;
+    // Only Reddit's full-size inline comment images opt into native aspect ratios.
+    // Small emotes and all existing callers retain their fixed dimensions.
+    private final boolean preserveAspectRatio;
+    private final int maxDisplayWidth;
+    private final int maxDisplayHeight;
 
     public EmoteImageSpan(String url, int size) {
         this(url, size, size);
@@ -112,6 +117,54 @@ public class EmoteImageSpan extends ReplacementSpan implements Target<Drawable>,
         canvas.restore();
     }
 
+    /** Creates a bounded inline comment image whose height follows the downloaded image. */
+    public static EmoteImageSpan forCommentImage(String url, int maxWidth) {
+        // The placeholder is short while the image loads. Once Glide supplies
+        // actual image dimensions, onResourceReady() requests a fresh layout.
+        return new EmoteImageSpan(url, maxWidth,
+                Math.max(1, maxWidth * 3 / 4), false, true);
+    }
+
+    public boolean preservesAspectRatio() {
+        return preserveAspectRatio;
+    }
+
+    /**
+     * Use the loaded drawable's actual aspect ratio. Glide's load uses a
+     * bounded decode with no crop/resize transformation for comment images.
+     */
+    private void updateImageDimensions(Drawable loaded) {
+        if (!preserveAspectRatio || loaded == null) return;
+        int sourceWidth = loaded.getIntrinsicWidth();
+        int sourceHeight = loaded.getIntrinsicHeight();
+        if (loaded instanceof BitmapDrawable) {
+            android.graphics.Bitmap bitmap = ((BitmapDrawable) loaded).getBitmap();
+            if (bitmap != null && !bitmap.isRecycled()) {
+                sourceWidth = bitmap.getWidth();
+                sourceHeight = bitmap.getHeight();
+            }
+        }
+        if (sourceWidth <= 0 || sourceHeight <= 0) return;
+        double ratio = (double) sourceHeight / (double) sourceWidth;
+        // Bound both dimensions without changing aspect ratio. Tall portraits
+        // may be narrower rather than being compressed into a landscape box.
+        int calculatedWidth = maxDisplayWidth;
+        int calculatedHeight = Math.max(1, (int) Math.round(calculatedWidth * ratio));
+        if (calculatedHeight > maxDisplayHeight) {
+            calculatedHeight = maxDisplayHeight;
+            calculatedWidth = Math.max(1, (int) Math.round(calculatedHeight / ratio));
+        }
+        if (this.width != calculatedWidth || this.height != calculatedHeight) {
+            this.width = calculatedWidth;
+            this.height = calculatedHeight;
+            TextView view = textViewRef == null ? null : textViewRef.get();
+            if (view != null) {
+                view.requestLayout();
+                view.invalidate();
+            }
+        }
+    }
+
     public int getWidth() {
         return this.width;
     }
@@ -179,6 +232,7 @@ public class EmoteImageSpan extends ReplacementSpan implements Target<Drawable>,
             ((GifDrawable) this.drawable).start();
             ((GifDrawable) this.drawable).invalidateSelf();
         }
+        updateImageDimensions(drawable);
         Logger.verbose("InlineImageSpan", "Loaded: " + drawable);
         invalidate();
     }
@@ -217,9 +271,17 @@ public class EmoteImageSpan extends ReplacementSpan implements Target<Drawable>,
     }
 
     public EmoteImageSpan(String url, int width, int height, boolean showPlaceholder) {
+        this(url, width, height, showPlaceholder, false);
+    }
+
+    private EmoteImageSpan(String url, int width, int height,
+            boolean showPlaceholder, boolean preserveAspectRatio) {
         this.url = url;
         this.width = width;
         this.height = height;
         this.showPlaceholder = showPlaceholder;
+        this.preserveAspectRatio = preserveAspectRatio;
+        this.maxDisplayWidth = width;
+        this.maxDisplayHeight = Math.max(height, width * 2);
     }
 }
