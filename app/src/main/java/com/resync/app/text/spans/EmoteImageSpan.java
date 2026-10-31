@@ -159,8 +159,21 @@ public class EmoteImageSpan extends ReplacementSpan implements Target<Drawable>,
             this.height = calculatedHeight;
             TextView view = textViewRef == null ? null : textViewRef.get();
             if (view != null) {
-                view.requestLayout();
-                view.invalidate();
+                // requestLayout() alone does not invalidate TextView's cached
+                // StaticLayout: the taller bitmap then draws across later
+                // comment lines. Set a fresh Spannable copy to force a true
+                // text reflow, keeping the same span instances and loaded
+                // drawables without starting another Glide request.
+                view.post(() -> {
+                    if (textViewRef == null || textViewRef.get() != view) return;
+                    CharSequence current = view.getText();
+                    if (!(current instanceof android.text.Spanned)
+                            || ((android.text.Spanned) current).getSpanStart(this) < 0) {
+                        return; // ViewHolder has been recycled for another comment.
+                    }
+                    view.setText(new android.text.SpannableString(current),
+                            TextView.BufferType.SPANNABLE);
+                });
             }
         }
     }

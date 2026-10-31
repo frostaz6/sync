@@ -94,7 +94,13 @@ public class SpannableTextViewStringBuilder {
         }
         Iterator<Span> it = this.spans.iterator();
         while (it.hasNext()) {
-            if (it.next().span instanceof StrikethroughSpan) {
+            Object span = it.next().span;
+            if (span instanceof StrikethroughSpan
+                    || (span instanceof EmoteImageSpan
+                    && ((EmoteImageSpan) span).preservesAspectRatio())) {
+                // PrecomputedText caches layout metrics before Glide knows the
+                // native image ratio. These comments require live TextView
+                // layout so the loaded image can expand its line height.
                 return false;
             }
         }
