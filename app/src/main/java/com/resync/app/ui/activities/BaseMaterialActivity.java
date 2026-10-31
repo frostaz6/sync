@@ -255,6 +255,15 @@ public class BaseMaterialActivity extends BaseActivity {
         applyStatusBarColor(NightHelper.isNight());
     }
 
+    /**
+     * Applies a theme change synchronously using the same renderer as the
+     * existing ThemeReceiver. This avoids waiting for the broadcast queue
+     * when an action is tapped from the navigation rail.
+     */
+    public void applyDarkModeChangeNow() {
+        refreshNightMode();
+    }
+
     protected void refreshNightMode() {
         NightHelper.refresh(false);
         if (this.nightMode != NightHelper.getNightMode()) {

@@ -530,24 +530,25 @@ public class ActionsBottomSheetFragment extends CustomBottomSheetDialogFragment 
         } else if (actionCode == 6) {
             BusSingleton.getBus().post(new SubredditSelectedEvent("random_nsfw", false));
         } else if (actionCode == 7) {
-            if (!NightHelper.isNight() && !NightHelper.isFollowSystem()) {
-                SettingsSingleton.getInstance().putBoolean("night_mode_follow", false);
-                SettingsSingleton.getInstance().putBoolean("night_mode_force_off", false);
-                SettingsSingleton.getInstance().putBoolean("night_mode_force_on", true);
-                SettingsSingleton.getInstance().putBoolean("night_mode_auto", false);
-            } else if (!NightHelper.isNight() || NightHelper.isFollowSystem()) {
-                SettingsSingleton.getInstance().putBoolean("night_mode_follow", false);
-                SettingsSingleton.getInstance().putBoolean("night_mode_force_off", true);
-                SettingsSingleton.getInstance().putBoolean("night_mode_force_on", false);
-                SettingsSingleton.getInstance().putBoolean("night_mode_auto", false);
-            } else {
-                StaticToast.show("Automatic dark mode");
-                SettingsSingleton.getInstance().putBoolean("night_mode_follow", true);
-                SettingsSingleton.getInstance().putBoolean("night_mode_force_off", false);
-                SettingsSingleton.getInstance().putBoolean("night_mode_force_on", false);
-                SettingsSingleton.getInstance().putBoolean("night_mode_auto", false);
-            }
+            // Use Sync's single Dark mode action and its existing settings.
+            // The old three-state cycle had invisible steps: system-light to
+            // forced-light, or dark to system-dark. A sidebar toggle must
+            // visibly switch the current appearance on *every* tap. Follow-
+            // system / automatic remain selectable in Dark Mode Settings.
+            boolean enableDark = !NightHelper.isNight();
+            SettingsSingleton settings = SettingsSingleton.getInstance();
+            settings.putBoolean("night_mode_follow", false);
+            settings.putBoolean("night_mode_force_off", !enableDark);
+            settings.putBoolean("night_mode_force_on", enableDark);
+            settings.putBoolean("night_mode_auto", false);
             NightHelper.refresh(true);
+            // Broadcasts are asynchronous. Apply the existing activity theme
+            // refresh immediately; the later broadcast is harmless because
+            // BaseMaterialActivity only rebuilds when the mode has changed.
+            if (fragmentActivity instanceof com.resync.app.ui.activities.BaseMaterialActivity) {
+                ((com.resync.app.ui.activities.BaseMaterialActivity) fragmentActivity)
+                        .applyDarkModeChangeNow();
+            }
         } else if (actionCode == 8) {
             if (!AccountSingleton.getInstance().isLoggedIn()) {
                 StaticToast.show(fragmentActivity, R.string.common_generic_error_logged_out);
