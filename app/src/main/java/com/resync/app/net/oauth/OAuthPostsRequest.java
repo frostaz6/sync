@@ -43,14 +43,25 @@ public class OAuthPostsRequest extends RedditRequest<PostsInfo> {
     private final boolean clearFirst;
     private final boolean searchDiagnostics;
     private volatile String lastSearchDiagnostic;
+    private final boolean graphqlSearch;
+    private final byte[] postSearchBody;
 
     public OAuthPostsRequest(Context context, Object obj, String str, String str2, String str3, PostsInfo postsInfo, boolean clearFirst, boolean saveVisited, Response.Listener<PostsInfo> listener, Response.ErrorListener errorListener) {
-        super(context, 0, buildUrl(context, str, str, postsInfo, str3, str2), listener, errorListener);
+        super(context, MaterialPostsHelper.isSearch(str) ? Method.POST : Method.GET,
+                MaterialPostsHelper.isSearch(str) ? GraphQLPostSearch.URL
+                        : buildUrl(context, str, str, postsInfo, str3, str2),
+                listener, errorListener);
         this.postsInfo = postsInfo;
         this.subreddit = str.toLowerCase(Locale.ENGLISH);
         this.clearFirst = clearFirst;
         this.searchDiagnostics = MaterialPostsHelper.isSearch(str)
                 || MaterialPostsHelper.isSubSearch(str);
+        this.graphqlSearch = MaterialPostsHelper.isSearch(str);
+        this.postSearchBody = graphqlSearch
+                ? GraphQLPostSearch.buildBody(str, str3, str2,
+                        postsInfo == null ? null : postsInfo.after,
+                        SettingsSingleton.getSettings().nsfw)
+                : null;
         if (saveVisited) {
             VisitedManager.saveVisited(str);
             if (postsInfo == null || StringUtils.isEmpty(postsInfo.after)) {
@@ -257,6 +268,17 @@ public class OAuthPostsRequest extends RedditRequest<PostsInfo> {
     }
 
     @Override
+    public String getBodyContentType() {
+        return graphqlSearch ? "application/json; charset=utf-8"
+                : super.getBodyContentType();
+    }
+
+    @Override
+    public byte[] getBody() throws AuthFailureError {
+        return graphqlSearch ? postSearchBody : super.getBody();
+    }
+
+    @Override
     public VolleyError parseNetworkError(VolleyError error) {
         if (searchDiagnostics) {
             // Snapshot the raw Volley response before the superclass may
@@ -295,7 +317,10 @@ public class OAuthPostsRequest extends RedditRequest<PostsInfo> {
         int childIndexCopy;
         Object nullCarry;
         try {
-            String str = new String(networkResponse.data);
+            String str = new String(networkResponse.data, java.nio.charset.StandardCharsets.UTF_8);
+            if (graphqlSearch) {
+                str = GraphQLPostSearch.toLegacyListing(str);
+            }
             JSONObject jSONObject = (getUrl().contains("submit.json?url=") && str.startsWith("[")) ? new JSONArray(str).getJSONObject(0) : new JSONObject(str);
             JSONArray jSONArray = jSONObject.getJSONObject("data").getJSONArray("children");
             Logger.verbose("Raw post count: " + jSONArray.length());
