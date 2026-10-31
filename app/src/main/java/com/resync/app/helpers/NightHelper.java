@@ -64,6 +64,21 @@ public class NightHelper {
         }
     }
 
+    /**
+     * Manual one-tap toggle used by the navigation rail. This intentionally
+     * selects a fixed mode, rather than following the system or auto schedule,
+     * and persists in the same per-account preferences as Dark Mode Settings.
+     */
+    public static void toggleManual() {
+        boolean enableNight = !isNight();
+        SettingsSingleton settings = SettingsSingleton.getInstance();
+        settings.putBoolean("night_mode_follow", false);
+        settings.putBoolean("night_mode_auto", false);
+        settings.putBoolean("night_mode_force_on", enableNight);
+        settings.putBoolean("night_mode_force_off", !enableNight);
+        refresh(true);
+    }
+
     public static boolean isNight() {
         return nightMode == 2;
     }

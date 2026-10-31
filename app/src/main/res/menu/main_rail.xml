@@ -6,4 +6,5 @@
     <item android:icon="@drawable/messaging_icon" android:id="@id/menu_messages" android:title="Inbox" app:showAsAction="always" />
     <item android:icon="@drawable/ic_outline_sync_24" android:id="@id/menu_actions" android:title="Actions" app:showAsAction="always" />
     <item android:icon="@drawable/outline_settings_24" android:id="@id/menu_settings" android:title="Settings" app:showAsAction="always" />
+    <item android:icon="@drawable/outline_dark_mode_24" android:id="@+id/menu_toggle_dark" android:title="Switch to dark mode" android:checkable="false" app:showAsAction="always" />
 </menu>

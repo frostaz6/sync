@@ -16,6 +16,9 @@ import com.resync.app.helpers.FilterHelper;
 /* JADX INFO: loaded from: classes.dex */
 public class RandomProgressDialogBottomSheet extends AbstractProgressDialogBottomSheet {
     boolean nsfw;
+    // Retry with a different supported subreddit-listing endpoint.
+    private int requestSource;
+    private int rejectedByFilters;
 
     /* JADX INFO: compiled from: RandomProgressDialogBottomSheet.java */
     class RandomSubredditResponseListener implements Response.Listener<String> {
@@ -29,7 +32,18 @@ public class RandomProgressDialogBottomSheet extends AbstractProgressDialogBotto
                 return;
             }
             if (new SubredditArrayList(FilterHelper.getInstance().getFilterList(2)).contains(str)) {
-                RandomProgressDialogBottomSheet.this.loadRandomSubreddit();
+                if (++RandomProgressDialogBottomSheet.this.rejectedByFilters >= 6) {
+                    // Respect the user's filters rather than cycling forever.
+                    RandomProgressDialogBottomSheet.this.requestSource++;
+                    RandomProgressDialogBottomSheet.this.rejectedByFilters = 0;
+                }
+                if (RandomProgressDialogBottomSheet.this.requestSource < 3) {
+                    RandomProgressDialogBottomSheet.this.loadRandomSubreddit();
+                } else {
+                    StaticToast.showWithContext("No random communities matched your filters",
+                            RandomProgressDialogBottomSheet.this.getActivity());
+                    RandomProgressDialogBottomSheet.this.dismiss();
+                }
             } else {
                 BusSingleton.getBus().post(new SubredditSelectedEvent(str, false));
                 RandomProgressDialogBottomSheet.this.dismiss();
@@ -47,7 +61,12 @@ public class RandomProgressDialogBottomSheet extends AbstractProgressDialogBotto
             if (RandomProgressDialogBottomSheet.this.getActivity() == null || RandomProgressDialogBottomSheet.this.getDialog() == null) {
                 return;
             }
-            StaticToast.showWithContext("Error grabbing random subreddit", RandomProgressDialogBottomSheet.this.getActivity());
+            if (++RandomProgressDialogBottomSheet.this.requestSource < 3) {
+                RandomProgressDialogBottomSheet.this.loadRandomSubreddit();
+                return;
+            }
+            StaticToast.showWithContext("Couldn't find an accessible random subreddit. Try again.",
+                    RandomProgressDialogBottomSheet.this.getActivity());
             RandomProgressDialogBottomSheet.this.dismiss();
         }
     }
@@ -66,6 +85,8 @@ public class RandomProgressDialogBottomSheet extends AbstractProgressDialogBotto
     @Override // com.resync.app.dialogs.CustomBottomSheetDialogFragment
     public void loadCustomArguments() {
         this.nsfw = getArguments().getBoolean("nsfw");
+        this.requestSource = 0;
+        this.rejectedByFilters = 0;
     }
 
     @Override // com.resync.app.ui.fragment_dialogs.bottom.material_dialogs.base.AbstractProgressDialogBottomSheet
@@ -74,6 +95,9 @@ public class RandomProgressDialogBottomSheet extends AbstractProgressDialogBotto
     }
 
     void loadRandomSubreddit() {
-        OAuthRequestManager.send(getActivity(), new RandomRequest(getActivity(), this.nsfw, new RandomSubredditResponseListener(), new RandomSubredditErrorListener()));
+        if (!isAdded() || getActivity() == null) return;
+        OAuthRequestManager.send(getActivity(), new RandomRequest(getActivity(), this.nsfw,
+                this.requestSource, new RandomSubredditResponseListener(),
+                new RandomSubredditErrorListener()));
     }
 }

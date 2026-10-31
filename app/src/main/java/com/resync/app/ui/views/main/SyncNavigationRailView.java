@@ -24,6 +24,7 @@ import com.resync.app.helpers.NavigationViewHelper;
 import com.resync.app.singletons.BusSingleton;
 import com.resync.app.helpers.ContextHelper;
 import com.resync.app.helpers.SizeHelper;
+import com.resync.app.helpers.NightHelper;
 import com.resync.app.ui.interfaces.DarkModeAware;
 import com.resync.app.ui.interfaces.PostHost;
 import com.resync.app.helpers.messaging.MessageCountHelper;
@@ -59,6 +60,18 @@ public class SyncNavigationRailView extends NavigationRailView implements DarkMo
             setItemMinimumHeight(17);
         } else if (SettingsSingleton.getSettings().navigationRailGravity == 2) {
             setItemMinimumHeight(80);
+        }
+    }
+
+    private void updateThemeToggleIcon() {
+        MenuItem toggle = getMenu().findItem(com.resync.app.R.id.menu_toggle_dark);
+        if (toggle != null) {
+            // Show the action that will be taken; use the icons already in Sync.
+            toggle.setIcon(NightHelper.isNight()
+                    ? com.resync.app.R.drawable.outline_wb_sunny_24
+                    : com.resync.app.R.drawable.outline_dark_mode_24);
+            toggle.setTitle(NightHelper.isNight() ? "Switch to light mode" : "Switch to dark mode");
+            toggle.setCheckable(false);
         }
     }
 
@@ -105,18 +118,26 @@ public class SyncNavigationRailView extends NavigationRailView implements DarkMo
 
     @Override // com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
     public boolean onNavigationItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == com.resync.app.R.id.menu_toggle_dark) {
+            NightHelper.toggleManual();
+            updateThemeToggleIcon();
+            // A quick setting should not become the selected navigation page.
+            return false;
+        }
         return NavigationViewHelper.onBottomNavItemSelected(getContext(), getPostHost(), menuItem);
     }
 
     @Override // com.resync.app.ui.interfaces.DarkModeAware
     public void onDarkModeChanged() {
         applyColors();
+        updateThemeToggleIcon();
     }
 
     @Override // com.google.android.material.navigation.NavigationBarView
     public void inflateMenu(int resId) {
         super.inflateMenu(resId);
-        NavigationRailMenuView navigationRailMenuView = (NavigationRailMenuView) getMenuView();
+        updateThemeToggleIcon();
+        NavigationRailMenuView = (NavigationRailMenuView) getMenuView();
         for (int childIndex = 0; childIndex < navigationRailMenuView.getChildCount(); childIndex++) {
             navigationRailMenuView.getChildAt(childIndex).setOnLongClickListener(this);
         }
