@@ -53,7 +53,7 @@ jobs:
           RESYNC_KEYSTORE_B64: ${{ secrets.RESYNC_KEYSTORE_B64 }}
           RESYNC_KEYSTORE_PASSWORD: ${{ secrets.RESYNC_KEYSTORE_PASSWORD }}
           EXPECTED_CERT_SHA256: ${{ vars.RESYNC_SIGNING_CERT_SHA256 }}
-          RELEASE_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_first_release }}
+          RELEASE_REQUESTED: ${{ (github.event_name == 'workflow_dispatch' && inputs.publish_first_release) || (github.event_name == 'push' && github.event.head_commit.message == 'Release ReSync v1.0.1') }}
         run: |
           set -euo pipefail
           if [[ -n "$RESYNC_KEYSTORE_B64" && -n "$RESYNC_KEYSTORE_PASSWORD" ]]; then
@@ -112,7 +112,7 @@ jobs:
       - name: Build APK
         env:
           RESYNC_CI_RUN_NUMBER: ${{ github.run_number }}
-          RESYNC_RELEASE_BUILD: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_first_release }}
+          RESYNC_RELEASE_BUILD: ${{ github.event_name == 'push' && github.event.head_commit.message == 'Release ReSync v1.0.1' }}
         run: |
           set -euo pipefail
           ./gradlew :app:assembleDebug --no-daemon --stacktrace
@@ -127,8 +127,8 @@ jobs:
           apksigner="$ANDROID_HOME/build-tools/35.0.0/apksigner"
           "$apksigner" verify --verbose --print-certs "$apk" | grep -E 'Verified|Signer #1 certificate SHA-256 digest'
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" | sed -n '1p' | grep "name='com.resync.app'"
-          cp "$apk" ReSync-v1.0.0.apk
-          sha256sum ReSync-v1.0.0.apk | tee apk-sha256.txt
+          cp "$apk" ReSync-v1.0.1.apk
+          sha256sum ReSync-v1.0.1.apk | tee apk-sha256.txt
           {
             echo "ReSync gallery lookup: /by_id/t3_<post-id>.json?raw_json=1"
             echo "Signing mode: $SIGNING_MODE"
@@ -145,7 +145,7 @@ jobs:
         with:
           name: resync-gallery-${{ env.SIGNING_MODE }}-apk
           path: |
-            ReSync-v1.0.0.apk
+            ReSync-v1.0.1.apk
             apk-build-info.txt
             apk-sha256.txt
           if-no-files-found: error
@@ -172,6 +172,29 @@ jobs:
             --notes-file docs/RELEASE-NOTES-v1.0.0.md \
             --latest
           gh release view v1.0.0 --json url --jq '.url'
+
+      - name: Publish ReSync v1.0.1
+        if: ${{ github.event_name == 'push' && github.event.head_commit.message == 'Release ReSync v1.0.1' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [[ "$SIGNING_MODE" != "persistent" ]]; then
+            echo "::error::Refusing to publish without the permanent signing key."
+            exit 1
+          fi
+          if gh release view v1.0.1 >/dev/null 2>&1; then
+            echo "::error::v1.0.1 already exists; refusing to replace the release."
+            exit 1
+          fi
+          gh release create v1.0.1 ReSync-v1.0.1.apk apk-sha256.txt apk-build-info.txt \
+            --target "$GITHUB_SHA" \
+            --title "ReSync v1.0.1" \
+            --notes-file docs/RELEASE-NOTES-v1.0.1.md \
+            --latest
+          gh release view v1.0.1 --json url,assets --jq '{url: .url, assets: [.assets[].name]}'
+          gh release view v1.0.1 --json assets --jq '.assets[].name' | grep -Fx 'ReSync-v1.0.1.apk'
 
       - name: Remove key from runner
         if: always()
