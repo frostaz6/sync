@@ -716,9 +716,9 @@ public class ActionsBottomSheetFragment extends CustomBottomSheetDialogFragment 
         MenuItem menuItemAdd3 = subMenuAddSubMenu.add("Dark overlay");
         menuItemAdd3.setCheckable(true);
         menuItemAdd3.setChecked(SettingsSingleton.getSettings().actionsDarkOverlay);
-        MenuItem menuItemAdd4 = subMenuAddSubMenu.add("Dark mode");
-        menuItemAdd4.setCheckable(true);
-        menuItemAdd4.setChecked(SettingsSingleton.getSettings().actionsDarkMode);
+        // Dark mode is now in the navigation rail. Keep this local variable
+        // null to preserve the constructor's other menu-item parameters.
+        MenuItem menuItemAdd4 = null;
         MenuItem menuItemAdd5 = subMenuAddSubMenu.add("Data saving");
         menuItemAdd5.setCheckable(true);
         menuItemAdd5.setChecked(SettingsSingleton.getSettings().actionsDataSaving);

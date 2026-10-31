@@ -124,7 +124,9 @@ public final class ActionsManager {
             case 6:
                 return SettingsSingleton.getSettings().actionsRandomNsfw && !SettingsSingleton.getSettings().nsfw;
             case 7:
-                return SettingsSingleton.getSettings().actionsDarkMode;
+                // Dark mode moved to the navigation rail; never show it
+                // as an action tile again, including for existing users.
+                return false;
             case 8:
                 return SettingsSingleton.getSettings().actionsFriends;
             case 9:
@@ -243,7 +245,9 @@ public final class ActionsManager {
         toggle(16);
         toggle(3);
         toggle(5);
-        toggle(7);
+        // Clean up old custom-ordered action lists without resetting
+        // any of the user's other tile positions.
+        this.actions.remove(Integer.valueOf(7));
         toggle(9);
         toggle(20);
         toggle(4);
@@ -287,7 +291,6 @@ public final class ActionsManager {
             this.actions.add(16);
             this.actions.add(3);
             this.actions.add(5);
-            this.actions.add(7);
             this.actions.add(9);
             this.actions.add(20);
             this.actions.add(4);

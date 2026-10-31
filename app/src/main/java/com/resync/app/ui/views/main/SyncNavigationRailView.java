@@ -24,7 +24,8 @@ import com.resync.app.helpers.NavigationViewHelper;
 import com.resync.app.singletons.BusSingleton;
 import com.resync.app.helpers.ContextHelper;
 import com.resync.app.helpers.SizeHelper;
-import com.resync.app.helpers.NightHelper;
+import com.resync.app.helpers.ActionsManager;
+import com.resync.app.ui.fragment_dialogs.bottom.ActionsBottomSheetFragment;
 import com.resync.app.ui.interfaces.DarkModeAware;
 import com.resync.app.ui.interfaces.PostHost;
 import com.resync.app.helpers.messaging.MessageCountHelper;
@@ -64,14 +65,13 @@ public class SyncNavigationRailView extends NavigationRailView implements DarkMo
     }
 
     private void updateThemeToggleIcon() {
-        MenuItem toggle = getMenu().findItem(com.resync.app.R.id.menu_toggle_dark);
-        if (toggle != null) {
-            // Show the action that will be taken; use the icons already in Sync.
-            toggle.setIcon(NightHelper.isNight()
-                    ? com.resync.app.R.drawable.outline_wb_sunny_24
-                    : com.resync.app.R.drawable.outline_dark_mode_24);
-            toggle.setTitle(NightHelper.isNight() ? "Switch to light mode" : "Switch to dark mode");
-            toggle.setCheckable(false);
+        MenuItem item = getMenu().findItem(com.resync.app.R.id.menu_toggle_dark);
+        if (item != null) {
+            // Exact same icon as the original More actions > Dark mode tile.
+            // Its moon / full moon / auto artwork reflects Sync's theme state.
+            item.setIcon(ActionsManager.getIconRes(7));
+            item.setTitle("Dark mode");
+            item.setCheckable(false);
         }
     }
 
@@ -119,9 +119,14 @@ public class SyncNavigationRailView extends NavigationRailView implements DarkMo
     @Override // com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == com.resync.app.R.id.menu_toggle_dark) {
-            NightHelper.toggleManual();
+            // Reuse the original Sync More actions implementation verbatim.
+            // It cycles system / light / dark and persists the same settings.
+            ActionsBottomSheetFragment.performAction(
+                    ContextHelper.getBaseActivity(getContext()),
+                    ContextHelper.getFragmentManager(getContext()),
+                    null, 7, null);
             updateThemeToggleIcon();
-            // A quick setting should not become the selected navigation page.
+            // Action item: don't navigate away or select a different page.
             return false;
         }
         return NavigationViewHelper.onBottomNavItemSelected(getContext(), getPostHost(), menuItem);
