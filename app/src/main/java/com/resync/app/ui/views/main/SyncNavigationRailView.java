@@ -137,7 +137,7 @@ public class SyncNavigationRailView extends NavigationRailView implements DarkMo
     public void inflateMenu(int resId) {
         super.inflateMenu(resId);
         updateThemeToggleIcon();
-        NavigationRailMenuView = (NavigationRailMenuView) getMenuView();
+        NavigationRailMenuView navigationRailMenuView = (NavigationRailMenuView) getMenuView();
         for (int childIndex = 0; childIndex < navigationRailMenuView.getChildCount(); childIndex++) {
             navigationRailMenuView.getChildAt(childIndex).setOnLongClickListener(this);
         }
