@@ -21,7 +21,88 @@ final class GraphQLPostSearch {
     private static final String HASH =
             "8610e33521c90caa8d12576800c18b708ce0d19df3dfac8e2aad55d9860e4bf9";
 
+    private static final String SUBREDDIT_FEED_HASH =
+            "97046e2a48050f10a507db354a8da60955ffccb586dcf63163bdfc6610d5cf7a";
+
     private GraphQLPostSearch() {}
+
+    /**
+     * Only replace ordinary single-subreddit NEW pages. Do not touch
+     * r/all, home, multi feeds, user posts, domain listings or post search.
+     */
+    static boolean isNewSubredditFeed(String subreddit, String sort) {
+        return subreddit != null
+                && sort != null
+                && "new".equalsIgnoreCase(sort)
+                && subreddit.matches("[A-Za-z0-9_]{2,21}")
+                && !"all".equalsIgnoreCase(subreddit)
+                && !"popular".equalsIgnoreCase(subreddit)
+                && !"frontpage".equalsIgnoreCase(subreddit)
+                && !"mod".equalsIgnoreCase(subreddit);
+    }
+
+    /** Android persisted SubredditFeedElements operation. */
+    static byte[] buildSubredditFeedBody(String subreddit, String sort,
+            String timeFilter, String after) {
+        try {
+            JSONObject vars = new JSONObject()
+                    .put("subredditName", subreddit)
+                    .put("sort", "NEW")
+                    .put("includeSubredditInPosts", true)
+                    .put("pageSize", 25);
+            if (!TextUtils.isEmpty(after) && !"null".equalsIgnoreCase(after)) {
+                vars.put("after", after);
+            }
+            JSONObject op = new JSONObject()
+                    .put("operationName", "SubredditFeedElements")
+                    .put("variables", vars)
+                    .put("extensions", new JSONObject().put("persistedQuery",
+                            new JSONObject().put("version", 1)
+                                    .put("sha256Hash", SUBREDDIT_FEED_HASH)));
+            return op.toString().getBytes(StandardCharsets.UTF_8);
+        } catch (JSONException ex) {
+            throw new IllegalStateException("Couldn't prepare subreddit New feed", ex);
+        }
+    }
+
+    static String toLegacySubredditFeed(String response) throws JSONException {
+        JSONObject root = new JSONObject(response);
+        JSONObject data = root.optJSONObject("data");
+        JSONObject feed = data == null ? null : data.optJSONObject("postFeed");
+        JSONObject elements = feed == null ? null : feed.optJSONObject("elements");
+        if (elements == null) {
+            JSONArray errors = root.optJSONArray("errors");
+            JSONObject first = errors == null ? null : errors.optJSONObject(0);
+            throw new JSONException("SubredditFeedElements returned no feed"
+                    + (first == null ? "" : ": " + first.optString("message", "")));
+        }
+        JSONArray children = new JSONArray();
+        JSONArray edges = elements.optJSONArray("edges");
+        if (edges != null) {
+            for (int i = 0; i < edges.length(); i++) {
+                JSONObject item = edges.optJSONObject(i);
+                JSONObject node = item == null ? null : item.optJSONObject("node");
+                if (node == null) continue;
+                JSONObject post = node.optJSONObject("postInfo");
+                if (post == null) post = node;
+                String type = post.optString("__typename", "");
+                if (!"SubredditPost".equals(type) && !"ProfilePost".equals(type)) {
+                    continue;
+                }
+                try {
+                    children.put(new JSONObject().put("kind", "t3").put("data", adapt(post)));
+                } catch (JSONException ignored) {
+                    // Ignore a malformed post without discarding valid peers.
+                }
+            }
+        }
+        JSONObject page = elements.optJSONObject("pageInfo");
+        String cursor = page == null ? "" : page.optString("endCursor", "");
+        if (page != null && !page.optBoolean("hasNextPage", false)) cursor = "";
+        return new JSONObject().put("kind", "Listing")
+                .put("data", new JSONObject().put("children", children)
+                        .put("after", cursor)).toString();
+    }
 
     static byte[] buildBody(String search, String sort, String timeframe,
             String after, boolean allowNsfw) {
