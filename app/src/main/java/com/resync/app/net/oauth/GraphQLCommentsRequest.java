@@ -238,6 +238,19 @@ final class GraphQLCommentsRequest extends RedditRequest<Void> {
             // and loads image URLs as inline spans, rather than showing emoji aliases.
             JSONArray rich = authorFlair.optJSONArray("richtext");
             if (rich == null) rich = authorFlair.optJSONArray("richText");
+            // PostComments GraphQL serializes the richtext array as a JSON string.
+            // optJSONArray() alone silently returns null for that representation.
+            if (rich == null) {
+                String serialized = authorFlair.optString("richtext", "");
+                if (serialized.isEmpty()) serialized = authorFlair.optString("richText", "");
+                if (serialized.startsWith("[")) {
+                    try {
+                        rich = new JSONArray(serialized);
+                    } catch (JSONException invalidFlair) {
+                        Log.w(TAG, "Could not decode comment flair richtext", invalidFlair);
+                    }
+                }
+            }
             if (rich != null && rich.length() > 0) {
                 JSONArray convertedFlair = new JSONArray();
                 for (int f = 0; f < rich.length(); f++) {
