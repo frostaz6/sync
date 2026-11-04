@@ -233,6 +233,37 @@ final class GraphQLCommentsRequest extends RedditRequest<Void> {
         }
         if (authorFlair != null) {
             data.put("author_flair_text", authorFlair.optString("text", ""));
+            // Preserve rich user-flair emojis for the legacy Sync comment renderer.
+            // It consumes author_flair_richtext [{e:"emoji",u:"..."},{e:"text",t:"..."}]
+            // and loads image URLs as inline spans, rather than showing emoji aliases.
+            JSONArray rich = authorFlair.optJSONArray("richtext");
+            if (rich == null) rich = authorFlair.optJSONArray("richText");
+            if (rich != null && rich.length() > 0) {
+                JSONArray convertedFlair = new JSONArray();
+                for (int f = 0; f < rich.length(); f++) {
+                    JSONObject segment = rich.optJSONObject(f);
+                    if (segment == null) continue;
+                    String url = segment.optString("u", segment.optString("url", ""));
+                    JSONObject emoji = segment.optJSONObject("emoji");
+                    if (url.isEmpty() && emoji != null) {
+                        url = emoji.optString("url", emoji.optString("u", ""));
+                    }
+                    if (!url.isEmpty()) {
+                        if (url.startsWith("//")) url = "https:" + url;
+                        if (url.startsWith("https://") || url.startsWith("http://")) {
+                            convertedFlair.put(new JSONObject().put("e", "emoji").put("u", url));
+                        }
+                    } else {
+                        String label = segment.optString("t", segment.optString("text", ""));
+                        if (!label.isEmpty()) {
+                            convertedFlair.put(new JSONObject().put("e", "text").put("t", label));
+                        }
+                    }
+                }
+                if (convertedFlair.length() > 0) {
+                    data.put("author_flair_richtext", convertedFlair);
+                }
+            }
         }
         String distinguished = node.optString("distinguishedAs", "");
         if (!distinguished.isEmpty()) {
