@@ -172,7 +172,7 @@ public final class LinkTypeHelper {
         if (!TextUtils.isEmpty(str) && str != null && str.length() > 0) {
             String lowerCase = str.toLowerCase(Locale.ENGLISH);
             if (!ImgurImageHelper.isAlbum(lowerCase) && !ImgurImageHelper.isMultiImage(lowerCase)) {
-                if (ImgurImageHelper.isImgur(lowerCase) || lowerCase.contains("i.reddituploads.com") || lowerCase.contains("g.redditmedia.com") || lowerCase.contains("i.redditmedia.com") || lowerCase.contains("v.redd.it") || lowerCase.contains("preview.redd.it") || isRedditImageUploaded(lowerCase)) {
+                if (ImgurImageHelper.isImgur(lowerCase) || lowerCase.contains("i.reddituploads.com") || lowerCase.contains("g.redditmedia.com") || lowerCase.contains("i.redditmedia.com") || lowerCase.contains("emoji.redditmedia.com/") || lowerCase.contains("v.redd.it") || lowerCase.contains("preview.redd.it") || isRedditImageUploaded(lowerCase)) {
                     return true;
                 }
                 if (lowerCase.contains("www.dropbox.com")) {
