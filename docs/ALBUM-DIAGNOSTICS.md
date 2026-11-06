@@ -62,3 +62,17 @@ retry the previous `/by_id` lookup once for sessions where it remains
 accessible. The diagnostics v2 dialog displays both endpoints, omitting auth
 headers and cookies. This is unverified on the user's device pending an APK
 test, and it is not a confirmed permanent API route.
+
+## 2026-11-05: follow-up — comments not loading in album test build
+
+On the successful experimental album build, opening comments failed because
+`OAuthCommentsRequest` still fetched the post from the blocked `/by_id/`
+endpoint before its existing `GraphQLCommentsRequest` could run.
+
+The comments post lookup now follows the same route choice as the working
+gallery fetch: `/duplicates/<id>.json?raw_json=1&limit=1` first, parsing
+the original post Listing from the first array entry. It validates the post
+ID, then runs the unchanged Reddit `PostComments` GraphQL request and legacy
+comment ingestion. On HTTP 403 or 404 at the first lookup it tries `/by_id`
+once for compatibility. GraphQL failures remain separately logged under
+`ReSyncComments`. This change needs on-device testing before being merged.
