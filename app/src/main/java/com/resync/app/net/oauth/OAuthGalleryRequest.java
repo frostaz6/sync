@@ -23,26 +23,53 @@ import com.resync.app.util.links.LinkHandler;
 public class OAuthGalleryRequest extends RedditRequest<Gallery> {
     private static final String TAG = "ReSyncGallery";
     public OAuthGalleryRequest(String str, Response.Listener<Gallery> listener, Response.ErrorListener errorListener) {
-        super(RedditApplication.getAppContext(), 0, buildUrl(str), listener, errorListener);
-        // Diagnostics must reflect fresh responses rather than cached gallery JSON.
+        this(str, listener, errorListener, false);
+    }
+
+    private OAuthGalleryRequest(String str, Response.Listener<Gallery> listener,
+            Response.ErrorListener errorListener, boolean byIdFallback) {
+        super(RedditApplication.getAppContext(), Method.GET,
+                byIdFallback ? buildByIdUrl(str) : buildUrl(str), listener, error -> {
+                    int status = error != null && error.networkResponse != null
+                            ? error.networkResponse.statusCode : -1;
+                    if (!byIdFallback && (status == 403 || status == 404)) {
+                        Log.w(TAG, "Gallery lookup HTTP " + status + " from /duplicates/; retrying /by_id/");
+                        com.resync.app.net.OAuthRequestManager.sendWithAppContext(
+                                new OAuthGalleryRequest(str, listener, errorListener, true));
+                    } else if (errorListener != null) {
+                        errorListener.onErrorResponse(error);
+                    }
+                });
+        // Always test the actual network route, not an older cached album.
         setShouldCache(false);
         Log.i(TAG, "GET " + getUrl());
     }
 
     /**
-     * Reddit returns 403 for /api/info and /comments/<id>.json on some 2026
-     * web-session OAuth tokens, even while normal listings work. /by_id remains
-     * available and returns the full post (including gallery_data/media_metadata)
-     * as a single Listing object. No comments endpoint is needed for a gallery.
+     * Reddit started returning route-specific 403s for /api/info, /comments and
+     * /by_id in October 2026. The /duplicates/<id> endpoint also identifies the
+     * requested post, with the post's full gallery_data and media_metadata in
+     * the first Listing of the response array. Only the original post is used.
+     * Fall back to /by_id for sessions where that route still works.
      */
     public static String buildUrl(String str) {
+        return "https://oauth.reddit.com/duplicates/" + getPostId(str)
+                + ".json?raw_json=1&limit=1";
+    }
+
+    public static String buildByIdUrl(String str) {
+        return "https://oauth.reddit.com/by_id/t3_" + getPostId(str)
+                + ".json?raw_json=1";
+    }
+
+    private static String getPostId(String str) {
         String address = str == null ? "" : str.split("[?#]", 2)[0];
         while (address.endsWith("/") && !address.isEmpty()) {
             address = address.substring(0, address.length() - 1);
         }
         String id = LinkHandler.getCommentsId(address);
         if (id != null && id.startsWith("t3_")) id = id.substring(3);
-        return "https://oauth.reddit.com/by_id/t3_" + id + ".json?raw_json=1";
+        return id;
     }
 
     @Override // com.android.volley.Request
@@ -51,8 +78,8 @@ public class OAuthGalleryRequest extends RedditRequest<Gallery> {
         try {
             String str = new String(networkResponse.data, java.nio.charset.StandardCharsets.UTF_8);
             Log.i(TAG, "HTTP " + networkResponse.statusCode + " responseBytes=" + networkResponse.data.length);
-            // /by_id/t3_<id>.json returns a single post Listing object.
-            // Accept array roots as a fallback for older responses.
+            // /duplicates/<id>.json returns [original post Listing, duplicates Listing].
+            // /by_id/t3_<id>.json (fallback) returns one Listing object.
             Object responseRoot = new JSONTokener(str).nextValue();
             stage = "read post listing";
             Log.i(TAG, "Root=" + responseRoot.getClass().getSimpleName());
