@@ -46,3 +46,19 @@ while still accepting `/by_id/` on the same bearer and network connection
 That endpoint returns a standard post Listing, parsed by the already-supported
 JSONObject branch. The on-screen diagnostic dialog and Logcat tracing remain.
 The new path is not yet proven against the user's exact session; test it in-app.
+
+## 2026-11-05: /by_id route 403 again
+
+ReSync reported a 403 on `/by_id/t3_1xoxzsn.json?raw_json=1`.
+The gallery still exists and contains normal Reddit `gallery_data` and
+`media_metadata`, so this is a transport/auth route failure rather than a
+gallery parser bug. Reddit's October 30 route restrictions also included
+`/by_id` (see r/BoostForReddit Patcheddit 2.0.1 announcement).
+
+Experimental fix: ask `/duplicates/<id>.json?raw_json=1&limit=1` for the
+original post listing, which is the first element of its two-listing response.
+The gallery parser already handles an array/listing root. On HTTP 403 or 404,
+retry the previous `/by_id` lookup once for sessions where it remains
+accessible. The diagnostics v2 dialog displays both endpoints, omitting auth
+headers and cookies. This is unverified on the user's device pending an APK
+test, and it is not a confirmed permanent API route.
