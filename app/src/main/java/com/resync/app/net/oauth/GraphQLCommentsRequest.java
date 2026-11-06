@@ -27,8 +27,8 @@ import java.util.TimeZone;
  * its comment forest into the legacy JSON two-listing response that Sync's
  * CommentParserHelper/PostParserHelper already understand.
  *
- * The requested post is fetched separately through /by_id by the parent
- * OAuthCommentsRequest, so its metadata remains untouched.
+ * The requested post is fetched separately through /duplicates/ by the parent
+ * OAuthCommentsRequest (/by_id fallback) so its metadata remains untouched.
  */
 final class GraphQLCommentsRequest extends RedditRequest<Void> {
     private static final String TAG = "ReSyncComments";
