@@ -490,10 +490,12 @@ public class MultiImageActivity extends AbstractImageActivity {
      * Deliberately exclude authentication headers, cookies and response bodies.
      */
     private void showGalleryDiagnostic(String provider, VolleyError error) {
-        final StringBuilder details = new StringBuilder("ReSync album diagnostics v1");
+        final StringBuilder details = new StringBuilder("ReSync album diagnostics v2");
         details.append("\nProvider: ").append(provider);
         if ("Reddit".equals(provider)) {
-            details.append("\nEndpoint: ").append(OAuthGalleryRequest.buildUrl(getContentUrl()));
+            details.append("\nPrimary endpoint: ").append(OAuthGalleryRequest.buildUrl(getContentUrl()));
+            details.append("\nFallback on 403/404: ").append(OAuthGalleryRequest.buildByIdUrl(getContentUrl()));
+            details.append("\nHTTP status below refers to the last attempted request.");
         }
         int status = error != null && error.networkResponse != null
                 ? error.networkResponse.statusCode : -1;
