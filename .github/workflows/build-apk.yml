@@ -130,7 +130,7 @@ jobs:
           cp "$apk" ReSync-v1.0.1.apk
           sha256sum ReSync-v1.0.1.apk | tee apk-sha256.txt
           {
-            echo "ReSync gallery lookup: /by_id/t3_<post-id>.json?raw_json=1"
+            echo "ReSync gallery lookup: /duplicates/<id>.json with /by_id fallback on 403/404"
             echo "Signing mode: $SIGNING_MODE"
             echo "Build run number: $RESYNC_CI_RUN_NUMBER"
             "$apksigner" verify --print-certs "$apk" | grep -E 'Signer #1 certificate SHA-256 digest'
