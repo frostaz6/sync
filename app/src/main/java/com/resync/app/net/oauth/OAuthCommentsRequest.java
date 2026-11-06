@@ -16,7 +16,9 @@ import com.resync.app.singleton.SettingsSingleton;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONTokener;
 import org.json.JSONObject;
 import com.resync.app.text.parsing.CommentParserHelper;
 import com.resync.app.text.parsing.ContentValuesListHelper;
@@ -76,23 +78,56 @@ public class OAuthCommentsRequest extends RedditRequest<Void> {
     }
 
     public OAuthCommentsRequest(Context context, String str, String str2, String str3, String str4, boolean clearList, boolean keepNewCommentFlag, boolean rawJson, Response.Listener<Void> listener, Response.ErrorListener errorListener) {
-        super(context, 0, buildUrl(context, str, str2, str3, str4, rawJson), listener, errorListener);
+        this(context, str, str2, str3, str4, clearList, keepNewCommentFlag, rawJson,
+                listener, errorListener, false);
+    }
+
+    private OAuthCommentsRequest(Context context, String postId, String subreddit,
+            String commentId, String sort, boolean clearList, boolean keepNewCommentFlag,
+            boolean rawJson, Response.Listener<Void> listener,
+            Response.ErrorListener errorListener, boolean byIdFallback) {
+        super(context, Method.GET, buildPostLookupUrl(context, postId, byIdFallback),
+                listener, error -> {
+                    int status = error != null && error.networkResponse != null
+                            ? error.networkResponse.statusCode : -1;
+                    if (!byIdFallback && (status == 403 || status == 404)) {
+                        Log.w("ReSyncComments", "Post lookup HTTP " + status
+                                + " from /duplicates/; retrying /by_id/");
+                        OAuthRequestManager.sendWithAppContext(new OAuthCommentsRequest(
+                                context, postId, subreddit, commentId, sort, clearList,
+                                keepNewCommentFlag, rawJson, listener, errorListener, true));
+                    } else if (errorListener != null) {
+                        errorListener.onErrorResponse(error);
+                    }
+                });
         this.authorFullnames = new ArrayList<>();
-        this.articleId = str;
-        this.commentId = str3;
+        this.articleId = postId;
+        this.commentId = commentId;
         this.clearList = clearList;
         this.keepNewCommentFlag = keepNewCommentFlag;
-        this.sort = str4;
-        Log.i("ReSyncComments", "Thread GET " + getUrl());
+        this.sort = sort;
+        // Never use a stale cached post listing for thread metadata.
+        setShouldCache(false);
+        Log.i("ReSyncComments", "Thread post GET " + getUrl());
     }
 
     /**
-     * The JSON comments endpoints now return 403, including encoded aliases.
-     * First fetch the post from /by_id, then comments through GraphQL.
+     * Reddit now rejects /by_id for some clients, including this user's web
+     * session, while /duplicates/<id>.json succeeds for the same post.
+     * The first element of the duplicates response contains the full post
+     * Listing needed by the legacy parser. GraphQL still loads the comments.
      */
     public static String buildUrl(Context context, String postId, String subreddit,
             String commentId, String sort, boolean rawJson) {
-        return SettingsSingleton.getOauthUrl(context) + "by_id/t3_" + postId + ".json?raw_json=1";
+        return buildPostLookupUrl(context, postId, false);
+    }
+
+    private static String buildPostLookupUrl(Context context, String postId,
+            boolean byIdFallback) {
+        String prefix = SettingsSingleton.getOauthUrl(context);
+        return byIdFallback
+                ? prefix + "by_id/t3_" + postId + ".json?raw_json=1"
+                : prefix + "duplicates/" + postId + ".json?raw_json=1&limit=1";
     }
 
     @Override // com.resync.app.net.RedditRequest, com.android.volley.Request
@@ -115,13 +150,29 @@ public class OAuthCommentsRequest extends RedditRequest<Void> {
     @Override // com.android.volley.Request
     public Response<Void> parseNetworkResponse(NetworkResponse networkResponse) {
         try {
-            JSONObject listing = new JSONObject(new String(networkResponse.data,
-                    java.nio.charset.StandardCharsets.UTF_8));
-            if (listing.getJSONObject("data").getJSONArray("children").length() < 1) {
-                return Response.error(new ParseError(new JSONException("Post missing from /by_id listing")));
+            Object root = new JSONTokener(new String(networkResponse.data,
+                    java.nio.charset.StandardCharsets.UTF_8)).nextValue();
+            // /duplicates returns [post Listing, duplicates Listing], while
+            // the legacy /by_id fallback returns a single post Listing.
+            JSONObject listing = root instanceof JSONArray
+                    ? ((JSONArray) root).getJSONObject(0) : (JSONObject) root;
+            JSONArray children = listing.getJSONObject("data").getJSONArray("children");
+            if (children.length() < 1) {
+                return Response.error(new ParseError(new JSONException(
+                        "Post missing from lookup Listing")));
+            }
+            JSONObject post = children.getJSONObject(0).getJSONObject("data");
+            String returnedId = post.optString("id", "");
+            String expectedId = this.articleId.startsWith("t3_")
+                    ? this.articleId.substring(3) : this.articleId;
+            if (!expectedId.equals(returnedId) && !("t3_" + expectedId).equals(returnedId)) {
+                return Response.error(new ParseError(new JSONException(
+                        "Post lookup ID mismatch; expected=" + expectedId
+                                + " returned=" + returnedId)));
             }
             postListing = listing;
-            Log.i("ReSyncComments", "Post lookup succeeded; requesting comments via GraphQL");
+            Log.i("ReSyncComments", "Post lookup HTTP " + networkResponse.statusCode
+                    + " succeeded; requesting comments via GraphQL");
             return Response.success(null, HttpHeaderParser.parseCacheHeaders(networkResponse));
         } catch (Exception e) {
             Log.e("ReSyncComments", "Could not parse post lookup", e);
